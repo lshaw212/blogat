@@ -2,14 +2,17 @@ const db = require("../models");
 
 exports.createBlog = async function(req,res,next){
   try {
+    console.log("ayyy");
     let blog = await db.Blog.create({
-      blogName: req.body.name,
-      blogDescription: req.body.description,
+      blogName: req.body.blogName,
+      blogDescription: req.body.blogDescription,
       user: req.params.id
     });
+    console.log(blog);
     let foundUser = await db.User.findById(req.params.id)
-    foundUser.blogs.push(blog.id);
+    foundUser.blogs.push(blog._id);
     await foundUser.save();
+    console.log(blog);
     let foundBlog = await db.Blog.findById(blog._id).populate("user", {
       username: true,
       profileImageUrl: true

@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
   blogs: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Blog"
+  }],
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Post"
   }]
 });
 
