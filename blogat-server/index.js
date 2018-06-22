@@ -26,6 +26,9 @@ app.get("/api/users", async function(req,res,next){
       .sort({createdAt: "desc"})
       .populate("blogs", {
         blogName: true
+      })
+      .populate("posts",{
+        text:true
       });
     return res.status(200).json(users);
   } catch(err) {
@@ -40,6 +43,9 @@ app.get("/api/blogs", async function(req,res,next){
       .populate("user", {
         username: true,
         profileImageUrl: true
+      })
+      .populate("posts", {
+        text: true
       });
     return res.status(200).json(blogs);
   } catch(err) {
@@ -52,7 +58,8 @@ app.get("/api/posts", async function(req,res,next){
     let posts = await db.Post.find()
       .sort({createdAt: "desc"})
       .populate("blog",{
-        blogName: true
+        blogName: true,
+        blogDescription: true
       })
       .populate("user",{
         username: true

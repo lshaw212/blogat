@@ -4,7 +4,8 @@ exports.createPost = async function(req,res,next){
   try {
     let post = await db.Post.create({
       text: req.body.text,
-      blog: req.params.id
+      blog: req.params.id,
+      user: req.body.userId
     });
     let foundBlog = await db.Blog.findById(req.params.id);
     foundBlog.posts.push(post._id);
