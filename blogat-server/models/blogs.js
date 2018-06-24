@@ -24,20 +24,20 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
-blogSchema.pre("remove", async function(next){
-  try {
-    // find a user
-    let user = await User.findById(this.user);
-    // remove the id of the blog from their blog list
-    user.blogs.remove(this.id);
-    // save that user
-    await user.save();
-    // return next
-    return next();
-  } catch(err) {
-    return next(err);
-  }
-});
+// blogSchema.pre("remove", async function(next){
+//   try {
+//     // find a user
+//     let user = await User.findById(this.user);
+//     // remove the id of the blog from their blog list
+//     user.blogs.remove(this.id);
+//     // save that user
+//     await user.save();
+//     // return next
+//     return next();
+//   } catch(err) {
+//     return next(err);
+//   }
+// });
 
 const Blog = mongoose.model("Blog", blogSchema);
 module.exports = Blog;

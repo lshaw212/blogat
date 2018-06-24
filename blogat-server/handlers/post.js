@@ -4,14 +4,20 @@ exports.createPost = async function(req,res,next){
   try {
     let post = await db.Post.create({
       text: req.body.text,
-      blog: req.params.id,
-      user: req.body.userId
+      blog: req.params.blog_id,
+      user: req.params.user_id
     });
-    let foundBlog = await db.Blog.findById(req.params.id);
+    let foundBlog = await db.Blog.findById(req.params.blog_id);
     foundBlog.posts.push(post._id);
     await foundBlog.save();
+    let foundUser = await db.User.findById(req.params.user_id);
+    foundUser.posts.push(post._id);
+    await foundUser.save();
     let foundPost = await db.Post.findById(post._id).populate("blog", {
       blogName: true
+    })
+    .populate("user", {
+      username: true
     });
     return res.status(200).json(foundPost);
   } catch(err) {

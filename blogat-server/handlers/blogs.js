@@ -5,14 +5,13 @@ exports.createBlog = async function(req,res,next){
     let blog = await db.Blog.create({
       blogName: req.body.blogName,
       blogDescription: req.body.blogDescription,
-      user: req.params.id
+      user: req.params.user_id
     });
-    let foundUser = await db.User.findById(req.params.id)
+    let foundUser = await db.User.findById(req.params.user_id)
     foundUser.blogs.push(blog._id);
     await foundUser.save();
     let foundBlog = await db.Blog.findById(blog._id).populate("user", {
-      username: true,
-      profileImageUrl: true
+      username: true
     });
     return res.status(200).json(foundBlog);
   } catch(err) {

@@ -17,8 +17,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use("/api/auth", authRoutes);
-app.use("/api/users/:id/blogs",loginRequired, ensureCorrectUser, blogRoutes);
-app.use("/api/blog/:id/posts", postRoutes);
+app.use("/api/users/:user_id/blogs",loginRequired, ensureCorrectUser, blogRoutes);
+app.use("/api/users/:user_id/blogs/:blog_id/posts",loginRequired, ensureCorrectUser, postRoutes);
+//app.use("/api/blog/:id/posts",loginRequired, ensureCorrectUser, postRoutes);
 
 app.get("/api/users", async function(req,res,next){
   try {
@@ -27,8 +28,8 @@ app.get("/api/users", async function(req,res,next){
       .populate("blogs", {
         blogName: true
       })
-      .populate("posts",{
-        text:true
+      .populate("posts", {
+        text: true
       });
     return res.status(200).json(users);
   } catch(err) {
@@ -41,8 +42,7 @@ app.get("/api/blogs", async function(req,res,next){
     let blogs = await db.Blog.find()
       .sort({createdAt: "desc"})
       .populate("user", {
-        username: true,
-        profileImageUrl: true
+        username: true
       })
       .populate("posts", {
         text: true
@@ -58,8 +58,7 @@ app.get("/api/posts", async function(req,res,next){
     let posts = await db.Post.find()
       .sort({createdAt: "desc"})
       .populate("blog",{
-        blogName: true,
-        blogDescription: true
+        blogName: true
       })
       .populate("user",{
         username: true
