@@ -1,2 +1,3 @@
 blogat-server/node_modules
-blogat-server/.env
+blogat-client/node_modules
+.env
