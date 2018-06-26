@@ -15,14 +15,19 @@ class Navbar extends Component {
               <p>Home</p>
             </Link>
           </div>
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <Link to="/signup">Sign up</Link>
-            </li>
-            <li>
-              <Link to="/signin">Log in</Link>
-            </li>
-          </ul>
+          {/* {this.props.currentUser.isAuthenticated ? (
+            <div></div>
+          ) : ( */}
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                <Link to="/signup">Sign up</Link>
+              </li>
+              <li>
+                <Link to="/signin">Log in</Link>
+              </li>
+            </ul>
+          {/* )} */}
+          
         </div>
       </nav>
     );
