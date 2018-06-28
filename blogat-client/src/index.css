@@ -2,4 +2,38 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #e6ecf0
+}
+
+/* Navbar */
+
+.navbar{
+  margin-bottom: 1rem;
+  background-color: grey;
+}
+
+.navbar a {
+  font-weight: bold;
+  color: white;
+}
+
+.navbar a:hover {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+}
+#blogs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+#blogs .list-group-item {
+  margin: 1rem;
+  width: 250px;
+  height: 250px;
 }

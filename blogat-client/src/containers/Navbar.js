@@ -15,9 +15,9 @@ class Navbar extends Component {
               <p>Home</p>
             </Link>
           </div>
-          {/* {this.props.currentUser.isAuthenticated ? (
-            <div></div>
-          ) : ( */}
+          {this.props.currentUser.isAuthenticated ? (
+            <div>Welcome {this.props.currentUser.user.username} Enjoy your stay!</div>
+          ) : (
             <ul className="nav navbar-nav navbar-right">
               <li>
                 <Link to="/signup">Sign up</Link>
@@ -26,7 +26,7 @@ class Navbar extends Component {
                 <Link to="/signin">Log in</Link>
               </li>
             </ul>
-          {/* )} */}
+          )}
           
         </div>
       </nav>
@@ -34,4 +34,10 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  };
+}
+
+export default connect(mapStateToProps)(Navbar);

@@ -35,12 +35,21 @@ export default class AuthForm extends Component {
   render(){
     const { email, username, password, profileImageUrl } =this.state;
     const { buttonText, heading, signUp, errors, history, removeError } = this.props;
+
+    if(errors.message){
+      const unListen = history.listen(() => {
+        removeError();
+        unListen();
+      })
+    }
+
     return(
-      <div>
+      <div className="container">
         <div className="row justify-content-md-center textcenter">
           <div className="col-md-6">
             <form onSubmit={this.handleSubmit}>
-              <h2>Ayyyy form and shit</h2>
+              <h2>Form</h2>
+              {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
               <label htmlFor="email">Email:</label>
               <input type="text" className="form-control" id="email" name="email" onChange={this.handleChange} value={email}/>
               <label htmlFor="password">Password:</label>
