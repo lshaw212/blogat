@@ -16,7 +16,6 @@ const Homepage =({currentUser}) => {
   }
   return (
     <div>
-      {/* SIGNED IN! <strong>COMING SOON</strong> */}
       <BlogList/>
     </div>
   )

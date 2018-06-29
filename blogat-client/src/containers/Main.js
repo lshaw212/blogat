@@ -19,6 +19,8 @@ const Main = props => {
               removeError={removeError}
               errors={errors}
               onAuth={authUser}
+              buttonText="Log in"
+              heading="Please log in to continue"
               {...props}
             />
           );
@@ -29,6 +31,8 @@ const Main = props => {
               removeError={removeError}
               errors={errors}
               onAuth={authUser}
+              buttonText="Sign me up!"
+              heading="Join Blog@ today!"
               signUp
               {...props}
             />

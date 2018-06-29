@@ -33,7 +33,7 @@ export default class AuthForm extends Component {
   };
 
   render(){
-    const { email, username, password, profileImageUrl } =this.state;
+    const { email, username, profileImageUrl } =this.state;
     const { buttonText, heading, signUp, errors, history, removeError } = this.props;
 
     if(errors.message){
@@ -48,7 +48,7 @@ export default class AuthForm extends Component {
         <div className="row justify-content-md-center textcenter">
           <div className="col-md-6">
             <form onSubmit={this.handleSubmit}>
-              <h2>Form</h2>
+              <h2>{heading}</h2>
               {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
               <label htmlFor="email">Email:</label>
               <input type="text" className="form-control" id="email" name="email" onChange={this.handleChange} value={email}/>
@@ -61,7 +61,7 @@ export default class AuthForm extends Component {
                 </div>
               )}
               <button className="btn btn-primary btn-block btn-lg">
-                Submit!
+                {buttonText}
               </button>
             </form>
           </div>

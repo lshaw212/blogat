@@ -29,11 +29,18 @@ ul.nav.navbar-nav li {
 #blogs {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  
+  justify-content: space-evenly;
 }
 #blogs .list-group-item {
   margin: 1rem;
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
+}
+
+/* Blog contents */
+
+#desc {
+  position: absolute;
+  top: 30%;
+  margin-right: 10%;
 }

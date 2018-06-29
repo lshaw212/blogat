@@ -18,15 +18,14 @@ class BlogList extends Component {
         key={b._id}
         date={b.createAt}
         text={b.blogName}
+        desc={b.blogDescription}
         username={b.user.useraname}
         isCorrectUser={currentUser === b.user._id}
       />
     ));
     return(
-      <div className="">
-        <ul id="blogs">
+      <div id="blogs">
           {blogList}
-        </ul>
       </div>
     )
   }
