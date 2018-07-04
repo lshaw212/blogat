@@ -35,6 +35,11 @@ ul.nav.navbar-nav li {
   margin: 1rem;
   width: 300px;
   height: 300px;
+  box-shadow: 10px 10px 13px 1px rgba(199,199,199,0.75);
+  border-radius: 20px;
+  /* image */
+  background-size: cover;
+  background-position: center;
 }
 
 /* Blog contents */
@@ -43,4 +48,8 @@ ul.nav.navbar-nav li {
   position: absolute;
   top: 30%;
   margin-right: 10%;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
 }

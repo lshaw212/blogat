@@ -13,6 +13,9 @@ const blogSchema = new mongoose.Schema(
       required: true,
       maxlength: 200
     },
+    blogImage: {
+      type: String
+    },
     posts: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post"

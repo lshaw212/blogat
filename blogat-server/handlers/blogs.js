@@ -5,6 +5,7 @@ exports.createBlog = async function(req,res,next){
     let blog = await db.Blog.create({
       blogName: req.body.blogName,
       blogDescription: req.body.blogDescription,
+      blogImage: req.body.blogImage,
       user: req.params.user_id
     });
     let foundUser = await db.User.findById(req.params.user_id)

@@ -19,6 +19,7 @@ class BlogList extends Component {
         date={b.createAt}
         text={b.blogName}
         desc={b.blogDescription}
+        image={b.blogImage}
         username={b.user.useraname}
         isCorrectUser={currentUser === b.user._id}
       />
