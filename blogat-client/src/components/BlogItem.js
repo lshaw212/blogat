@@ -4,25 +4,21 @@ import { Link } from "react-router-dom";
 
 // style={{backgroundImage: `url(${image})`}}
 
-const BlogItem =({text, desc, image, username, date, isCorrectUser}) => (
-  <div className="blogCard" >
+const BlogItem =({text, desc, image, username, date, isCorrectUser, clickEvent}) => (
+  <div onClick={clickEvent} className="blogCard" >
     <div className="image" style={{backgroundImage: `url(${image})`}}></div>
-    
-    
-    <div id="desc">
-    <p>{text}</p>
+    <div id="blogTitle">
+      <p>{text}</p>
+    </div>
+    <div id="blogDesc">
       <p>{desc}</p>
     </div>
-    <div>
-    {/* <img src={image} alt=""/> */}
-      <div>
-        {/* favourite count */}
-      </div>
-      <div>
-        {/* post count */}
-      </div>
+    <div id="blogFav">
+      <p>fav</p>
     </div>
-    
+    <div id="blogPost">
+      <p>post</p>
+    </div>    
   </div>
 )
 

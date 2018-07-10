@@ -6,6 +6,7 @@ import { removeError } from "../store/actions/errors";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
+import Blog from "../components/Blog";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError } = props;
@@ -34,6 +35,14 @@ const Main = props => {
               buttonText="Sign me up!"
               heading="Join Blog@ today!"
               signUp
+              {...props}
+            />
+          );
+        }}/>
+        <Route exact path="/blog/:id" render={props => {
+          return(
+            <Blog
+
               {...props}
             />
           );

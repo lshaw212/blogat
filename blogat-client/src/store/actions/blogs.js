@@ -18,3 +18,13 @@ export const fetchBlogs = () => {
       });
   };
 };
+
+export const createNewBlog = () => (dispatch, getState) => {
+  let {currentUser} = getState();
+  const id = currentUser.user.id;
+  return apiCall("post", `/api/users/${id}/blogs`, {})
+    .then( res => {
+
+    })
+    .catch(err => dispatch(addError(err.message)));
+};
