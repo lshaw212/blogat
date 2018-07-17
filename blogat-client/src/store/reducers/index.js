@@ -6,7 +6,7 @@ import blogs from "./blogs";
 const rootReducer = combineReducers({
   currentUser,
   errors,
-  blogs
+  blogs: blogs
 });
 
 export default rootReducer;

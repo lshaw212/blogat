@@ -1,27 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import BlogItem from "../components/BlogItem";
-import { fetchBlogs} from "../store/actions/blogs";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import Blog from "../components/Blog";
+import { fetchBlogs } from "../store/actions/blogs";
+import { Link, withRouter, Redirect, Route } from "react-router-dom";
 
 class BlogList extends Component {
   componentDidMount(){
     // Fetch blogs
     this.props.fetchBlogs();
   }
-  clickEvent = e => {
+
+  clickEvent(id, e){
     e.preventDefault();
-    console.log("Ayyy lmao");
-    //this.props.history.push("/blog");
-    //<Redirect push to="/blog/"/>
     this.props.history.push({
-      pathname: '/blog',
-      state: {
-        id: 4
-      }
+      pathname:`/blogs/${id}`,
+      state: {id: id}  
     });
-    console.log(this.props.location.state.id);
-    //Click to go to the blog
   }
 
   render(){
@@ -36,23 +31,36 @@ class BlogList extends Component {
         desc={b.blogDescription}
         image={b.blogImage}
         username={b.user.useraname}
-        clickEvent={this.clickEvent}
+        clickEvent={this.clickEvent.bind(this, b._id)}
         isCorrectUser={currentUser === b.user._id}
       />
     ));
     return(
-      <div id="blogs">
-          {blogList}
+      <div>
+        <Route exact path="/blogs" component={() => (
+          <div id="blogs">
+            {blogList}
+          </div>
+        )} />
+        <Route path="/blogs/:id" render={props => {
+          return(
+            <Blog
+              {...props}
+            />
+          );
+        }}/>
       </div>
+      
     )
   }
 }
 
 function mapStateToProps(state){
   return {
-    blogs: state.blogs,
+    blogs: state.blogs.blogs,
     currentUser: state.currentUser.user.id
   };
 }
 
-export default withRouter(connect(mapStateToProps, {fetchBlogs})(BlogList));
+
+export default withRouter(connect(mapStateToProps, { fetchBlogs })(BlogList));

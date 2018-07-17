@@ -19,6 +19,7 @@ class Navbar extends Component {
             <Link to="/" className="navbar-brand">
               <p>Home</p>
             </Link>
+            <Link to={`/users/${this.props.currentUser.user.id}/blog/new`} >New Blog</Link>
           </div>
           {this.props.currentUser.isAuthenticated ? (
             <ul className="nav navbar-nav navbar-right">

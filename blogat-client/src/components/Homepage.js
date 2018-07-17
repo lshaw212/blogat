@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BlogList from "../containers/BlogList";
+import { Redirect } from "react-router-dom";
 
 const Homepage =({currentUser}) => {
   if(!currentUser.isAuthenticated){
@@ -16,7 +17,9 @@ const Homepage =({currentUser}) => {
   }
   return (
     <div>
-      <BlogList/>
+      {/* Redirect if logged in to BlogList */}
+      <Redirect to="/blogs" />
+      {/* <BlogList/> */}
     </div>
   )
 }

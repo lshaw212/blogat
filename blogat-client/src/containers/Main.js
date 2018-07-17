@@ -7,6 +7,8 @@ import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
+import BlogForm from "../containers/BlogForm";
+import BlogList from "../containers/BlogList";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError } = props;
@@ -14,6 +16,7 @@ const Main = props => {
     <div className="">
       <Switch>
         <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
+        <Route path="/blogs" component={BlogList} />
         <Route exact path="/signin" render={props => {
           return(
             <AuthForm
@@ -39,14 +42,8 @@ const Main = props => {
             />
           );
         }}/>
-        <Route exact path="/blog/:id" render={props => {
-          return(
-            <Blog
-
-              {...props}
-            />
-          );
-        }}/>
+        <Route path="/users/:id/blog/new" component={(BlogForm)}/>
+        
       </Switch>
     </div>
   );
