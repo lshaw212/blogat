@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 // style={{backgroundImage: `url(${image})`}}
 
-const BlogItem =({text, desc, image, username, date, isCorrectUser, clickEvent}) => (
-  <div onClick={clickEvent} className="blogCard" >
+const BlogItem =({text, desc, image, username, date, isCorrectUser, selectBlog, removeBlog}) => (
+  <div onClick={selectBlog} className="blogCard" >
+    <button onClick={removeBlog}>DELETE</button>  
     <div className="image" style={{backgroundImage: `url(${image})`}}></div>
     <div id="blogTitle">
       <p>{text}</p>
@@ -18,7 +19,8 @@ const BlogItem =({text, desc, image, username, date, isCorrectUser, clickEvent})
     </div>
     <div id="blogPost">
       <p>post</p>
-    </div>    
+    </div>
+     
   </div>
 )
 

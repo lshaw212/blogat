@@ -1,14 +1,14 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_BLOGS, GET_BLOG } from "../actionTypes";
+import { LOAD_BLOGS, GET_BLOG, REMOVE_BLOG } from "../actionTypes";
 
 export const loadBlogs = blogs => ({
   type: LOAD_BLOGS,
   blogs
 });
 
-export const getBlog = id => ({
-  type: GET_BLOG,
+export const removeBlog = id => ({
+  type: REMOVE_BLOG,
   id
 });
 
@@ -43,7 +43,21 @@ export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, 
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
     .then( res => {
-
+      //add a dispatch?
     })
     .catch(err => dispatch(addError(err.message)));
 };
+
+export const deleteBlog = (blogId) => (dispatch, getState) => {
+  let {currentUser} = getState();
+  const userId = currentUser.user.id;
+  return apiCall("delete", `/api/users/${userId}/blogs/${blogId}`)
+    .then(res => {
+      console.log("success");
+      dispatch(removeBlog(blogId));
+    })
+    .catch(err => {
+      console.log("err");
+      dispatch(addError(err.message));
+    });
+}

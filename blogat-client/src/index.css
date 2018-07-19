@@ -62,7 +62,7 @@ ul.nav.navbar-nav li {
 }
 
 #blogTitle {
-  pointer-events: none;
+  /* pointer-events: none; */
   position: relative;
   top: -280px;
   left: 10px;
@@ -72,20 +72,20 @@ ul.nav.navbar-nav li {
   margin-right: 0%;
 }
 #blogDesc {
-  pointer-events: none;
+  /* pointer-events: none; */
   position: relative;
   top: -280px;
   left: 10px; 
 }
 #blogFav {
-  pointer-events: none;
+  /* pointer-events: none; */
   position: relative;
   top: -150px;
   left: 10px; 
 }
 
 #blogPost {
-  pointer-events: none;
+  /* pointer-events: none; */
   position: relative;
   top: -190px;
   left: 250px; 

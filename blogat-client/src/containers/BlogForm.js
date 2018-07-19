@@ -24,6 +24,10 @@ class BlogForm extends Component {
     //this.props.history.push("/"); // Could go straight to new blog?
   }
 
+  componentWillUnmount(){
+    console.log("bye bye");
+  }
+
   render(){
     return(
       <form onSubmit={this.handleNewBlog}>

@@ -42,7 +42,7 @@ render(){
 // )
 function mapStateToProps(state){
   return {
-    blogs: state.blogs.blogs,
+    blogs: state.blogs,
     currentUser: state.currentUser.user.id
   };
 }
