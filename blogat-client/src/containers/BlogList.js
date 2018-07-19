@@ -21,8 +21,14 @@ class BlogList extends Component {
     });
   }
 
+  removeBlog(id, e){
+    // e.preventDefault();
+    this.props.deleteBlog(id);
+    e.stopPropagation();
+  }
+
   render(){
-    const { blogs, currentUser, deleteBlog } = this.props;
+    const { blogs, currentUser } = this.props;
 
     // map through your blog list
     let blogList = blogs.map(b => (
@@ -34,7 +40,7 @@ class BlogList extends Component {
         image={b.blogImage}
         username={b.user.useraname}
         selectBlog={this.selectBlog.bind(this, b._id)}
-        removeBlog={deleteBlog.bind(this, b._id)}
+        removeBlog={this.removeBlog.bind(this, b._id)}
         isCorrectUser={currentUser === b.user._id}
       />
     ));

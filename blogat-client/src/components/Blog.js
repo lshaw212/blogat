@@ -7,21 +7,6 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 
 class Blog extends Component {
 
-componentWillReceiveProps(){
-  console.log("ayylmao");
-  console.log(this.props.location.state.id);
-  
-}
-
-  componentDidMount(){
-    //this.props.retrieveBlog("5b462d21c9d17214b0f34bd9");
-    //this.props.fetchBlogs();
-
-  }
-
-componentWillUnmount(){
-}
-
 render(){
   const { blogs, currentUser, blog } = this.props;
   let selectedB = blogs.find(blog => blog._id === this.props.location.state.id);

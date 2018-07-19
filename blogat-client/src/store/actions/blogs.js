@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_BLOGS, GET_BLOG, REMOVE_BLOG } from "../actionTypes";
+import { LOAD_BLOGS, REMOVE_BLOG, CREATE_BLOG } from "../actionTypes";
 
 export const loadBlogs = blogs => ({
   type: LOAD_BLOGS,
@@ -11,6 +11,13 @@ export const removeBlog = id => ({
   type: REMOVE_BLOG,
   id
 });
+
+export const createBlog = blog => ({
+  type: CREATE_BLOG,
+  blog
+})
+
+
 
 export const fetchBlogs = () => {
   return dispatch => {
@@ -24,26 +31,15 @@ export const fetchBlogs = () => {
   };
 };
 
-// export const retrieveBlog = (blog_id) => {
-//   return dispatch => {
-//     return apiCall("get", "/api/blogs")
-//       .then(res => {
-//         console.log("RetrieveBlog1...");
-//         dispatch(getBlog(blog_id));
-//         console.log("RetrieveBlog2...");
-//       })
-//       .catch(err => {
-//         dispatch(addError(err.message));
-//       });
-//   }
-// }
-
 export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
     .then( res => {
       //add a dispatch?
+      console.log("createNewBlog");
+      dispatch(createBlog(res));
+      
     })
     .catch(err => dispatch(addError(err.message)));
 };

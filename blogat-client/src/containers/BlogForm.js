@@ -15,10 +15,11 @@ class BlogForm extends Component {
   handleNewBlog = e => {
     e.preventDefault();
     // this.props post new blog stuff
+    console.log("handleNewBlog");
     this.props.createNewBlog(this.state.text, this.state.desc, this.state.image).then(
       this.setState({text:"",desc:"",image:""})
     ).then(
-      this.props.history.push("/")
+      //this.props.history.push("/")
     );
     
     //this.props.history.push("/"); // Could go straight to new blog?
