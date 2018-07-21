@@ -3,7 +3,8 @@ const db = require("../models");
 exports.createPost = async function(req,res,next){
   try {
     let post = await db.Post.create({
-      text: req.body.text,
+      postTitle: req.body.postTitle,
+      postContent: req.body.postContent,
       blog: req.params.blog_id,
       user: req.params.user_id
     });

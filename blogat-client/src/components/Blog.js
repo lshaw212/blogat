@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import BlogItem from "../components/BlogItem";
+import Post from "../components/Post";
 import { fetchBlogs } from "../store/actions/blogs";
 import { Link, withRouter, Redirect } from "react-router-dom";
 
@@ -8,12 +8,24 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 class Blog extends Component {
 
 render(){
-  const { blogs, currentUser, blog } = this.props;
+  const { blogs, posts, currentUser, blog } = this.props;
   let selectedB = blogs.find(blog => blog._id === this.props.location.state.id);
+  let postList = posts.filter(post => post.blog._id === this.props.location.state.id);
+  let blogPosts = postList.map(p => (
+    <Post
+      title={p.postTitle}
+      content={p.postContent}
+      username={p.user.username}
+      date={p.createdAt}
+    />
+  ));
   return(
     <div className="container">
      <h1>Welcome to theeee {selectedB.blogName} blog!</h1>
      <p> {selectedB.blogDescription}</p>
+     <div>
+       {blogPosts}
+     </div>
    </div>
   )
 }
@@ -28,7 +40,8 @@ render(){
 function mapStateToProps(state){
   return {
     blogs: state.blogs,
+    posts: state.posts,
     currentUser: state.currentUser.user.id
   };
 }
-export default withRouter(connect(mapStateToProps, {fetchBlogs })(Blog));
+export default withRouter(connect(mapStateToProps, { fetchBlogs })(Blog));

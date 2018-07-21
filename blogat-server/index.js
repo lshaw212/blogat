@@ -45,7 +45,7 @@ app.get("/api/blogs", async function(req,res,next){
         username: true
       })
       .populate("posts", {
-        text: true
+        postTitle: true
       });
     return res.status(200).json(blogs);
   } catch(err) {

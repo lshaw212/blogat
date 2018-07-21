@@ -3,7 +3,11 @@ const User = require("./user");
 
 const postSchema = new mongoose.Schema(
   {
-    text: {
+    postTitle: {
+      type: String,
+      required: true,
+    },
+    postContent: {
       type: String,
       required: true,
     },

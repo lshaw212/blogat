@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import BlogItem from "../components/BlogItem";
 import Blog from "../components/Blog";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
+import { fetchPosts } from "../store/actions/posts";
 import { Link, withRouter, Redirect, Route } from "react-router-dom";
 
 class BlogList extends Component {
   componentDidMount(){
     // Fetch blogs
     this.props.fetchBlogs();
+    this.props.fetchPosts();
   }
 
 
@@ -72,4 +74,4 @@ function mapStateToProps(state){
 }
 
 
-export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog })(BlogList));
+export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts })(BlogList));
