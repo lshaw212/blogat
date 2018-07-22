@@ -7,7 +7,7 @@ const posts = (state=[], action) => {
       debugger;
       return [...action.posts];
     case REMOVE_POST:
-      return state;
+      return state.filter(post => post._id !== action.id);
     case CREATE_POST:
       return state;
     default:

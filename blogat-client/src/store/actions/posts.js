@@ -8,7 +8,7 @@ export const loadPosts = posts => ({
   posts
 });
 
-export const removePost = id => ({
+export const remove = id => ({
   type: REMOVE_POST,
   id
 });
@@ -29,3 +29,15 @@ export const fetchPosts = () => {
       });
   };
 };
+
+export const removePost = (user_id, blog_id, post_id) => {
+  return dispatch => {
+    return apiCall("delete", `/api/users/${user_id}/blogs/${blog_id}/posts/${post_id}`)
+      .then(() => {
+        dispatch(remove(post_id));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+      });
+  }
+}
