@@ -7,4 +7,5 @@ export const CREATE_BLOG = "CREATE_BLOG";
 
 export const LOAD_POSTS = "LOAD_POSTS";
 export const REMOVE_POST = "REMOVE_POST";
+export const REMOVE_ALL_POSTS = "REMOVE_ALL_POSTS";
 export const CREATE_POST = "CREATE_POST";

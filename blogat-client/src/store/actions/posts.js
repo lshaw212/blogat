@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_POSTS, REMOVE_POST, CREATE_POST } from "../actionTypes";
+import { LOAD_POSTS, REMOVE_POST, CREATE_POST, REMOVE_ALL_POSTS } from "../actionTypes";
 import { loadBlogs } from "./blogs";
 
 export const loadPosts = posts => ({
@@ -13,7 +13,12 @@ export const remove = id => ({
   id
 });
 
-export const createPost = post => ({
+export const removeAll = blog_id => ({
+  type: REMOVE_ALL_POSTS,
+  blog_id
+});
+
+export const create = post => ({
   type: CREATE_POST,
   post
 });
@@ -40,4 +45,18 @@ export const removePost = (user_id, blog_id, post_id) => {
         dispatch(addError(err.message));
       });
   }
+}
+
+export const createPost = (postTitle, postContent, blog_id) => (dispatch, getState) => {
+  let {currentUser} = getState();
+  const id = currentUser.user.id;
+  return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {postTitle, postContent})
+    .then(res => {
+      console.log("post created")
+      console.log(res);
+    })
+    .catch(err => {
+      console.log("err");
+      dispatch(addError(err.message));
+    });
 }

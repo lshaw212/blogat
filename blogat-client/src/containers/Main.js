@@ -8,6 +8,7 @@ import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
 import BlogForm from "../containers/BlogForm";
+import PostForm from "../containers/PostForm";
 import BlogList from "../containers/BlogList";
 
 const Main = props => {
@@ -42,7 +43,8 @@ const Main = props => {
             />
           );
         }}/>
-        <Route path="/users/:id/blog/new" component={(BlogForm)}/>
+        <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
+        <Route path="/blog/:blogId/newpost" component={(PostForm)}/>
         
       </Switch>
     </div>
