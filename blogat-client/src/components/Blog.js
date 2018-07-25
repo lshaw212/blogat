@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
-import { fetchBlogs, removeBlog } from "../store/actions/blogs";
+import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { removePost } from "../store/actions/posts";
 import { Link, withRouter, Redirect } from "react-router-dom";
 
@@ -10,7 +10,8 @@ class Blog extends Component {
 
   deleteBlog = e => {
     e.preventDefault();
-    this.props.removeBlog(this.props.location.id);
+    console.log("SDKJGHSAD");
+    this.props.deleteBlog(this.props.location.state.id);
   }
 render(){
   const { blogs, posts, currentUser, removePost, removeBlog } = this.props;
@@ -59,4 +60,4 @@ function mapStateToProps(state){
     currentUser: state.currentUser.user.id
   };
 }
-export default withRouter(connect(mapStateToProps, { fetchBlogs, removePost, removeBlog })(Blog));
+export default withRouter(connect(mapStateToProps, { fetchBlogs, removePost,deleteBlog })(Blog));

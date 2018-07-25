@@ -44,3 +44,11 @@ exports.deletePost = async function(req,res,next){
     return next(err);
   }
 }
+
+exports.deleteBlogPosts = async function(req,res,next){
+  try {
+    // let foundBlogPosts = await db.Post.find({})
+  } catch (err) {
+    return next(err);
+  }
+}

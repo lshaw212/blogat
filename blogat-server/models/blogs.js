@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("./user");
+const Post = require("./posts");
 
 const blogSchema = new mongoose.Schema(
   {
@@ -26,6 +27,37 @@ const blogSchema = new mongoose.Schema(
     }
   }
 );
+
+blogSchema.pre("remove", async function(next){
+  try {
+    // find a user
+    await Post.remove({
+      blog: {
+        _id: this._id
+      }
+    });
+    // let post = await Post.findAndModify({
+    //   query: {
+    //     blog: {
+    //       _id: this._id
+    //     }
+    //   },
+    //   remove: true
+    // });
+
+    // remove the id of the blog from their blog list
+    console.log(this.posts);
+    //console.log(post);
+    //blogs.remove(this.id);
+    //post.remove();
+    // save that user
+    //await post.save();
+    // return next
+    return next();
+  } catch(err) {
+    return next(err);
+  }
+});
 
 // blogSchema.pre("remove", async function(next){
 //   try {
