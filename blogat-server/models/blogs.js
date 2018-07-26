@@ -30,49 +30,21 @@ const blogSchema = new mongoose.Schema(
 
 blogSchema.pre("remove", async function(next){
   try {
-    // find a user
     await Post.remove({
       blog: {
         _id: this._id
       }
     });
-    // let post = await Post.findAndModify({
-    //   query: {
-    //     blog: {
-    //       _id: this._id
-    //     }
-    //   },
-    //   remove: true
-    // });
-
-    // remove the id of the blog from their blog list
+    let user = await User.findById(this.user);
+    user.blogs.remove(this.id);
+    user.posts.remove(...this.posts);
+    await user.save();
     console.log(this.posts);
-    //console.log(post);
-    //blogs.remove(this.id);
-    //post.remove();
-    // save that user
-    //await post.save();
-    // return next
     return next();
   } catch(err) {
     return next(err);
   }
 });
-
-// blogSchema.pre("remove", async function(next){
-//   try {
-//     // find a user
-//     let user = await User.findById(this.user);
-//     // remove the id of the blog from their blog list
-//     user.blogs.remove(this.id);
-//     // save that user
-//     await user.save();
-//     // return next
-//     return next();
-//   } catch(err) {
-//     return next(err);
-//   }
-// });
 
 const Blog = mongoose.model("Blog", blogSchema);
 module.exports = Blog;

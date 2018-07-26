@@ -31,5 +31,17 @@ const postSchema = new mongoose.Schema(
   }
 );
 
+postSchema.pre("remove", async function(next){
+  try {
+    let user = await User.findById(this.user);
+    user.posts.remove(this.id);
+    await user.save();
+    console.log("Test");
+    return next();
+  } catch(err) {
+    return next(err);
+  }
+});
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
