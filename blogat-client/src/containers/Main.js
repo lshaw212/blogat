@@ -10,6 +10,7 @@ import Blog from "../components/Blog";
 import BlogForm from "../containers/BlogForm";
 import PostForm from "../containers/PostForm";
 import BlogList from "../containers/BlogList";
+import EditBlogForm from "../containers/EditBlogForm";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError } = props;
@@ -45,6 +46,7 @@ const Main = props => {
         }}/>
         <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
         <Route path="/blog/:blogId/newpost" component={(PostForm)}/>
+        <Route path="/blog/:blogId/edit" component={(EditBlogForm)}/>
         
       </Switch>
     </div>

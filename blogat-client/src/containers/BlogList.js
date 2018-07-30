@@ -31,7 +31,9 @@ class BlogList extends Component {
 
   render(){
     const { blogs, currentUser } = this.props;
-
+    debugger;
+    console.log("BlogList Render method");
+    console.log(blogs);
     // map through your blog list
     let blogList = blogs.map(b => (
       <BlogItem
@@ -40,7 +42,7 @@ class BlogList extends Component {
         text={b.blogName}
         desc={b.blogDescription}
         image={b.blogImage}
-        username={b.user.useraname}
+        username={b.user.username}
         selectBlog={this.selectBlog.bind(this, b._id)}
         removeBlog={this.removeBlog.bind(this, b._id)}
         isCorrectUser={currentUser === b.user._id}

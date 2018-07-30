@@ -30,6 +30,39 @@ exports.getBlog = async function(req,res,next){
   }
 };
 
+exports.updateBlog = async function(req,res,next){
+  // try {
+  //   let blog = {
+  //     blogName: req.body.blogName,
+  //     blogDescription: req.body.blogDescription,
+  //     blogImage: req.body.blogImage,
+  //     user: req.params.user_id
+  //   }
+  //   console.log(blog);
+  //   await db.Blog.update({_id: req.params.blog_id}, blog);
+  //   // return res.status(200);
+  //   return next();
+  // } catch(err) {
+  //   console.log("Do we get an error?");
+  //   return next(err);
+  // }
+  try {
+    let updatedBlog = await db.Blog.findById(req.params.blog_id, function(err, blog){
+      blog.blogName = req.body.blogName;
+      blog.blogDescription = req.body.blogDescription;
+      blog.blogImage = req.body.blogImage;
+
+      blog.save();
+    }).populate("user", {
+      username: true
+    });
+    await updatedBlog.save();
+    return res.status(200).json(updatedBlog);
+  } catch(err) {
+    return next(err);
+  }
+};
+
 // DELETE - /api/users/:id/blogs/:blog_id
 exports.deleteBlog = async function(req,res,next){
   try {

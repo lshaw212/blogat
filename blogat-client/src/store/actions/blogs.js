@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_BLOGS, REMOVE_BLOG, CREATE_BLOG } from "../actionTypes";
+import { LOAD_BLOGS, REMOVE_BLOG, CREATE_BLOG, UPDATE_BLOG } from "../actionTypes";
 
 export const loadBlogs = blogs => ({
   type: LOAD_BLOGS,
@@ -15,7 +15,13 @@ export const removeBlog = id => ({
 export const createBlog = blog => ({
   type: CREATE_BLOG,
   blog
-})
+});
+
+export const update = (blog, id) => ({
+  type: UPDATE_BLOG,
+  blog,
+  id
+});
 
 
 
@@ -42,6 +48,20 @@ export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, 
       
     })
     .catch(err => dispatch(addError(err.message)));
+};
+
+export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dispatch, getState) => {
+  let {currentUser} = getState();
+  const userId = currentUser.user.id;
+  return apiCall("put", `/api/users/${userId}/blogs/${blogId}`, {blogName,blogDescription,blogImage})
+    .then( res => {
+      console.log("updatedBlog action");
+      dispatch(update(res, blogId));
+    })
+    .catch(err =>{
+      console.log("ERR");
+      dispatch(addError(err.message));
+    }); 
 };
 
 export const deleteBlog = (blogId) => (dispatch, getState) => {

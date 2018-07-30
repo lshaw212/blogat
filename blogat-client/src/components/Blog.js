@@ -13,38 +13,51 @@ class Blog extends Component {
     console.log("SDKJGHSAD");
     this.props.deleteBlog(this.props.location.state.id);
   }
-render(){
-  const { blogs, posts, currentUser, removePost, removeBlog } = this.props;
-  let selectedB = blogs.find(blog => blog._id === this.props.location.state.id);
-  let postList = posts.filter(post => post.blog._id === this.props.location.state.id);
-  let blogPosts = postList.map(p => (
-    <Post
-      key={p._id}
-      title={p.postTitle}
-      content={p.postContent}
-      username={p.user.username}
-      date={p.createdAt}
-      removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}
-      isCorrectUser={currentUser === p.user._id}
-    />
-  ));
 
-  
-  return(
-    <div className="container">
-     <h1>Welcome to theeee {selectedB.blogName} blog!</h1>
-     <p> {selectedB.blogDescription}</p>
-     <Link to={`/blog/${this.props.location.state.id}/newpost`}>New Post</Link>
-     {currentUser === selectedB.user._id && (
-       <button onClick={this.deleteBlog}>Test button for removing Blog</button>
-        // <div></div>
-     )}
-     <div>
-       {blogPosts}
-     </div>
-   </div>
-  )
-}
+  editBlog = e => {
+    e.preventDefault();
+  }
+
+  render(){
+    const { blogs, posts, currentUser, removePost, removeBlog } = this.props;
+    console.log("Blog Render method");
+    //console.log(this.props.match.params.id);
+    //console.log(this.props.location.state.id);
+    // debugger;
+    let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
+    let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
+    let blogPosts = postList.map(p => (
+      <Post
+        key={p._id}
+        title={p.postTitle}
+        content={p.postContent}
+        username={p.user.username}
+        date={p.createdAt}
+        removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}
+        isCorrectUser={currentUser === p.user._id}
+      />
+    ));
+
+    
+    return(
+      <div className="container">
+      <h1>Welcome to theeee {selectedB.blogName} blog!</h1>
+      <p> {selectedB.blogDescription}</p>
+      <Link to={`/blog/${this.props.match.params.id}/newpost`}>New Post</Link>
+      {currentUser === selectedB.user._id && (
+        <div>
+          <button onClick={this.deleteBlog}>Test button for removing Blog</button>
+          <Link to={`/blog/${this.props.match.params.id}/edit`}>Edit Blog</Link>
+        </div>
+        
+          // <div></div>
+      )}
+      <div>
+        {blogPosts}
+      </div>
+    </div>
+    )
+  }
 }
 
 // const Blog = ({text, blogs}) => (

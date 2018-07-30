@@ -60,6 +60,7 @@ export default class AuthForm extends Component {
                   <input type="text" className="form-control" id="username" name="username" onChange={this.handleChange} value={username}/>
                 </div>
               )}
+              <hr/>
               <button className="btn btn-primary btn-block btn-lg">
                 {buttonText}
               </button>
