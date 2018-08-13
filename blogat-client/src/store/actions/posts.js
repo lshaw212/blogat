@@ -54,9 +54,11 @@ export const createPost = (postTitle, postContent, blog_id) => (dispatch, getSta
     .then(res => {
       console.log("post created")
       console.log(res);
+      dispatch(create(res));
     })
     .catch(err => {
       console.log("err");
+      console.log(err);
       dispatch(addError(err.message));
     });
 }

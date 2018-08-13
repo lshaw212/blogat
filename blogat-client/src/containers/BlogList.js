@@ -11,12 +11,13 @@ class BlogList extends Component {
     // Fetch blogs
     this.props.fetchBlogs();
     this.props.fetchPosts();
+    
   }
 
 
   // Potential to refactor this to work as an action
   selectBlog(id, e){
-    e.preventDefault();
+    // e.preventDefault();
     this.props.history.push({
       pathname:`/blogs/${id}`,
       state: {id: id}  
@@ -31,7 +32,7 @@ class BlogList extends Component {
 
   render(){
     const { blogs, currentUser } = this.props;
-    debugger;
+    // debugger;
     console.log("BlogList Render method");
     console.log(blogs);
     // map through your blog list
@@ -50,18 +51,10 @@ class BlogList extends Component {
     ));
     return(
       <div>
-        <Route exact path="/blogs" component={() => (
           <div id="blogs">
             {blogList}
           </div>
-        )} />
-        <Route path="/blogs/:id" render={props => {
-          return(
-            <Blog
-              {...props}
-            />
-          );
-        }}/>
+
       </div>
       
     )

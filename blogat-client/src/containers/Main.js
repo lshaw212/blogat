@@ -18,7 +18,7 @@ const Main = props => {
     <div className="">
       <Switch>
         <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
-        <Route path="/blogs" component={BlogList} />
+        <Route exact path="/blogs" component={BlogList} />
         <Route exact path="/signin" render={props => {
           return(
             <AuthForm
@@ -47,6 +47,7 @@ const Main = props => {
         <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
         <Route path="/blog/:blogId/newpost" component={(PostForm)}/>
         <Route path="/blog/:blogId/edit" component={(EditBlogForm)}/>
+        <Route path="/blogs/:id" component={(Blog)}/>
         
       </Switch>
     </div>

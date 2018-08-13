@@ -2,11 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
+import { fetchPosts } from "../store/actions/posts";
 import { removePost } from "../store/actions/posts";
 import { Link, withRouter, Redirect } from "react-router-dom";
 
 
 class Blog extends Component {
+
+  componentDidMount(){
+    // Fetch blogs
+    // this.props.fetchBlogs();
+    // this.props.fetchPosts();
+    console.log("componentDidMount");
+  }
+  componentWillReceiveProps(){
+    //this.props.fetchPosts();
+    console.log(this.props.posts);
+    console.log("componentWillReceiveProps");
+  }
 
   deleteBlog = e => {
     e.preventDefault();
@@ -21,6 +34,8 @@ class Blog extends Component {
   render(){
     const { blogs, posts, currentUser, removePost, removeBlog } = this.props;
     console.log("Blog Render method");
+    console.log(blogs);
+    console.log(posts);
     //console.log(this.props.match.params.id);
     //console.log(this.props.location.state.id);
     // debugger;
@@ -36,10 +51,11 @@ class Blog extends Component {
         removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}
         isCorrectUser={currentUser === p.user._id}
       />
-    ));
-
+    )); //.sort({createdAt: "desc"})
+    console.log(blogPosts);
     
     return(
+      (typeof selectedB!='undefined')?
       <div className="container">
       <h1>Welcome to theeee {selectedB.blogName} blog!</h1>
       <p> {selectedB.blogDescription}</p>
@@ -56,6 +72,7 @@ class Blog extends Component {
         {blogPosts}
       </div>
     </div>
+    : <div className="container">Loading...</div>
     )
   }
 }
@@ -69,8 +86,8 @@ class Blog extends Component {
 function mapStateToProps(state){
   return {
     blogs: state.blogs,
-    posts: state.posts,
+    posts: state.posts.posts,
     currentUser: state.currentUser.user.id
   };
 }
-export default withRouter(connect(mapStateToProps, { fetchBlogs, removePost,deleteBlog })(Blog));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost,deleteBlog })(Blog));
