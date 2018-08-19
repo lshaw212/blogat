@@ -8,18 +8,24 @@ exports.createPost = async function(req,res,next){
       blog: req.params.blog_id,
       user: req.params.user_id
     });
+
     let foundBlog = await db.Blog.findById(req.params.blog_id);
     foundBlog.posts.push(post._id);
+
     await foundBlog.save();
+
     let foundUser = await db.User.findById(req.params.user_id);
     foundUser.posts.push(post._id);
+
     await foundUser.save();
+
     let foundPost = await db.Post.findById(post._id).populate("blog", {
       blogName: true
     })
     .populate("user", {
       username: true
     });
+    console.log(foundPost);
     return res.status(200).json(foundPost);
   } catch(err) {
     return next(err);
@@ -34,6 +40,29 @@ exports.getPost = async function(req,res,next){
     return next(err);
   }
 }
+
+exports.updatePost = async function(req,res,next){
+  try {
+    // Store updated data into an object
+    let updateData = {
+      postTitle: req.body.postTitle,
+      postContent: req.body.postContent
+    }
+    console.log(updateData);
+    // Update blog with new information after finding with the id provided
+    let updatedPost = await db.Post.findByIdAndUpdate(req.params.post_id,updateData, {new: true})
+    .populate("user", {
+      username: true
+    });
+    await updatedPost.save();
+    console.log("updatedpost");
+    console.log(updatedPost);
+    // return the new blog object
+    return res.status(200).json(updatedPost);
+  } catch(err) {
+    return next(err);
+  }
+};
 
 exports.deletePost = async function(req,res,next){
   try {

@@ -1,7 +1,8 @@
 import React from "react";
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
-const Post =({title, content, username, date, isCorrectUser, removePost}) => (
+const Post =({title, content, username, date, isCorrectUser, removePost, updatePost, postId, blogId}) => (
   <div>
     <hr/>
     <h3>{title}</h3>
@@ -15,7 +16,14 @@ const Post =({title, content, username, date, isCorrectUser, removePost}) => (
       </span>
     </div>
     {isCorrectUser && (
-      <a onClick={removePost} className="btn btn-danger">delete post</a>
+      <div>
+        <a onClick={removePost} className="btn btn-danger">delete post</a>
+        <Link to={{
+          pathname:`/post/${postId}/edit`,
+          state: {blogId: blogId}
+        }}>Edit post</Link>
+        {/* <a onClick={updatePost} className="btn btn-danger">update post</a> */}
+      </div>
     )}
   </div>
 )

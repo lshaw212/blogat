@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./user");
+
 
 const postSchema = new mongoose.Schema(
   {
@@ -33,10 +33,21 @@ const postSchema = new mongoose.Schema(
 
 postSchema.pre("remove", async function(next){
   try {
+    const User = require("./user");
+    const Blog = require("./blogs");
+    
     let user = await User.findById(this.user);
     user.posts.remove(this.id);
     await user.save();
-    console.log("Test");
+    console.log(user);
+    //console.log("do we get here?");
+    let blog = await Blog.findById(this.blog);
+    //console.log("do we get here?");
+    blog.posts.remove(this.id);
+    await blog.save();
+    console.log(blog);
+    
+    //console.log("Test");
     return next();
   } catch(err) {
     return next(err);

@@ -19,34 +19,15 @@ const blogs = (state=[], action) => {
       //return [...state, action.blog];
       return {...state, blogs:[...state.blogs, action.blog]};
     case UPDATE_BLOG:
-    // debugger;
-
+     debugger;
+    console.log("we get here");
+    console.log(action.blog);
     return state.map(blog =>
       (blog._id === action.id)
         ? action.blog
         : blog  
     )
 
-    // blogs = state.map(blog => {
-    //   if(blog._id === action.id){
-    //     return {
-    //       blog: action.blog
-    //     };
-    //   }
-    // });
-    // return {...state, blogs};
-
-    // return [
-    //   ...state,
-    //   state.map(blog => blog._id === action.id? blog:action.blog)
-    //   ];
-      // return {...state.map(blog => blog._id === action.blog.id ? {})}
-      // {
-      //   ...state,
-      //   blog: state.map(blog => blog._id === action.id ?
-      //     {...blog, }
-      //   )
-      // }
     case REMOVE_BLOG:
       //return state.filter(blog => blog._id !== action.id);
       blogs = state.blogs.filter(blog => blog._id !== action.id);

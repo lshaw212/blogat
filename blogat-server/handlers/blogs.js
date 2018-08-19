@@ -8,12 +8,16 @@ exports.createBlog = async function(req,res,next){
       blogImage: req.body.blogImage,
       user: req.params.user_id
     });
+
     let foundUser = await db.User.findById(req.params.user_id)
     foundUser.blogs.push(blog._id);
+
     await foundUser.save();
+
     let foundBlog = await db.Blog.findById(blog._id).populate("user", {
       username: true
     });
+    console.log(foundBlog);
     return res.status(200).json(foundBlog);
   } catch(err) {
     return next(err);
@@ -29,34 +33,29 @@ exports.getBlog = async function(req,res,next){
     return next(err);
   }
 };
-
+// PUT - /api/users/:id/blogs/:blog_id
 exports.updateBlog = async function(req,res,next){
-  // try {
-  //   let blog = {
-  //     blogName: req.body.blogName,
-  //     blogDescription: req.body.blogDescription,
-  //     blogImage: req.body.blogImage,
-  //     user: req.params.user_id
-  //   }
-  //   console.log(blog);
-  //   await db.Blog.update({_id: req.params.blog_id}, blog);
-  //   // return res.status(200);
-  //   return next();
-  // } catch(err) {
-  //   console.log("Do we get an error?");
-  //   return next(err);
-  // }
   try {
-    let updatedBlog = await db.Blog.findById(req.params.blog_id, function(err, blog){
-      blog.blogName = req.body.blogName;
-      blog.blogDescription = req.body.blogDescription;
-      blog.blogImage = req.body.blogImage;
-
+    // Store updated data into an object
+    let updateData = {
+      blogName: req.body.blogName,
+      blogDescription: req.body.blogDescription,
+      blogImage: req.body.blogImage
+    }
+    console.log(updateData);
+    // Update blog with new information after finding with the id provided
+    let updatedBlog = await db.Blog.findByIdAndUpdate(req.params.blog_id,updateData, {new: true}, function(err, blog){
+      // IS THIS SAVE NEEDED? LOOK INTO
+      console.log("blog")
+      console.log(blog)
       blog.save();
     }).populate("user", {
       username: true
     });
     await updatedBlog.save();
+    console.log("updatedBlog");
+    console.log(updatedBlog);
+    // return the new blog object
     return res.status(200).json(updatedBlog);
   } catch(err) {
     return next(err);

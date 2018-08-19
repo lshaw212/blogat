@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./user");
-const Post = require("./posts");
+
 
 const blogSchema = new mongoose.Schema(
   {
@@ -30,6 +29,8 @@ const blogSchema = new mongoose.Schema(
 
 blogSchema.pre("remove", async function(next){
   try {
+    const User = require("./user");
+    const Post = require("./posts");
     await Post.remove({
       blog: {
         _id: this._id

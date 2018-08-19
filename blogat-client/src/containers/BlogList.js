@@ -34,7 +34,7 @@ class BlogList extends Component {
     const { blogs, currentUser } = this.props;
     // debugger;
     console.log("BlogList Render method");
-    console.log(blogs);
+    // console.log(blogs);
     // map through your blog list
     let blogList = blogs.map(b => (
       <BlogItem

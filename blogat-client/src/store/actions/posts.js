@@ -1,6 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
-import { LOAD_POSTS, REMOVE_POST, CREATE_POST, REMOVE_ALL_POSTS } from "../actionTypes";
+import { LOAD_POSTS, REMOVE_POST, CREATE_POST, REMOVE_ALL_POSTS, UPDATE_POST } from "../actionTypes";
 import { loadBlogs } from "./blogs";
 
 export const loadPosts = posts => ({
@@ -22,6 +22,12 @@ export const create = post => ({
   type: CREATE_POST,
   post
 });
+
+export const update = (post, id) => ({
+  type: UPDATE_POST,
+  post,
+  id
+})
 
 export const fetchPosts = () => {
   return dispatch => {
@@ -62,3 +68,19 @@ export const createPost = (postTitle, postContent, blog_id) => (dispatch, getSta
       dispatch(addError(err.message));
     });
 }
+
+export const updatePost = (postTitle, postContent, blog_id, post_id) => (dispatch, getState) => {
+  let {currentUser} = getState();
+  const id = currentUser.user.id;
+  return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {postTitle, postContent})
+    .then(res => {
+      console.log("post updated");
+      console.log(res);
+      dispatch(update(res, post_id));
+    })
+    .catch(err => {
+      console.log("err here");
+      console.log(err);
+      dispatch(addError(err.message));
+    });
+};

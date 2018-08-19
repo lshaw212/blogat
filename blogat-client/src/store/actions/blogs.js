@@ -56,6 +56,7 @@ export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dis
   return apiCall("put", `/api/users/${userId}/blogs/${blogId}`, {blogName,blogDescription,blogImage})
     .then( res => {
       console.log("updatedBlog action");
+      console.log(res);
       dispatch(update(res, blogId));
     })
     .catch(err =>{

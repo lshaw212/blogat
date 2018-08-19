@@ -4,6 +4,7 @@ import Post from "../components/Post";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { fetchPosts } from "../store/actions/posts";
 import { removePost } from "../store/actions/posts";
+import { updatePost } from "../store/actions/posts";
 import { Link, withRouter, Redirect } from "react-router-dom";
 
 
@@ -29,16 +30,18 @@ class Blog extends Component {
 
   editBlog = e => {
     e.preventDefault();
+    
   }
 
   render(){
-    const { blogs, posts, currentUser, removePost, removeBlog } = this.props;
+    const { blogs, posts, currentUser, removePost, updatePost, removeBlog } = this.props;
     console.log("Blog Render method");
-    console.log(blogs);
-    console.log(posts);
+    console.log("What are our posts? " + posts);
+    // console.log(blogs);
+    // console.log(posts);
     //console.log(this.props.match.params.id);
     //console.log(this.props.location.state.id);
-    // debugger;
+    //debugger;
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -48,11 +51,13 @@ class Blog extends Component {
         content={p.postContent}
         username={p.user.username}
         date={p.createdAt}
+        postId={p._id}
+        blogId={p.blog._id}
         removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}
+        //updatePost={updatePost.bind(this, p.user._id, p.blog._id, p._id)}
         isCorrectUser={currentUser === p.user._id}
       />
-    )); //.sort({createdAt: "desc"})
-    console.log(blogPosts);
+    ));
     
     return(
       (typeof selectedB!='undefined')?
@@ -90,4 +95,4 @@ function mapStateToProps(state){
     currentUser: state.currentUser.user.id
   };
 }
-export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost,deleteBlog })(Blog));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost, updatePost, deleteBlog })(Blog));

@@ -1,10 +1,11 @@
-import { LOAD_POSTS, REMOVE_POST, REMOVE_ALL_POSTS, CREATE_POST } from "../actionTypes";
+import { LOAD_POSTS, REMOVE_POST, REMOVE_ALL_POSTS, CREATE_POST, UPDATE_POST } from "../actionTypes";
 
 const initialState = {
   posts: []
 }
 const posts = (state=initialState, action) => {
   let posts;
+  // debugger;
   switch(action.type){
     case LOAD_POSTS:
       // return [...action.posts];
@@ -18,6 +19,23 @@ const posts = (state=initialState, action) => {
     case CREATE_POST:
       // Adding post to start of list
       return {...state, posts: [action.post, ...state.posts]};
+    case UPDATE_POST:
+      console.log(action.post);
+      console.log(state);
+      console.log("action id" + action.id);
+      // return state.posts.map(post =>
+      //   (post._id === action.id)
+      //     ? action.post
+      //     : post
+      // )
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          (post._id === action.id)
+          ? action.post
+          : post
+        )
+      }
     default:
       return state;
   }
