@@ -58,13 +58,9 @@ export const createPost = (postTitle, postContent, blog_id) => (dispatch, getSta
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {postTitle, postContent})
     .then(res => {
-      console.log("post created")
-      console.log(res);
       dispatch(create(res));
     })
     .catch(err => {
-      console.log("err");
-      console.log(err);
       dispatch(addError(err.message));
     });
 }
@@ -74,13 +70,9 @@ export const updatePost = (postTitle, postContent, blog_id, post_id) => (dispatc
   const id = currentUser.user.id;
   return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {postTitle, postContent})
     .then(res => {
-      console.log("post updated");
-      console.log(res);
       dispatch(update(res, post_id));
     })
     .catch(err => {
-      console.log("err here");
-      console.log(err);
       dispatch(addError(err.message));
     });
 };

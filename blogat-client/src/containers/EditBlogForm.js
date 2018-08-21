@@ -15,8 +15,6 @@ class EditBlogForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Submitting Blog Form");
-    // console.log(this.props.match.params.blogId);
     this.props.updateBlog(this.state.text, this.state.desc, this.state.image, this.props.match.params.blogId)
       .then(() => {
         this.setState({text:"", desc:"", image:""});

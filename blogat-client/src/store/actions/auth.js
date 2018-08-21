@@ -22,9 +22,7 @@ export function logout(){
 }
 
 export function authUser(type, userData){
-  console.log("Here1");
   return dispatch => {
-    console.log("Here2");
     // wrap a thunk in a promise so we can wait for the API call
     return new Promise((resolve, reject) => {
       return apiCall("post", `/api/auth/${type}`, userData)

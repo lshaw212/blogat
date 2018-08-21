@@ -20,14 +20,6 @@ const posts = (state=initialState, action) => {
       // Adding post to start of list
       return {...state, posts: [action.post, ...state.posts]};
     case UPDATE_POST:
-      console.log(action.post);
-      console.log(state);
-      console.log("action id" + action.id);
-      // return state.posts.map(post =>
-      //   (post._id === action.id)
-      //     ? action.post
-      //     : post
-      // )
       return {
         ...state,
         posts: state.posts.map(post =>

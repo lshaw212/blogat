@@ -25,7 +25,6 @@ exports.createPost = async function(req,res,next){
     .populate("user", {
       username: true
     });
-    console.log(foundPost);
     return res.status(200).json(foundPost);
   } catch(err) {
     return next(err);
@@ -48,15 +47,15 @@ exports.updatePost = async function(req,res,next){
       postTitle: req.body.postTitle,
       postContent: req.body.postContent
     }
-    console.log(updateData);
     // Update blog with new information after finding with the id provided
     let updatedPost = await db.Post.findByIdAndUpdate(req.params.post_id,updateData, {new: true})
+    .populate("blog", {
+      blogName: true
+    })
     .populate("user", {
       username: true
     });
     await updatedPost.save();
-    console.log("updatedpost");
-    console.log(updatedPost);
     // return the new blog object
     return res.status(200).json(updatedPost);
   } catch(err) {

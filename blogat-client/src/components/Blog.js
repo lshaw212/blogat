@@ -16,15 +16,9 @@ class Blog extends Component {
     // this.props.fetchPosts();
     console.log("componentDidMount");
   }
-  componentWillReceiveProps(){
-    //this.props.fetchPosts();
-    console.log(this.props.posts);
-    console.log("componentWillReceiveProps");
-  }
-
+  
   deleteBlog = e => {
     e.preventDefault();
-    console.log("SDKJGHSAD");
     this.props.deleteBlog(this.props.location.state.id);
   }
 
@@ -35,8 +29,6 @@ class Blog extends Component {
 
   render(){
     const { blogs, posts, currentUser, removePost, updatePost, removeBlog } = this.props;
-    console.log("Blog Render method");
-    console.log("What are our posts? " + posts);
     // console.log(blogs);
     // console.log(posts);
     //console.log(this.props.match.params.id);

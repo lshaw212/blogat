@@ -13,7 +13,6 @@ class PostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("handNewPost");
     this.props.createPost(this.state.title, this.state.content, this.props.match.params.blogId)
     .then( () =>{
       this.props.history.push(`/blogs/${this.props.match.params.blogId}`);
