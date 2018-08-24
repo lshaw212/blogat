@@ -10,6 +10,31 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 
 class Blog extends Component {
 
+
+
+  // constructor(props, context) {
+  //   super(props, context);
+  //   this.onUnload = this.onUnload.bind(this);
+  // }
+
+  // componentDidMount() {
+  //   window.addEventListener('beforeunload', this.onUnload);
+  // }
+
+  // componentWillUnmount() {
+  //     window.removeEventListener('beforeunload', this.onUnload);
+  // }
+
+  // onUnload() {
+  //   console.log("adsadsa");
+  //   this.context.router.push('/');
+  // }
+
+  constructor(props){
+    super(props);
+    //this.onUnload = this.onUnload.bind(this);
+  }
+
   componentDidMount(){
     // Fetch blogs
     // this.props.fetchBlogs();
@@ -19,8 +44,21 @@ class Blog extends Component {
   
   deleteBlog = e => {
     e.preventDefault();
-    this.props.deleteBlog(this.props.location.state.id);
+    console.log("This is firing");
+    this.props
+      .deleteBlog(this.props.location.state.id)
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(() => {
+        return;
+      });
   }
+
+  // onUnload(e) {
+  //   console.log("Ayyy");
+  //   this.context.router.push('/');
+  // }
 
   editBlog = e => {
     e.preventDefault();

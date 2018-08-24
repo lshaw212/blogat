@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BlogList from "../containers/BlogList";
 import { Redirect } from "react-router-dom";
 
 const Homepage =({currentUser}) => {

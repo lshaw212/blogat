@@ -39,6 +39,9 @@ export const fetchBlogs = () => {
 
 export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, getState) => {
   let {currentUser} = getState();
+  if(blogImage === "")
+    blogImage = "https://i.imgur.com/lbEqOxk.jpg";
+  console.log(blogImage);
   const id = currentUser.user.id;
   return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
     .then( res => {

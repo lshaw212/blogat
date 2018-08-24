@@ -21,9 +21,7 @@ const blogs = (state=[], action) => {
     )
 
     case REMOVE_BLOG:
-      //return state.filter(blog => blog._id !== action.id);
-      blogs = state.blogs.filter(blog => blog._id !== action.id);
-      return {...state, blogs}
+      return state.filter(blog => blog._id !== action.id);
     default:
       return state;
   }
