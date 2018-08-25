@@ -6,8 +6,12 @@ import Navbar from "./Navbar";
 import Main from "./Main";
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
+import { persistStore } from "redux-persist";
+import { PersistGate } from 'redux-persist/lib/integration/react';
+
 
 const store = configureStore();
+const persistor = persistStore(store);
 
 if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken);
@@ -20,12 +24,14 @@ if(localStorage.jwtToken){
 
 const App = () => (
   <Provider store={store}>
-    <Router>
-      <div>
-        <Navbar />
-        <Main />
-      </div>
-    </Router>
+    <PersistGate loading={null} persistor={persistor}>
+      <Router>
+        <div>
+          <Navbar />
+          <Main />
+        </div>
+      </Router>
+    </PersistGate>
   </Provider>
   
 );

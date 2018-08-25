@@ -10,36 +10,12 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 
 class Blog extends Component {
 
-
-
-  // constructor(props, context) {
-  //   super(props, context);
-  //   this.onUnload = this.onUnload.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   window.addEventListener('beforeunload', this.onUnload);
-  // }
-
-  // componentWillUnmount() {
-  //     window.removeEventListener('beforeunload', this.onUnload);
-  // }
-
-  // onUnload() {
-  //   console.log("adsadsa");
-  //   this.context.router.push('/');
-  // }
-
-  constructor(props){
-    super(props);
-    //this.onUnload = this.onUnload.bind(this);
-  }
-
   componentDidMount(){
     // Fetch blogs
     // this.props.fetchBlogs();
     // this.props.fetchPosts();
     console.log("componentDidMount");
+    
   }
   
   deleteBlog = e => {
@@ -54,11 +30,6 @@ class Blog extends Component {
         return;
       });
   }
-
-  // onUnload(e) {
-  //   console.log("Ayyy");
-  //   this.context.router.push('/');
-  // }
 
   editBlog = e => {
     e.preventDefault();
@@ -88,6 +59,11 @@ class Blog extends Component {
         isCorrectUser={currentUser === p.user._id}
       />
     ));
+
+    if(this.props.blogs!='undefined'){
+      //this.props.history.push("/")
+      console.log("Fires");
+    }
     
     return(
       (typeof selectedB!='undefined')?
