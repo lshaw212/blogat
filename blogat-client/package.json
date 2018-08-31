@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "focus-trap-react": "^4.0.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "react": "^16.4.1",

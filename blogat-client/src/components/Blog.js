@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
+import Modal from "../containers/Modal";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { fetchPosts } from "../store/actions/posts";
 import { removePost } from "../store/actions/posts";
 import { updatePost } from "../store/actions/posts";
 import { Link, withRouter, Redirect } from "react-router-dom";
+import EditBlogForm from "../containers/EditBlogForm";
+import EditPostForm from "../containers/EditPostForm";
 
 
 class Blog extends Component {
@@ -21,14 +24,14 @@ class Blog extends Component {
   deleteBlog = e => {
     e.preventDefault();
     console.log("This is firing");
-    this.props
-      .deleteBlog(this.props.location.state.id)
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(() => {
-        return;
-      });
+    // this.props
+    //   .deleteBlog(this.props.location.state.id)
+    //   .then(() => {
+    //     this.props.history.push("/");
+    //   })
+    //   .catch(() => {
+    //     return;
+    //   });
   }
 
   editBlog = e => {
@@ -38,11 +41,18 @@ class Blog extends Component {
 
   render(){
     const { blogs, posts, currentUser, removePost, updatePost, removeBlog } = this.props;
-    // console.log(blogs);
-    // console.log(posts);
-    //console.log(this.props.match.params.id);
-    //console.log(this.props.location.state.id);
-    //debugger;
+    
+    const editBlogProps = {
+      ariaLabel: 'A label describing the Modal\'s current content',
+      triggerText: 'Edit Blog',
+      editBlog: true
+    };
+    const newPostProps = {
+      ariaLabel: 'A label describing the Modal\'s current content',
+      triggerText: 'New Post',
+      newPost: true
+    }
+
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -55,33 +65,24 @@ class Blog extends Component {
         postId={p._id}
         blogId={p.blog._id}
         removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}
-        //updatePost={updatePost.bind(this, p.user._id, p.blog._id, p._id)}
         isCorrectUser={currentUser === p.user._id}
       />
     ));
-
-    if(this.props.blogs!='undefined'){
-      //this.props.history.push("/")
-      console.log("Fires");
-    }
     
     return(
       (typeof selectedB!='undefined')?
       <div className="container">
       <h1>Welcome to theeee {selectedB.blogName} blog!</h1>
       <p> {selectedB.blogDescription}</p>
-      <Link to={`/blog/${this.props.match.params.id}/newpost`}>New Post</Link>
       {currentUser === selectedB.user._id && (
         <div>
-          <button onClick={this.deleteBlog}>Test button for removing Blog</button>
-          <Link to={`/blog/${this.props.match.params.id}/edit`}>Edit Blog</Link>
+          <Modal {...newPostProps} blogId={this.props.match.params.id} />
+          <Modal {...editBlogProps} blogId={this.props.match.params.id} />
         </div>
-        
-          // <div></div>
       )}
       <div>
         {blogPosts}
-      </div>
+      </div>     
     </div>
     : <div className="container">Loading...</div>
     )

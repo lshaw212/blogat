@@ -15,12 +15,12 @@ class EditBlogForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.updateBlog(this.state.text, this.state.desc, this.state.image, this.props.match.params.blogId)
+    this.props.updateBlog(this.state.text, this.state.desc, this.state.image, this.props.blogId)
       .then(() => {
         this.setState({text:"", desc:"", image:""});
       })
       .then(() => {
-        this.props.history.push(`/blogs/${this.props.match.params.blogId}`);
+        this.props.onClose();
       })
   }
 

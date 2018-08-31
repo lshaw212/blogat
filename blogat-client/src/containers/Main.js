@@ -8,10 +8,7 @@ import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
 import BlogForm from "../containers/BlogForm";
-import PostForm from "../containers/PostForm";
 import BlogList from "../containers/BlogList";
-import EditBlogForm from "../containers/EditBlogForm";
-import EditPostForm from "../containers/EditPostForm";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError } = props;
@@ -46,10 +43,7 @@ const Main = props => {
           );
         }}/>
         <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
-        <Route path="/blog/:blogId/newpost" component={(PostForm)}/>
-        <Route path="/blog/:blogId/edit" component={(EditBlogForm)}/>
         <Route path="/blogs/:id" component={(Blog)}/>
-        <Route path="/post/:postId/edit" component={(EditPostForm)}/>
         
       </Switch>
     </div>

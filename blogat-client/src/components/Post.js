@@ -1,8 +1,17 @@
 import React from "react";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import EditPostForm from "../containers/EditPostForm"
+import Modal from "../containers/Modal";
+
+const editPostProps = {
+  ariaLabel: 'A label describing the Modal\'s current content',
+  triggerText: 'Edit your post',
+  editPost: true
+};
 
 const Post =({title, content, username, date, isCorrectUser, removePost, updatePost, postId, blogId}) => (
+
   <div>
     <hr/>
     <h3>{title}</h3>
@@ -18,11 +27,7 @@ const Post =({title, content, username, date, isCorrectUser, removePost, updateP
     {isCorrectUser && (
       <div>
         <a onClick={removePost} className="btn btn-danger">delete post</a>
-        <Link to={{
-          pathname:`/post/${postId}/edit`,
-          state: {blogId: blogId}
-        }}>Edit post</Link>
-        {/* <a onClick={updatePost} className="btn btn-danger">update post</a> */}
+        <Modal {...editPostProps} postId={postId} blogId={blogId} />
       </div>
     )}
   </div>

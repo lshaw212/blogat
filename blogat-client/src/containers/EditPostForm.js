@@ -13,13 +13,15 @@ class EditPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this);
     // Need to pass blog id and post id
-    this.props.updatePost(this.state.title, this.state.content, this.props.history.location.state.blogId, this.props.match.params.postId)
+    this.props.updatePost(this.state.title, this.state.content, this.props.blogId, this.props.postId)
       .then(() => {
         this.setState({title:"", content:""});
       })
       .then(() => {
-        this.props.history.push(`/blogs/${this.props.history.location.state.blogId}`);
+        this.props.onClose();
+        //this.props.history.push(`/blogs/${this.props.history.location.state.blogId}`);
       });
       
   }

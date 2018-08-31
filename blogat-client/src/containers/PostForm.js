@@ -13,9 +13,10 @@ class PostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createPost(this.state.title, this.state.content, this.props.match.params.blogId)
+    this.props.createPost(this.state.title, this.state.content, this.props.blogId)
     .then( () =>{
-      this.props.history.push(`/blogs/${this.props.match.params.blogId}`);
+      this.props.onClose();
+      //this.props.history.push(`/blogs/${this.props.match.params.blogId}`);
     });  
     
     // createpost
@@ -24,6 +25,7 @@ class PostForm extends Component {
   render(){
     return(
       <div className="container">
+        <h1>New Post</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Post Title:</label>
           <input
@@ -33,12 +35,19 @@ class PostForm extends Component {
             onChange={e => this.setState({title: e.target.value})}
           />
           <label htmlFor="content">Post Contents:</label>
-          <input
-            type="text"
+          <textarea
+            cols="30"
+            rows="10"
             className="form-control"
             value={this.state.content}
             onChange={e => this.setState({content: e.target.value})}
           />
+          {/* <input
+            type="textarea"
+            className="form-control"
+            value={this.state.content}
+            onChange={e => this.setState({content: e.target.value})}
+          /> */}
           <hr/>
           <button type="submit" className="btn btn-success pull-right">
             Create Blog Post
