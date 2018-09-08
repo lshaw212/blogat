@@ -22,6 +22,8 @@ export default class AuthForm extends Component {
     e.preventDefault();
     const authType = this.props.signUp ? "signup" : "signin"
     //const authType = "signin";
+    console.log(authType);
+    console.log(this.props);
     this.props
       .onAuth(authType, this.state)
       .then(() => {
@@ -34,18 +36,22 @@ export default class AuthForm extends Component {
   render(){
     const { email, username, profileImageUrl } =this.state;
     const { buttonText, heading, signUp, errors, history, removeError } = this.props;
-
+    console.log(errors);
     if(errors.message){
+      console.log("Here?")
+      console.log(history);
       const unListen = history.listen(() => {
+        console.log("Here2?");
         removeError();
+        console.log("Here3?");
         unListen();
       })
     }
 
     return(
       <div className="container">
-        <div className="row justify-content-md-center textcenter">
-          <div className="col-md-6">
+        <div>
+          <div>
             <form onSubmit={this.handleSubmit}>
               <h2>{heading}</h2>
               {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}

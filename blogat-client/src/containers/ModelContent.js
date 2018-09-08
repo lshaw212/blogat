@@ -1,25 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
+import { connect } from "react-redux";
 import EditBlogForm from "../containers/EditBlogForm";
 import EditPostForm from "../containers/EditPostForm";
+import { authUser } from "../store/actions/auth";
+import { removeError } from "../store/actions/errors";
 import PostForm from "../containers/PostForm";
+import AuthForm from "../components/AuthForm";
+import withRouter from "react-router-dom/withRouter";
 
-const ModalContent = ({
-  ariaLabel,
-  buttonRef,
-  content,
-  modalRef,
-  onClose,
-  onClickAway,
-  onFocus,
-  editPost,
-  newPost,
-  editBlog,
-  postId,
-  blogId,
-  role = 'dialog'
-}) => {
+const ModalContent = props => {
+  //const { currentUser, authUser, errors, removeError } = props;
+  const {ariaLabel, buttonRef, content, modalRef, onClose, onClickAway, onFocus, editPost,
+        newPost, editBlog, signin, signup, postId, errors, authUser, removeError, blogId
+      } = props;
+  const role = 'dialog';
   return ReactDOM.createPortal(
       <FocusTrap
         tag="aside"
@@ -47,6 +43,29 @@ const ModalContent = ({
             {editBlog && (
               <EditBlogForm blogId={blogId} onClose={onClose} />
             )}
+            {signin && (
+              <AuthForm
+                onClose={onClose}
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                buttonText="Log in"
+                heading="Please log in to continue"
+                {...props}
+              />
+            )}
+            {signup && (
+              <AuthForm
+                onClose={onClose}
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                buttonText="Sign me up!"
+                heading="Join Blog@ today!"
+                signUp
+                {...props}
+              />
+            )}
           </div>
         </div>
       </FocusTrap>,
@@ -54,4 +73,11 @@ const ModalContent = ({
   );
 }
 
-export default ModalContent;
+function mapStateToProps(state){
+  return{
+    currentUser: state.currentUser,
+    errors: state.errors
+  };
+}
+
+export default withRouter(connect(mapStateToProps, { authUser, removeError})(ModalContent));

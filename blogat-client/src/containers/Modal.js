@@ -31,7 +31,7 @@ class Modal extends Component {
 
   render(){
     const { isOpen } = this.state;
-    const { triggerText, role, ariaLabel, children, postId, blogId, editPost, newPost, editBlog } = this.props;
+    const { triggerText, role, ariaLabel, children, postId, blogId, editPost, newPost, editBlog, signin, signup } = this.props;
     return(
       <div>
         <ModalTrigger
@@ -53,6 +53,8 @@ class Modal extends Component {
             editPost={editPost}
             newPost={newPost}
             editBlog={editBlog}
+            signin={signin}
+            signup={signup}
             role={role}
           />
         }
