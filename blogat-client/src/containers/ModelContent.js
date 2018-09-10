@@ -16,6 +16,7 @@ const ModalContent = props => {
         newPost, editBlog, signin, signup, postId, errors, authUser, removeError, blogId
       } = props;
   const role = 'dialog';
+
   return ReactDOM.createPortal(
       <FocusTrap
         tag="aside"

@@ -1,16 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Modal from "../containers/Modal";
 
 const signinProps = {
   ariaLabel: 'A label describing the Modal\'s current content',
-  triggerText: 'Login',
+  triggerText: 'Log In',
   signin: true
 }
 const signUpProps = {
   ariaLabel: 'A label describing the Modal\'s current content',
-  triggerText: 'Sign In',
+  triggerText: 'Sign Up',
   signup: true
 }
 

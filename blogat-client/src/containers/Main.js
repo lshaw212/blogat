@@ -12,7 +12,6 @@ import BlogList from "../containers/BlogList";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError } = props;
-  console.log(removeError);
   return (
     <div className="">
       <Switch>

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { removeError } from "../store/actions/errors";
+import { connect } from "react-redux";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import ModalTrigger from "../containers/ModalTrigger";
 import ModalContent from "../containers/ModelContent";
 
@@ -16,6 +19,7 @@ class Modal extends Component {
     this.setState({isOpen: false});
     this.openButtonNode.focus();
     this.toggleScrollLock();
+    this.props.removeError();
   }
 
   onKeyDown = ({ keyCode }) => keyCode === 27 && this.onClose();
@@ -25,9 +29,11 @@ class Modal extends Component {
   // }
   onClickAway = (e) => {
     if (this.modalNode && this.modalNode.contains(e.target)) return;
+    this.props.removeError();
     this.onClose();
   };
 
+  
 
   render(){
     const { isOpen } = this.state;
@@ -63,4 +69,10 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+function mapStateToProps(state){
+  return{
+    errors: state.errors
+  };
+}
+
+export default withRouter(connect(mapStateToProps, {removeError})(Modal));

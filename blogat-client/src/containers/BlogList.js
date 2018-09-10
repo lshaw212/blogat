@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import BlogItem from "../components/BlogItem";
-import Blog from "../components/Blog";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { fetchPosts } from "../store/actions/posts";
-import { Link, withRouter, Redirect, Route } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class BlogList extends Component {
   componentDidMount(){

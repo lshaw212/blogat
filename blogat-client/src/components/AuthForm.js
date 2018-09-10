@@ -22,12 +22,10 @@ export default class AuthForm extends Component {
     e.preventDefault();
     const authType = this.props.signUp ? "signup" : "signin"
     //const authType = "signin";
-    console.log(authType);
-    console.log(this.props);
     this.props
       .onAuth(authType, this.state)
       .then(() => {
-        this.props.history.push("/");
+        //this.props.history.push("/");
       }).catch(() =>{
         return;
       });
@@ -36,14 +34,10 @@ export default class AuthForm extends Component {
   render(){
     const { email, username, profileImageUrl } =this.state;
     const { buttonText, heading, signUp, errors, history, removeError } = this.props;
-    console.log(errors);
+    // This if statement not working as intended, removeError is called inside Modal
     if(errors.message){
-      console.log("Here?")
-      console.log(history);
       const unListen = history.listen(() => {
-        console.log("Here2?");
         removeError();
-        console.log("Here3?");
         unListen();
       })
     }

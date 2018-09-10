@@ -6,9 +6,7 @@ import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { fetchPosts } from "../store/actions/posts";
 import { removePost } from "../store/actions/posts";
 import { updatePost } from "../store/actions/posts";
-import { Link, withRouter, Redirect } from "react-router-dom";
-import EditBlogForm from "../containers/EditBlogForm";
-import EditPostForm from "../containers/EditPostForm";
+import { withRouter } from "react-router-dom";
 
 
 class Blog extends Component {
