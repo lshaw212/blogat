@@ -55,13 +55,20 @@ export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, 
 export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dispatch, getState) => {
   let {currentUser} = getState();
   const userId = currentUser.user.id;
-  return apiCall("put", `/api/users/${userId}/blogs/${blogId}`, {blogName,blogDescription,blogImage})
-    .then( res => {
-      dispatch(update(res, blogId));
-    })
-    .catch(err =>{
-      dispatch(addError(err.message));
-    }); 
+  return new Promise((resolve, reject) => {
+    return apiCall("put", `/api/users/${userId}/blogs/${blogId}`, {blogName,blogDescription,blogImage})
+      .then( res => {
+        resolve();
+        console.log("oopsy");
+        dispatch(update(res, blogId));
+        
+      })
+      .catch(err =>{
+        dispatch(addError(err.message));
+        reject();
+      }); 
+  });
+  
 };
 
 export const deleteBlog = (blogId) => (dispatch, getState) => {

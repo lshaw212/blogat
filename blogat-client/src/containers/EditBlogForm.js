@@ -15,20 +15,34 @@ class EditBlogForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.updateBlog(this.state.text, this.state.desc, this.state.image, this.props.blogId)
+    this.props
+      .updateBlog(this.state.text, this.state.desc, this.state.image, this.props.blogId)
       .then(() => {
         this.setState({text:"", desc:"", image:""});
+        console.log("Yes");
+        //this.props.onClose();
       })
-      .then(() => {
-        this.props.onClose();
-      })
-  }
+      .catch(() => {
+        console.log("No");
+        return;
+      });
+  };
 
   render(){
+    const { history, errors, removeError } = this.props;
+
+    if(errors.message){
+      const unListen = history.listen(() => {
+        removeError();
+        unListen();
+      })
+    }
+
     return(
       <div className="container">
         <h1>EDIT FORM</h1>
         <form onSubmit={this.handleSubmit}>
+        {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
           <label htmlFor="text">Blog Name:</label>
           <input
             type="text"

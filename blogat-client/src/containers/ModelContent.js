@@ -42,7 +42,7 @@ const ModalContent = props => {
               <PostForm blogId={blogId} onClose={onClose} />
             )}
             {editBlog && (
-              <EditBlogForm blogId={blogId} onClose={onClose} />
+              <EditBlogForm blogId={blogId} onClose={onClose} removeError={removeError} errors={errors} {...props} />
             )}
             {signin && (
               <AuthForm

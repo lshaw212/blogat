@@ -47,14 +47,14 @@ exports.updateBlog = async function(req,res,next){
     let updatedBlog = await db.Blog.findByIdAndUpdate(req.params.blog_id,updateData, {new: true}, function(err, blog){
       // IS THIS SAVE NEEDED? LOOK INTO
       console.log("blog")
-      console.log(blog)
+      //console.log(blog)
       blog.save();
     }).populate("user", {
       username: true
     });
     await updatedBlog.save();
     console.log("updatedBlog");
-    console.log(updatedBlog);
+    //console.log(updatedBlog);
     // return the new blog object
     return res.status(200).json(updatedBlog);
   } catch(err) {
