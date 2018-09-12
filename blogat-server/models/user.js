@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -28,6 +30,13 @@ const userSchema = new mongoose.Schema({
     ref: "Post"
   }]
 });
+
+// Validations
+userSchema.path('email').validate(function(email){
+  // Testing email to make sure it is a valid address
+  return emailRegex.test(email);
+}, 'Please enter a valid email.');
+
 
 userSchema.pre("save", async function(next){
   try{

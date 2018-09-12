@@ -27,6 +27,8 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
+// Validations
+
 blogSchema.pre("remove", async function(next){
   try {
     const User = require("./user");

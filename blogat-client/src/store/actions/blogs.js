@@ -64,6 +64,7 @@ export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dis
         
       })
       .catch(err =>{
+        console.log(err);
         dispatch(addError(err.message));
         reject();
       }); 

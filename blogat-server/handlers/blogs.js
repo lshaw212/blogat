@@ -44,20 +44,20 @@ exports.updateBlog = async function(req,res,next){
     }
     console.log(updateData);
     // Update blog with new information after finding with the id provided
-    let updatedBlog = await db.Blog.findByIdAndUpdate(req.params.blog_id,updateData, {new: true}, function(err, blog){
-      // IS THIS SAVE NEEDED? LOOK INTO
-      console.log("blog")
-      //console.log(blog)
-      blog.save();
-    }).populate("user", {
-      username: true
-    });
+    let updatedBlog = await db.Blog.findByIdAndUpdate(req.params.blog_id,updateData, {new: true, runValidators: true})
+      .populate("user", {
+        username: true
+      });
     await updatedBlog.save();
     console.log("updatedBlog");
     //console.log(updatedBlog);
     // return the new blog object
     return res.status(200).json(updatedBlog);
   } catch(err) {
+    console.log(err.code);
+    if(err.code === 500){
+      err.message = "Sorry, please input the correct information.";
+    }
     return next(err);
   }
 };
