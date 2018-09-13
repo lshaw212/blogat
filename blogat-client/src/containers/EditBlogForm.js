@@ -7,9 +7,9 @@ class EditBlogForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      text:"",
-      desc: "",
-      image:""
+      name:this.props.blogName,
+      desc: this.props.blogDescription,
+      image:this.props.blogImage
     };
   }
 
@@ -21,7 +21,7 @@ class EditBlogForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props
-      .updateBlog(this.state.text, this.state.desc, this.state.image, this.props.blogId)
+      .updateBlog(this.state.name, this.state.desc, this.state.image, this.props.blogId)
       .then(() => {
         this.setState({text:"", desc:"", image:""});
         console.log("Yes");
@@ -48,12 +48,12 @@ class EditBlogForm extends Component {
         <h1>EDIT FORM</h1>
         <form onSubmit={this.handleSubmit}>
         {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
-          <label htmlFor="text">Blog Name:</label>
+          <label htmlFor="name">Blog Name:</label>
           <input
             type="text"
             className="form-control"
-            value={this.state.text}
-            onChange={e => this.setState({text: e.target.value})}
+            value={this.state.name}
+            onChange={e => this.setState({name: e.target.value})}
           />
           <label htmlFor="desc">Blog Description:</label>
           <input

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { removeError } from "../store/actions/errors";
+import { authUser } from "../store/actions/auth";
 import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import ModalTrigger from "../containers/ModalTrigger";
@@ -37,7 +38,7 @@ class Modal extends Component {
 
   render(){
     const { isOpen } = this.state;
-    const { eProps, triggerText, role, ariaLabel, children, postId, blogId, editPost, newPost, editBlog, signin, signup } = this.props;
+    const { errors, removeError, mProps, triggerText, role, ariaLabel, children, postId, blogId, editPost, newPost, editBlog, signin, signup,authUser } = this.props;
     return(
       <div>
         <ModalTrigger
@@ -47,7 +48,6 @@ class Modal extends Component {
         />
         {isOpen &&
           <ModalContent
-            content={children}
             ariaLabel={ariaLabel}
             buttonRef={n => this.closeButtonNode = n}
             modalRef={n => this.modalNode = n}
@@ -56,13 +56,11 @@ class Modal extends Component {
             onKeyDown={this.onKeyDown}
             postId={postId}
             blogId={blogId}
-            editPost={editPost}
-            newPost={newPost}
-            editBlog={editBlog}
-            signin={signin}
-            signup={signup}
             role={role}
-            eProps={eProps}
+            authUser={authUser}
+            removeError={removeError}
+            errors={errors}
+            mProps={mProps}
           />
         }
       </div>
@@ -76,4 +74,4 @@ function mapStateToProps(state){
   };
 }
 
-export default withRouter(connect(mapStateToProps, {removeError})(Modal));
+export default withRouter(connect(mapStateToProps, {authUser,removeError})(Modal));

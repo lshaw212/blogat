@@ -6,8 +6,8 @@ class EditPostForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      title:"",
-      content:""
+      title: this.props.title,
+      content: this.props.content
     };
   }
 

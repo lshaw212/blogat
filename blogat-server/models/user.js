@@ -16,9 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, 'Your password cannot be blank.'],
-    minlength: [4, 'Please enter a passowrd above 4 characters.'],
-    maxlength: [12, 'Please enter a password below 12 characters.']
+    required: [true, 'Your password cannot be blank.']
   },
   profileImageUrl: {
     type: String

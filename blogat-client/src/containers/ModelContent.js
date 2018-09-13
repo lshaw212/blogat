@@ -1,27 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
-import { connect } from "react-redux";
 import EditBlogForm from "../containers/EditBlogForm";
 import EditPostForm from "../containers/EditPostForm";
-import { authUser } from "../store/actions/auth";
-import { removeError } from "../store/actions/errors";
 import PostForm from "../containers/PostForm";
 import AuthForm from "../components/AuthForm";
 import withRouter from "react-router-dom/withRouter";
 
 const ModalContent = props => {
   //const { currentUser, authUser, errors, removeError } = props;
-  const {eProps, ariaLabel, buttonRef, content, modalRef, onClose, onClickAway, onFocus, editPost,
-        newPost, editBlog, signin, signup, postId, errors, authUser, removeError, blogId
+  const {mProps, buttonRef, modalRef, onClose, onClickAway, onFocus,
+        postId, errors, authUser, removeError, blogId
       } = props;
   const role = 'dialog';
-  console.log(eProps.triggerText);
   return ReactDOM.createPortal(
       <FocusTrap
         tag="aside"
         aria-modal="true"
-        aria-label={ariaLabel}
+        aria-label={mProps.ariaLabel}
         role={role}
         tabIndex="-1"
         onFocus={onFocus}
@@ -35,16 +31,38 @@ const ModalContent = props => {
             <svg className="c-modal__close-icon" viewBox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30"></path></svg>
           </button>
           <div className="c-modal__body">
-            {editPost && (
-              <EditPostForm postId={postId} blogId={blogId} removeError={removeError} errors={errors} onClose={onClose} />
+            {mProps.editPost && (
+              <EditPostForm
+                postId={postId}
+                blogId={blogId}
+                title={mProps.title}
+                content={mProps.content}
+                removeError={removeError}
+                errors={errors}
+                onClose={onClose}
+              />
             )}
-            {newPost && (
-              <PostForm blogId={blogId} onClose={onClose} removeError={removeError} errors={errors} />
+            {mProps.newPost && (
+              <PostForm
+                blogId={blogId}
+                onClose={onClose}
+                removeError={removeError}
+                errors={errors}
+              />
             )}
-            {editBlog && (
-              <EditBlogForm blogId={blogId} onClose={onClose} removeError={removeError} errors={errors} {...props} />
+            {mProps.editBlog && (
+              <EditBlogForm
+                blogId={blogId}
+                onClose={onClose}
+                blogName={mProps.blogName}
+                blogDescription={mProps.blogDescription}
+                blogImage={mProps.blogImage}
+                removeError={removeError}
+                errors={errors}
+                {...props}
+              />
             )}
-            {signin && (
+            {mProps.signin && (
               <AuthForm
                 onClose={onClose}
                 removeError={removeError}
@@ -55,7 +73,7 @@ const ModalContent = props => {
                 {...props}
               />
             )}
-            {signup && (
+            {mProps.signup && (
               <AuthForm
                 onClose={onClose}
                 removeError={removeError}
@@ -74,11 +92,4 @@ const ModalContent = props => {
   );
 }
 
-function mapStateToProps(state){
-  return{
-    currentUser: state.currentUser,
-    errors: state.errors
-  };
-}
-
-export default withRouter(connect(mapStateToProps, { authUser, removeError})(ModalContent));
+export default withRouter(ModalContent);

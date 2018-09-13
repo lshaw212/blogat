@@ -42,7 +42,6 @@ blogSchema.pre("remove", async function(next){
     user.blogs.remove(this.id);
     user.posts.remove(...this.posts);
     await user.save();
-    console.log(this.posts);
     return next();
   } catch(err) {
     return next(err);

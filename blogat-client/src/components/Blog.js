@@ -39,19 +39,20 @@ class Blog extends Component {
 
   render(){
     const { blogs, posts, currentUser, removePost, updatePost, removeBlog } = this.props;
-    
+    let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     const editBlogProps = {
       ariaLabel: 'A label describing the Modal\'s current content',
-      triggerText: 'Edit Blog',
+      blogName: selectedB.blogName,
+      blogDescription: selectedB.blogDescription,
+      blogImage: selectedB.blogImage,
       editBlog: true
     };
     const newPostProps = {
       ariaLabel: 'A label describing the Modal\'s current content',
-      triggerText: 'New Post',
       newPost: true
     }
 
-    let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
+    
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
       <Post
@@ -74,8 +75,8 @@ class Blog extends Component {
       <p> {selectedB.blogDescription}</p>
       {currentUser === selectedB.user._id && (
         <div>
-          <Modal {...newPostProps} blogId={this.props.match.params.id} />
-          <Modal {...editBlogProps} blogId={this.props.match.params.id} />
+          <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} />
+          <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} />
         </div>
       )}
       <div>

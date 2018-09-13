@@ -4,12 +4,10 @@ import Modal from "../containers/Modal";
 
 const signinProps = {
   ariaLabel: 'A label describing the Modal\'s current content',
-  triggerText: 'Log In',
   signin: true
 }
 const signUpProps = {
   ariaLabel: 'A label describing the Modal\'s current content',
-  triggerText: 'Sign Up',
   signup: true
 }
 
@@ -24,8 +22,8 @@ const Homepage =({currentUser}) => {
           {/* <Link to="/signup" className="btn btn-primary">Sign up here</Link> */}
         </div>
         <div>
-          <Modal {...signinProps} />
-          <Modal {...signUpProps} />
+          <Modal mProps={signinProps} triggerText='Log In' />
+          <Modal mProps={signUpProps} triggerText='Sign Up' />
         </div>
       </div>
     )

@@ -25,6 +25,7 @@ class BlogList extends Component {
 
   removeBlog(id, e){
     // e.preventDefault();
+    console.log("HDHD");
     this.props.deleteBlog(id);
     e.stopPropagation();
   }
