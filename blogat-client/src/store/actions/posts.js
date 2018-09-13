@@ -43,36 +43,48 @@ export const fetchPosts = () => {
 
 export const removePost = (user_id, blog_id, post_id) => {
   return dispatch => {
-    return apiCall("delete", `/api/users/${user_id}/blogs/${blog_id}/posts/${post_id}`)
-      .then(() => {
-        dispatch(remove(post_id));
-      })
-      .catch(err => {
-        dispatch(addError(err.message));
-      });
+    return new Promise((resolve, reject) => {
+      return apiCall("delete", `/api/users/${user_id}/blogs/${blog_id}/posts/${post_id}`)
+        .then(() => {
+          resolve();
+          dispatch(remove(post_id));
+        })
+        .catch(err => {
+          dispatch(addError(err.message));
+          reject();
+        });
+    });
   }
 }
 
 export const createPost = (postTitle, postContent, blog_id) => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
-  return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {postTitle, postContent})
-    .then(res => {
-      dispatch(create(res));
-    })
-    .catch(err => {
-      dispatch(addError(err.message));
-    });
+  return new Promise((resolve, reject) => {
+    return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {postTitle, postContent})
+      .then(res => {
+        resolve();
+        dispatch(create(res));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+        reject();
+      }); 
+  });
 }
 
 export const updatePost = (postTitle, postContent, blog_id, post_id) => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
-  return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {postTitle, postContent})
-    .then(res => {
-      dispatch(update(res, post_id));
-    })
-    .catch(err => {
-      dispatch(addError(err.message));
-    });
+  return new Promise((resolve, reject) => {
+    return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {postTitle, postContent})
+      .then(res => {
+        resolve();
+        dispatch(update(res, post_id));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+        reject();
+      });
+  });
 };

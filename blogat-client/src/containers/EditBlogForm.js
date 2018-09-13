@@ -13,6 +13,11 @@ class EditBlogForm extends Component {
     };
   }
 
+  componentDidMount(){
+    // forced removal of errors on launch (otherwise if page was reloaded with an error on screen, same error would appear on open)
+    this.props.removeError(); 
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props
@@ -20,7 +25,7 @@ class EditBlogForm extends Component {
       .then(() => {
         this.setState({text:"", desc:"", image:""});
         console.log("Yes");
-        //this.props.onClose();
+        this.props.onClose();
       })
       .catch(() => {
         console.log("No");

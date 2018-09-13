@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createNewBlog } from "../store/actions/blogs";
+import { removeError } from "../store/actions/errors";
 
 class BlogForm extends Component {
   constructor(props){
@@ -12,16 +13,24 @@ class BlogForm extends Component {
     };
   }
 
+  componentDidMount(){
+    // forced removal of errors on launch (otherwise if page was reloaded with an error on screen, same error would appear on open)
+    this.props.removeError(); 
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     // this.props post new blog stuff
     console.log("handleNewBlog");
-    this.props.createNewBlog(this.state.text, this.state.desc, this.state.image)
-    .then( () => {
-      this.setState({text:"",desc:"",image:""})
-    }).then( () =>{
-      this.props.history.push("/");
-    });
+    this.props
+      .createNewBlog(this.state.text, this.state.desc, this.state.image)
+      .then( () => {
+        this.setState({text:"",desc:"",image:""})
+        this.props.history.push("/");
+      })
+      .catch(() => {
+        return;
+      })
     
     //this.props.history.push("/"); // Could go straight to new blog?
   }
@@ -31,9 +40,11 @@ class BlogForm extends Component {
   }
 
   render(){
+    const { errors } = this.props;
     return(
       <div className="container">
         <form onSubmit={this.handleSubmit}>
+        {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
           <label htmlFor="text">Blog Name:</label>
           <input
             type="text"
@@ -71,4 +82,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { createNewBlog })(BlogForm);
+export default connect(mapStateToProps, { createNewBlog, removeError })(BlogForm);

@@ -11,12 +11,14 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: true,
+    required: [true, 'Your username cannot be blank.'],
     unique: true
   },
   password: {
     type: String,
-    required: true
+    required: [true, 'Your password cannot be blank.'],
+    minlength: [4, 'Please enter a passowrd above 4 characters.'],
+    maxlength: [12, 'Please enter a password below 12 characters.']
   },
   profileImageUrl: {
     type: String
@@ -36,6 +38,10 @@ userSchema.path('email').validate(function(email){
   // Testing email to make sure it is a valid address
   return emailRegex.test(email);
 }, 'Please enter a valid email.');
+
+// userSchema.path('password').validate(function(password){
+
+// }, 'Please enter a password');
 
 
 userSchema.pre("save", async function(next){

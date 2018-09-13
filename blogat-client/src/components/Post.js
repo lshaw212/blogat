@@ -9,9 +9,9 @@ const editPostProps = {
   triggerText: 'Edit your post',
   editPost: true
 };
-
+// eProps fix
 const Post =({title, content, username, date, isCorrectUser, removePost, updatePost, postId, blogId}) => (
-
+  
   <div>
     <hr/>
     <h3>{title}</h3>
@@ -27,7 +27,7 @@ const Post =({title, content, username, date, isCorrectUser, removePost, updateP
     {isCorrectUser && (
       <div>
         <a onClick={removePost} className="btn btn-danger">delete post</a>
-        <Modal {...editPostProps} postId={postId} blogId={blogId} />
+        <Modal {...editPostProps} postId={postId} blogId={blogId} eProps={editPostProps} />
       </div>
     )}
   </div>

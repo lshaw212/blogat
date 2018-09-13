@@ -11,6 +11,11 @@ class EditPostForm extends Component {
     };
   }
 
+  componentDidMount(){
+    // forced removal of errors on launch (otherwise if page was reloaded with an error on screen, same error would appear on open)
+    this.props.removeError(); 
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     console.log(this);
@@ -18,19 +23,23 @@ class EditPostForm extends Component {
     this.props.updatePost(this.state.title, this.state.content, this.props.blogId, this.props.postId)
       .then(() => {
         this.setState({title:"", content:""});
-      })
-      .then(() => {
         this.props.onClose();
-        //this.props.history.push(`/blogs/${this.props.history.location.state.blogId}`);
-      });
+      })
+      .catch(() => {
+        return;
+      })
       
   }
 
   render(){
+
+    const { history, errors, removeError } = this.props;
+
     return(
       <div className="container">
         <h1>Edit Post Form</h1>
         <form onSubmit={this.handleSubmit}>
+        {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
           <label htmlFor="title">Title:</label>
           <input
             type="text"
@@ -57,7 +66,7 @@ class EditPostForm extends Component {
 
 function mapStateToProps(state){
   return {
-
+    errors: state.errors
   };
 }
 

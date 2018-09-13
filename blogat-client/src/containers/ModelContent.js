@@ -12,11 +12,11 @@ import withRouter from "react-router-dom/withRouter";
 
 const ModalContent = props => {
   //const { currentUser, authUser, errors, removeError } = props;
-  const {ariaLabel, buttonRef, content, modalRef, onClose, onClickAway, onFocus, editPost,
+  const {eProps, ariaLabel, buttonRef, content, modalRef, onClose, onClickAway, onFocus, editPost,
         newPost, editBlog, signin, signup, postId, errors, authUser, removeError, blogId
       } = props;
   const role = 'dialog';
-
+  console.log(eProps.triggerText);
   return ReactDOM.createPortal(
       <FocusTrap
         tag="aside"
@@ -36,10 +36,10 @@ const ModalContent = props => {
           </button>
           <div className="c-modal__body">
             {editPost && (
-              <EditPostForm postId={postId} blogId={blogId} onClose={onClose} />
+              <EditPostForm postId={postId} blogId={blogId} removeError={removeError} errors={errors} onClose={onClose} />
             )}
             {newPost && (
-              <PostForm blogId={blogId} onClose={onClose} />
+              <PostForm blogId={blogId} onClose={onClose} removeError={removeError} errors={errors} />
             )}
             {editBlog && (
               <EditBlogForm blogId={blogId} onClose={onClose} removeError={removeError} errors={errors} {...props} />

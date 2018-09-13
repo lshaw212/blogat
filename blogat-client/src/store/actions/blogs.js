@@ -41,15 +41,20 @@ export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, 
   let {currentUser} = getState();
   if(blogImage === "")
     blogImage = "https://i.imgur.com/lbEqOxk.jpg";
-  console.log(blogImage);
   const id = currentUser.user.id;
-  return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
-    .then( res => {
-      //add a dispatch?
-      dispatch(createBlog(res));
-      
-    })
-    .catch(err => dispatch(addError(err.message)));
+  return new Promise((resolve, reject) => {
+    return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
+      .then( res => {
+        //add a dispatch?
+        resolve();
+        dispatch(createBlog(res));
+      })
+      .catch(err => {
+        console.log("Here");
+        dispatch(addError(err.message));
+        reject();
+      });
+  });
 };
 
 export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dispatch, getState) => {
@@ -59,13 +64,12 @@ export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dis
     return apiCall("put", `/api/users/${userId}/blogs/${blogId}`, {blogName,blogDescription,blogImage})
       .then( res => {
         resolve();
-        console.log("oopsy");
         dispatch(update(res, blogId));
         
       })
       .catch(err =>{
-        console.log(err);
         dispatch(addError(err.message));
+        console.log(err);
         reject();
       }); 
   });

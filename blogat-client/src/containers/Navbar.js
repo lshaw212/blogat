@@ -53,4 +53,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps,{logout})(Navbar);
+export default connect(mapStateToProps,{ logout })(Navbar);

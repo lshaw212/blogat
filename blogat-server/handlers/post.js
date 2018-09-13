@@ -48,7 +48,7 @@ exports.updatePost = async function(req,res,next){
       postContent: req.body.postContent
     }
     // Update blog with new information after finding with the id provided
-    let updatedPost = await db.Post.findByIdAndUpdate(req.params.post_id,updateData, {new: true})
+    let updatedPost = await db.Post.findByIdAndUpdate(req.params.post_id,updateData, {new: true, runValidators: true})
     .populate("blog", {
       blogName: true
     })
