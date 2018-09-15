@@ -97,7 +97,7 @@ class Blog extends Component {
 function mapStateToProps(state){
   return {
     blogs: state.blogs,
-    posts: state.posts.posts,
+    posts: state.posts,
     currentUser: state.currentUser.user.id
   };
 }

@@ -29,9 +29,11 @@ export const fetchBlogs = () => {
   return dispatch => {
     return apiCall("get", "/api/blogs")
       .then(res => {
+        //debugger;
         dispatch(loadBlogs(res));
       })
       .catch(err => {
+        console.log(err);
         dispatch(addError(err.messsage));
       });
   };
@@ -46,11 +48,16 @@ export const createNewBlog = (blogName,blogDescription,blogImage) => (dispatch, 
     return apiCall("post", `/api/users/${id}/blogs`, {blogName,blogDescription,blogImage})
       .then( res => {
         //add a dispatch?
+        console.log("test1");
         resolve();
+        console.log("test2");
         dispatch(createBlog(res));
+        console.log(res);
+        
       })
       .catch(err => {
-        console.log("Here");
+        console.log("Here?");
+        console.log(err);
         dispatch(addError(err.message));
         reject();
       });
@@ -65,7 +72,6 @@ export const updateBlog = (blogName, blogDescription, blogImage, blogId) => (dis
       .then( res => {
         resolve();
         dispatch(update(res, blogId));
-        
       })
       .catch(err =>{
         dispatch(addError(err.message));

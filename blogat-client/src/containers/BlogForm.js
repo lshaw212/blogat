@@ -35,10 +35,6 @@ class BlogForm extends Component {
     //this.props.history.push("/"); // Could go straight to new blog?
   }
 
-  componentWillUnmount(){
-    console.log("bye bye");
-  }
-
   render(){
     const { errors } = this.props;
     return(

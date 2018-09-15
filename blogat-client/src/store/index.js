@@ -15,7 +15,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export function configureStore(){
   const store = createStore(
-    persistedReducer,
+    // persistedReducer,
+    rootReducer,
     compose(
       applyMiddleware(thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f

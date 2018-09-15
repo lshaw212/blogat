@@ -8,7 +8,9 @@ import { withRouter } from "react-router-dom";
 class BlogList extends Component {
   componentDidMount(){
     // Fetch blogs
+    //debugger;
     this.props.fetchBlogs();
+    //debugger;
     this.props.fetchPosts();
     
   }
@@ -33,6 +35,9 @@ class BlogList extends Component {
   render(){
     const { blogs, currentUser } = this.props;
     // map through your blog list
+    //console.log(blogs);
+    //debugger;
+    //let bloggers = blogs;
     let blogList = blogs.map(b => (
       <BlogItem
         key={b._id}
