@@ -1,0 +1,21 @@
+/* Navbar */
+
+.navbar{
+  margin-bottom: 1rem;
+  background-color: grey;
+}
+
+.navbar a {
+  font-weight: bold;
+  color: white;
+}
+
+.navbar a:hover {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+}

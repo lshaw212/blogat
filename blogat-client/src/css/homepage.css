@@ -1,0 +1,163 @@
+.homepageTest {
+  /* font-family: 'Pacifico', cursive; */
+  /* font-family: 'Shadows Into Light', cursive; */
+  
+	font-family: 'Karla', sans-serif;
+	text-shadow: 2px 2px 5px rgba(5, 5, 5, 1);
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  color: white;
+}
+#titleText{
+	font-size: 15em
+}
+.home-hero {
+  border: 15px solid orange;
+  position: fixed;
+  top: 30%;
+	left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.descText{
+	font-size: 3em;
+}
+.slidingVertical{
+	display: inline;
+	text-indent: 8px;
+}
+.slidingVertical span{
+	animation: titleAnimation 36s linear infinite 0s;
+	-ms-animation: titleAnimation 36s linear infinite 0s;
+	-webkit-animation: titleAnimation 36s linear infinite 0s;
+	color: #00abe9;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+}
+.slidingVertical span:nth-child(2){
+	animation-delay: 6s;
+	-ms-animation-delay: 6s;
+	-webkit-animation-delay: 6s;
+}
+.slidingVertical span:nth-child(3){
+	animation-delay: 12s;
+	-ms-animation-delay: 12s;
+	-webkit-animation-delay: 12s;
+}
+.slidingVertical span:nth-child(4){
+	animation-delay: 18s;
+	-ms-animation-delay: 18s;
+	-webkit-animation-delay: 18s;
+}
+.slidingVertical span:nth-child(5){
+	animation-delay: 24s;
+	-ms-animation-delay: 24s;
+	-webkit-animation-delay: 24s;
+}
+.slidingVertical span:nth-child(6){
+	animation-delay: 30s;
+	-ms-animation-delay: 30s;
+	-webkit-animation-delay: 30s;
+}
+
+/*topToBottom Animation*/
+/* @-moz-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -moz-transform: translateY(-50px); }
+	10% { opacity: 1; -moz-transform: translateY(0px); }
+	25% { opacity: 1; -moz-transform: translateY(0px); }
+	30% { opacity: 0; -moz-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-webkit-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -webkit-transform: translateY(-50px); }
+	10% { opacity: 1; -webkit-transform: translateY(0px); }
+	25% { opacity: 1; -webkit-transform: translateY(0px); }
+	30% { opacity: 0; -webkit-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-ms-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -ms-transform: translateY(-50px); }
+	10% { opacity: 1; -ms-transform: translateY(0px); }
+	25% { opacity: 1; -ms-transform: translateY(0px); }
+	30% { opacity: 0; -ms-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+} */
+@keyframes titleAnimation { 
+	0% { opacity: 0 }
+	8% { opacity: 1 }
+	17% { opacity: 1 }
+	19% { opacity: 0 }
+	100% { opacity: 0 }
+}
+
+/* Background Images */
+
+.backgroundLoop,
+.backgroundLoop:after {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+}
+.backgroundLoop:after {
+	content: '';
+	background-image: transparent url(https://i.imgur.com/FdlN76q.jpg) repeat top left;
+}
+.backgroundLoop li { list-style: none; }
+.backgroundLoop li span {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: transparent;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: none;
+	opacity:0;
+	z-index: 0;
+	/* visibility: hidden; */
+	animation: imgAnimation 36s linear infinite 0s;
+}
+.backgroundLoop li:nth-child(1) span {
+	background-image: url(https://i.imgur.com/FdlN76q.jpg);
+}
+.backgroundLoop li:nth-child(2) span {
+	background-image: url(https://i.imgur.com/ooCXJv3.jpg);
+	animation-delay: 6s;
+}
+.backgroundLoop li:nth-child(3) span {
+	background-image: url(https://i.imgur.com/rlxC7vF.jpg);
+	animation-delay: 12s;
+}
+.backgroundLoop li:nth-child(4) span {
+	background-image: url(https://i.imgur.com/TU3R11E.jpg);
+	animation-delay: 18s;
+}
+.backgroundLoop li:nth-child(5) span {
+	background-image: url(https://i.imgur.com/CyVA9d0.jpg);
+	animation-delay: 24s;
+}
+.backgroundLoop li:nth-child(6) span {
+	background-image: url(https://i.imgur.com/zEqfx2N.jpg);
+	animation-delay: 30s;
+}
+
+@keyframes imgAnimation { 
+	0% { opacity: 0; animation-timing-function: ease-in; }
+	8% { opacity: 1; animation-timing-function: ease-out; }
+	17% { opacity: 1 }
+	25% { opacity: 0 }
+	100% { opacity: 0 }
+}

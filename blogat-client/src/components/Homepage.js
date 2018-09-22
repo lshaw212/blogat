@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Modal from "../containers/Modal";
 
@@ -11,30 +11,91 @@ const signUpProps = {
   signup: true
 }
 
-const Homepage =({currentUser}) => {
-  if(!currentUser.isAuthenticated){
-    return(
-      <div className="container">
-        <div className="home-hero">
-          <h1>Blog<strong>@</strong></h1>
-          <h4>Welcome to Blog@, where you can create and share blogs with everyone.</h4>
-          <h4>Create your first blog now about *******</h4>
-          {/* <Link to="/signup" className="btn btn-primary">Sign up here</Link> */}
+const landingPageData = [
+  {
+    text: "Test1"
+  }, {
+    text: "Test2"
+  }, {
+    text: "Test3"
+  }
+];
+
+class Homepage extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      timerText: 0,
+      spanText: "Test Text 0"
+    }
+    
+  }
+  
+  componentDidMount(){
+    //this.test();
+    console.log(landingPageData[1].text);
+  }
+
+  // test(){
+  //   //console.log("BOOOOO YAAAAA TEST LOL");
+  //   setInterval(function(){
+  //     console.log("1");
+  //     // this.setState({})
+  //     if(this.state.timerText=="1"){
+  //       this.setState({spanText:"Test Text 1"});
+  //     }
+  //     else if(this.state.timerText=="2")
+  //     this.setState({spanText:"Test Text 2"});
+  //     else if(this.state.timerText=="3")
+  //     this.setState({spanText:"Test Text 3"});
+  //     else if(this.state.timerText=="4"){
+  //       this.setState({spanText:"Test Text 4",timerText:0});
+  //     }
+  //   }, 5000);
+  // }
+
+  
+  
+  render(){
+    const { currentUser } = this.props;
+    if(!currentUser.isAuthenticated){
+      return(
+        <div className="homepageTest">
+          <ul className="backgroundLoop">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+          </ul>
+          <div className="home-hero">
+            <p id="titleText">Blog<strong>@</strong></p>
+            <p className="descText">Welcome to Blog@, where you can create and share blogs with everyone.</p>
+            <p className="descText">Create your first blog now about 
+              <div className="slidingVertical">
+                <span>Adventure</span>
+                <span>reading</span>
+                <span>computing</span>
+                <span>animals</span>
+                <span>sports</span>
+                <span>cooking</span>
+              </div>
+            </p>
+            <Modal mProps={signinProps} triggerText='Log In' />
+            <Modal mProps={signUpProps} triggerText='Sign Up' />
+          </div>
         </div>
-        <div>
-          <Modal mProps={signinProps} triggerText='Log In' />
-          <Modal mProps={signUpProps} triggerText='Sign Up' />
-        </div>
+      )
+    }
+    return (
+      <div>
+        {/* Redirect if logged in to BlogList */}
+        <Redirect to="/blogs" />
+        {/* <BlogList/> */}
       </div>
     )
   }
-  return (
-    <div>
-      {/* Redirect if logged in to BlogList */}
-      <Redirect to="/blogs" />
-      {/* <BlogList/> */}
-    </div>
-  )
 }
 
 export default Homepage;
