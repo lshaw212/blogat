@@ -75,11 +75,11 @@ class Homepage extends Component {
             <p className="descText">Create your first blog now about 
               <div className="slidingVertical">
                 <span>Adventure</span>
-                <span>reading</span>
-                <span>computing</span>
-                <span>animals</span>
-                <span>sports</span>
-                <span>cooking</span>
+                <span>Literature</span>
+                <span>Technology</span>
+                <span>Sport</span>
+                <span>Animals</span>
+                <span>Food</span>
               </div>
             </p>
             <Modal mProps={signinProps} triggerText='Log In' />
