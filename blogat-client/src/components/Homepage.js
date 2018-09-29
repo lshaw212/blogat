@@ -2,25 +2,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Modal from "../containers/Modal";
 
-const signinProps = {
-  ariaLabel: 'A label describing the Modal\'s current content',
-  signin: true
-}
-const signUpProps = {
-  ariaLabel: 'A label describing the Modal\'s current content',
-  signup: true
-}
-
-const landingPageData = [
-  {
-    text: "Test1"
-  }, {
-    text: "Test2"
-  }, {
-    text: "Test3"
-  }
-];
-
 class Homepage extends Component {
   constructor(props){
     super(props);
@@ -30,32 +11,7 @@ class Homepage extends Component {
     }
     
   }
-  
-  componentDidMount(){
-    //this.test();
-    console.log(landingPageData[1].text);
-  }
 
-  // test(){
-  //   //console.log("BOOOOO YAAAAA TEST LOL");
-  //   setInterval(function(){
-  //     console.log("1");
-  //     // this.setState({})
-  //     if(this.state.timerText=="1"){
-  //       this.setState({spanText:"Test Text 1"});
-  //     }
-  //     else if(this.state.timerText=="2")
-  //     this.setState({spanText:"Test Text 2"});
-  //     else if(this.state.timerText=="3")
-  //     this.setState({spanText:"Test Text 3"});
-  //     else if(this.state.timerText=="4"){
-  //       this.setState({spanText:"Test Text 4",timerText:0});
-  //     }
-  //   }, 5000);
-  // }
-
-  
-  
   render(){
     const { currentUser } = this.props;
     if(!currentUser.isAuthenticated){
@@ -82,8 +38,10 @@ class Homepage extends Component {
                 <span>Food</span>
               </div>
             </p>
-            <Modal mProps={signinProps} triggerText='Log In' />
-            <Modal mProps={signUpProps} triggerText='Sign Up' />
+            <div className="btnContainer">
+              <Modal mProps="signin" btnText='Log In' btnClass="infoBtn" />
+              <Modal mProps="signup" btnText='Sign Up' btnClass="infoBtn" />
+            </div>
           </div>
         </div>
       )

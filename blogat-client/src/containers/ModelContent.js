@@ -62,7 +62,7 @@ const ModalContent = props => {
                 {...props}
               />
             )}
-            {mProps.signin && (
+            {mProps==="signin" && (
               <AuthForm
                 onClose={onClose}
                 removeError={removeError}
@@ -73,7 +73,7 @@ const ModalContent = props => {
                 {...props}
               />
             )}
-            {mProps.signup && (
+            {mProps==="signup" && (
               <AuthForm
                 onClose={onClose}
                 removeError={removeError}

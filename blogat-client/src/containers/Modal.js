@@ -3,7 +3,6 @@ import { removeError } from "../store/actions/errors";
 import { authUser } from "../store/actions/auth";
 import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
-import ModalTrigger from "../containers/ModalTrigger";
 import ModalContent from "../containers/ModelContent";
 
 class Modal extends Component {
@@ -38,17 +37,12 @@ class Modal extends Component {
 
   render(){
     const { isOpen } = this.state;
-    const { errors, removeError, mProps, triggerText, role, ariaLabel, children, postId, blogId, editPost, newPost, editBlog, signin, signup,authUser } = this.props;
+    const { errors, removeError, mProps, btnText, btnClass, role, children, postId, blogId, editPost, newPost, editBlog, signin, signup,authUser } = this.props;
     return(
       <div>
-        <ModalTrigger
-          onOpen={this.onOpen}
-          buttonRef={n => this.openButtonNode = n}
-          text={triggerText}
-        />
+        <button className={btnClass} onClick={this.onOpen} ref={n => this.openButtonNode = n}>{btnText}</button>
         {isOpen &&
           <ModalContent
-            ariaLabel={ariaLabel}
             buttonRef={n => this.closeButtonNode = n}
             modalRef={n => this.modalNode = n}
             onClickAway={this.onClickAway}
