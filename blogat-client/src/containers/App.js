@@ -8,7 +8,7 @@ import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
 import { persistStore } from "redux-persist";
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import Homepage from "../components/Homepage";
+
 
 
 const store = configureStore();

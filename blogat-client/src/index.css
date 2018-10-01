@@ -26,10 +26,56 @@ body {
   overflow: hidden !important;
 }
 
-.fade-in {
+/* .fade-in {
   opacity: 0;
 }
 .fade-in.visible {
   transition: opacity 1s ease-in;
   opacity: 1;
+}
+
+.fadeTransition-appear{
+  opacity: 0;
+}
+
+.fadeTransition-appear.fadeTransition-appear-active{
+  opacity: 1;
+  transition: all .4s ease-in-out;
+} */
+
+/* transitionName="fadeTransition"
+      transitionAppear={true}
+      transitionAppearTimeout={3000}
+      transitionEnter={false}
+      transitionLeave={false} */
+
+      
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-appear-active,
+.fade-enter-active {
+  transition: opacity .3s linear;
+  opacity: 1;
+}
+
+.fade-exit {
+  transition: opacity .2s linear;
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+}
+.transition-group {
+  position: relative;
+}
+
+.route-section {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }

@@ -4,6 +4,7 @@ import BlogItem from "../components/BlogItem";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 class BlogList extends Component {
   componentDidMount(){
@@ -52,12 +53,12 @@ class BlogList extends Component {
       />
     ));
     return(
-      <div>
+      
+        <div> 
           <div id="blogs">
             {blogList}
           </div>
-
-      </div>
+        </div>
       
     )
   }

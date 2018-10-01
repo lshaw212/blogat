@@ -10,43 +10,56 @@ import Blog from "../components/Blog";
 import BlogForm from "../containers/BlogForm";
 import BlogList from "../containers/BlogList";
 import Navbar from "./Navbar";
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const Main = props => {
-  const { currentUser, authUser, errors, removeError } = props;
+  const { currentUser, authUser, errors, removeError, location } = props;
+  const timeout = { enter: 300, exit: 200 }
   return (
+    
     <div className="">
-      <Switch>
-        <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
-        <Route exact path="/blogs" component={BlogList} />
-        <Route exact path="/signin" render={props => {
-          return(
-            <AuthForm
-              removeError={removeError}
-              errors={errors}
-              onAuth={authUser}
-              buttonText="Log in"
-              heading="Please log in to continue"
-              {...props}
-            />
-          );
-        }}/>
-        <Route exact path="/signup" render={props => {
-          return(
-            <AuthForm
-              removeError={removeError}
-              errors={errors}
-              onAuth={authUser}
-              buttonText="Sign me up!"
-              heading="Join Blog@ today!"
-              signUp
-              {...props}
-            />
-          );
-        }}/>
-        <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
-        <Route path="/blogs/:id" component={(Blog)}/>
-        
-      </Switch>
+    <TransitionGroup className="transition-group">
+    <CSSTransition
+      key={location.key}
+      timeout={timeout}
+      classNames="fade"
+      appear
+      >
+        <section className="route-section">
+        <Switch location={location}>
+          <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
+          <Route exact path="/blogs" component={BlogList} />
+          <Route exact path="/signin" render={props => {
+            return(
+              <AuthForm
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                buttonText="Log in"
+                heading="Please log in to continue"
+                {...props}
+              />
+            );
+          }}/>
+          <Route exact path="/signup" render={props => {
+            return(
+              <AuthForm
+                removeError={removeError}
+                errors={errors}
+                onAuth={authUser}
+                buttonText="Sign me up!"
+                heading="Join Blog@ today!"
+                signUp
+                {...props}
+              />
+            );
+          }}/>
+          <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
+          <Route path="/blogs/:id" component={(Blog)}/>    
+        </Switch>
+        </section>
+      </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 }
