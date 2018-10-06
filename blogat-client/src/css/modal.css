@@ -33,21 +33,17 @@ c-btn:focus {
 
 @keyframes modalFade {
   from {
-    /* transform: translateY(-100%); */
-    transform: translate(0,0);
-    /* transform: translateX(-100%); */
+    top: 40%;
     opacity: 0;
   }
   to {
-    /* transform: translateY(0); */
-    transform: translate(1,1);
     opacity: 1;
   }
 }
 
 .c-modal {
-  /* animation-name: modalFade;
-  animation-duration: 0.3s; */
+  animation-name: modalFade;
+  animation-duration: 0.5s;
   /* user-select: none; */
   position: fixed;
   top: 0;

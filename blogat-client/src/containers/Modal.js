@@ -39,7 +39,9 @@ class Modal extends Component {
     const { isOpen } = this.state;
     const { errors, removeError, mProps, btnText, btnClass, role, children, postId, blogId, editPost, newPost, editBlog, signin, signup,authUser } = this.props;
     return(
+      
       <div>
+        
         <button className={btnClass} onClick={this.onOpen} ref={n => this.openButtonNode = n}>{btnText}</button>
         {isOpen &&
           <ModalContent

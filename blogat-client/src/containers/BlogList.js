@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import BlogItem from "../components/BlogItem";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
+import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 
 class BlogList extends Component {
   componentDidMount(){
@@ -13,6 +13,7 @@ class BlogList extends Component {
     this.props.fetchBlogs();
     //debugger;
     this.props.fetchPosts();
+    this.props.fetchFavorites();
     
   }
 
@@ -32,9 +33,14 @@ class BlogList extends Component {
     this.props.deleteBlog(id);
     e.stopPropagation();
   }
+  favoriteBlog(id, e){
+    console.log("Favorited!");
+    this.props.favoriteBlog(id);
+    e.stopPropagation();
+  }
 
   render(){
-    const { blogs, currentUser } = this.props;
+    const { blogs, currentUser, favorites } = this.props;
     // map through your blog list
     //console.log(blogs);
     //debugger;
@@ -47,18 +53,21 @@ class BlogList extends Component {
         desc={b.blogDescription}
         image={b.blogImage}
         username={b.user.username}
+        favToggle={this.favoriteBlog.bind(this, b._id)}
         selectBlog={this.selectBlog.bind(this, b._id)}
         removeBlog={this.removeBlog.bind(this, b._id)}
+        favorite={favorites.includes(b._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
         isCorrectUser={currentUser === b.user._id}
       />
     ));
     return(
-      
+      (typeof blogs!='undefined')?
         <div> 
           <div id="blogs">
             {blogList}
           </div>
         </div>
+        : <div>Loading....</div>
       
     )
   }
@@ -67,9 +76,10 @@ class BlogList extends Component {
 function mapStateToProps(state){
   return {
     blogs: state.blogs,
-    currentUser: state.currentUser.user.id
+    currentUser: state.currentUser.user.id,
+    favorites: state.currentUser.favorites || []
   };
 }
 
 
-export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts })(BlogList));
+export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts, favoriteBlog, fetchFavorites })(BlogList));

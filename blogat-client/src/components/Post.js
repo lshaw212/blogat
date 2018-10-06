@@ -27,7 +27,7 @@ const Post =({title, content, username, date, isCorrectUser, removePost, updateP
       {isCorrectUser && (
         <div>
           <a onClick={removePost} className="btn btn-danger">delete post</a>
-          <Modal triggerText='Edit Post' postId={postId} blogId={blogId} mProps={editPostProps} />
+          <Modal triggerText='Edit Post' postId={postId} blogId={blogId} mProps={editPostProps} btnText='Edit Post' btnClass="c-btn" />
         </div>
       )}
     </div>

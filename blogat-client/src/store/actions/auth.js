@@ -1,5 +1,5 @@
 import { apiCall, setTokenHeader } from "../../services/api";
-import { SET_CURRENT_USER } from "../actionTypes";
+import { SET_CURRENT_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS } from "../actionTypes";
 import { addError, removeError } from "./errors";
 
 export function setAuthorizationToken(token){
@@ -12,6 +12,16 @@ export function setCurrentUser(user){
     user
   };
 }
+
+export const setFavoriteBlog = blog => ({
+  type: FAVORITE_BLOG,
+  blog
+});
+
+export const getFavoriteBlogs = blogs => ({
+  type: GET_FAVORITE_BLOGS,
+  blogs
+});
 
 export function logout(){
   return dispatch => {
@@ -40,4 +50,40 @@ export function authUser(type, userData){
         });
     });
   };
+}
+// Add res
+export const favoriteBlog = (blogId) => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const userId = currentUser.user.id;
+  return new Promise((resolve, reject) => {
+    return apiCall("put", `/api/auth/${userId}`, {blogId})
+      .then(res => {
+        resolve();
+        dispatch(setFavoriteBlog(res));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+        console.log(err);
+        reject();
+      });
+  });
+};
+
+export const fetchFavorites = () => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const userId = currentUser.user.id;
+  return new Promise((resolve, reject) => {
+    return apiCall("get", `/api/auth/${userId}`)
+      .then(res => {
+        resolve();
+        console.log("1");
+        dispatch(getFavoriteBlogs(res));
+        console.log("2");
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+        console.log(err);
+        reject();
+      });
+  });
 }

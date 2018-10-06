@@ -25,30 +25,6 @@ body {
  .u-lock-scroll {
   overflow: hidden !important;
 }
-
-/* .fade-in {
-  opacity: 0;
-}
-.fade-in.visible {
-  transition: opacity 1s ease-in;
-  opacity: 1;
-}
-
-.fadeTransition-appear{
-  opacity: 0;
-}
-
-.fadeTransition-appear.fadeTransition-appear-active{
-  opacity: 1;
-  transition: all .4s ease-in-out;
-} */
-
-/* transitionName="fadeTransition"
-      transitionAppear={true}
-      transitionAppearTimeout={3000}
-      transitionEnter={false}
-      transitionLeave={false} */
-
       
 .fade-appear,
 .fade-enter {
@@ -69,6 +45,7 @@ body {
 .fade-exit-active {
   opacity: 0;
 }
+
 .transition-group {
   position: relative;
 }
@@ -79,3 +56,9 @@ body {
   top: 0;
   left: 0;
 }
+
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+} */

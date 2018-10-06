@@ -75,8 +75,8 @@ class Blog extends Component {
       <p> {selectedB.blogDescription}</p>
       {currentUser === selectedB.user._id && (
         <div>
-          <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} />
-          <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} />
+          <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="c-btn" btnText='New Post' />
+          <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
         </div>
       )}
       <div>
