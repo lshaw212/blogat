@@ -1,0 +1,14 @@
+.profile-layout{
+  width: 100%;
+  height: 500px;
+}
+.profile-information{
+  width: 35%;
+  height: 100%;
+  float: left;
+}
+.profile-blogs{
+ width: 65%;
+ height: 100%;
+ float: right;
+}

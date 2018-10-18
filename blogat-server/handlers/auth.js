@@ -68,37 +68,17 @@ exports.signup = async function(req, res, next){
   }
 };
 
-exports.favoritesss = async function(req, res, next){
+exports.getUser = async function(req, res, next){
   try {
-    let blogId = req.body.blogId;
-    let user = await db.User.findOne({_id: req.params.user_id});
-    if(!user.favorites.includes(blogId)){
-      await db.User.update({_id: req.params.user_id},
-          {
-            $push: {
-              'favorites': blogId
-            }
-          }
-        );
-      console.log("Favorite blog has been added");
-    } else {
-      await db.User.update({_id: req.params.user_id},
-        {
-          $pull: {
-            'favorites': blogId
-          }
-        }
-      );
-      console.log("Favorite blog has been removed");
-    }
-    return res.status(200).json(user);
-    // return res.status(200);
-  } catch(err) {
-    console.log(err.code);
-    return next({
-      status: 400,
-      message: err.message
-    });
+    console.log("Beep");
+    let userId = req.params.id;
+    console.log(req.params.user_id);
+    let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites');
+    console.log(user);
+    return res.status(200).json(user[0]);
+  } catch {
+    console.log("Oops");
+    return next(err);
   }
 }
 
@@ -117,21 +97,36 @@ exports.getFavoriteBlogs = async function(req,res,next){
 exports.favorite = async function(req, res, next){
   try {
     let blogId = req.body.blogId;
-    let user = await db.User.findOne({_id: req.params.user_id});
+    let userId = req.params.user_id;
+    let user = await db.User.findOne({_id: userId});
     if(!user.favorites.includes(blogId)){
-      await db.User.update({_id: req.params.user_id},
+      await db.User.update({_id: userId},
           {
             $push: {
               'favorites': blogId
             }
           }
         );
+      await db.Blog.update({_id: blogId},
+        {
+          $push: {
+            'favorites': userId
+          }
+        }
+      );
       console.log("Favorite blog has been added");
     } else {
-      await db.User.update({_id: req.params.user_id},
+      await db.User.update({_id: userId},
         {
           $pull: {
             'favorites': blogId
+          }
+        }
+      );
+      await db.Blog.update({_id: blogId},
+        {
+          $pull: {
+            'favorites': userId
           }
         }
       );

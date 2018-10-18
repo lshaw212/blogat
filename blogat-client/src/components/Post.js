@@ -14,9 +14,9 @@ const Post =({title, content, username, date, isCorrectUser, removePost, updateP
   return(
     <div>
       <hr/>
-      <h3>{title}</h3>
+      <p id="post-title">{title}</p>
       <div>
-        <p>{content}</p>
+        <p className="post-content">{content}</p>
         <p>Article by {username}</p>
         <span>
           <Moment format="Do MMM YYYY">

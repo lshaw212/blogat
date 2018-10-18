@@ -77,6 +77,10 @@
   background-position: center;
   transition: all 1.0s cubic-bezier(.25,.8,.25,1);
 }
+
+.post-list {
+  white-space: pre-line;
+}
 /*
 .image:hover{
   filter: blur(4px);  
@@ -128,3 +132,86 @@
   font-style: italic;
   opacity: 0.6;
 }
+
+.blog-header {
+  width: 100%;
+  height: 350px;
+  /* background-color: aqua; */
+}
+.blog-left {
+  border: 1px solid #e4e4e4;
+  border-radius:25px;
+  width: 40%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.blog-right {
+  /* background-color: yellow; */
+  width: 60%;
+  height: 100%;
+  float: right;
+  padding: 5px 5px 5px 5px;
+  
+}
+.blog-right-image{
+  width:100%;
+  height:100%;
+  background-size: cover;
+  background-position: center;
+  border-radius:25px;
+}
+.blog-header-title {
+  /* background-color: chartreuse; */
+  font-family: 'Noto Serif', serif;
+  font-size: 3em;
+}
+.blog-header-desc {
+  /* background-color: blueviolet; */
+  padding: 7px;
+  opacity: 0.75;
+}
+.blog-header-details {
+  /* background-color: red; */
+  border: 1px solid #e4e4e4;
+  border-radius:25px;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  display:flex;
+  justify-content: space-between;
+}
+.blog-header-profile-image{
+  height: 100%;
+  width: 80px;
+  border-radius: 50px;
+  background-image: url(https://i.imgur.com/STwmMba.jpg);
+  background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;    
+}
+.blog-header-details-left{
+  display: flex;
+  
+}
+.blog-header-details-right{
+  display:flex;
+}
+.blog-header-blogowner{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+}
+.blog-header-icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.blog-header-icon-text{
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+

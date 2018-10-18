@@ -1,0 +1,10 @@
+#post-title{
+  font-family: 'Noto Serif', serif;
+  font-size: 2em;
+}
+.post-content::first-letter {
+  font-size: 5em;
+}
+.post-content::first-line{
+  line-height: 100%;
+}

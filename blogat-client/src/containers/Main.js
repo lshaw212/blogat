@@ -7,6 +7,7 @@ import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
+import Profile from "../components/Profile";
 import BlogForm from "../containers/BlogForm";
 import BlogList from "../containers/BlogList";
 import Navbar from "./Navbar";
@@ -55,7 +56,8 @@ const Main = props => {
             );
           }}/>
           <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
-          <Route path="/blogs/:id" component={(Blog)}/>    
+          <Route path="/blogs/:id" component={(Blog)}/>
+          <Route path="/user/:id" component={(Profile)} /> 
         </Switch>
         </section>
       </CSSTransition>
