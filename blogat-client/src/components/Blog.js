@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
 import Modal from "../containers/Modal";
+import Moment from "react-moment";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts, removePost, updatePost } from "../store/actions/posts";
@@ -84,51 +85,53 @@ class Blog extends Component {
     return(
       (typeof selectedB!='undefined')?
       <div className="container">
+      <div className="blog-header-title">
+        <p>{selectedB.blogName}</p>
+      </div>
       <div className="blog-header">
-        <div className="blog-header-title">
-          <p>{selectedB.blogName}</p>
+        <div className="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
         </div>
-        <div className="blog-left">
-          <div className="blog-header-desc">
+        <div className="blog-information">
+          <div className="blog-profile">
+            <div className="blog-profile-image"></div>
+            <div className="blog-blogowner">
+              <div>by</div>
+              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB._id)}>{selectedB.user.username}</div>
+            </div>
+          </div>
+          <div className="blog-description">
             <p>{selectedB.blogDescription}</p>
-          </div>
-          <div className="blog-header-details">
-            <div className="blog-header-details-left">
-              <div className="blog-header-profile-image"></div>
-              <div className="blog-header-blogowner">
-                <div>by</div>
-                <div className="blog-header-username" onClick={this.userProfile.bind(this, selectedB._id)}>{selectedB.user.username}</div>
+            <div className="blog-description-info">
+              <div className="blog-created-date">
+                <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
               </div>
-              
+            {currentUser === selectedB.user._id && (
+              <div className="blog-owner-buttons">
+                <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="c-btn" btnText='New Post' />
+                <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
+              </div>
+            )}
             </div>
-            <div className="blog-header-details-right">
-              <div className="blog-header-icons">
-                <i className="fas fa-newspaper fa-2x"/>
-                <i
-                  className={favorites.includes(selectedB._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
-                  onClick={this.favoriteBlog.bind(this, selectedB._id)}
-                />
-              </div>
-              <div className="blog-header-icon-text">
-                <div>{posts.length}</div>
-                <div>{favorites.length}</div>
-              </div>
+            
+          </div>
+          <div className="blog-post-favourite-count">
+            <div>
+              <div className="count-header">Posts</div>
+              <div className="count">{posts.length}</div>
+            </div>
+            <div>
+              <div className="count-header">Favourites</div>
+              <div className="count">{favorites.length}</div>
             </div>
           </div>
         </div>
-        <div className="blog-right">
-          <div className="blog-right-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
-          {/* <p>test image</p> */}
-          </div>
+        <div className="blog-favourite">
+          <i
+            className={favorites.includes(selectedB._id) ? 'fas fa-star fa-4x' : 'far fa-star fa-4x'}
+            onClick={this.favoriteBlog.bind(this, selectedB._id)}
+          />
         </div>
       </div>
-      
-      {currentUser === selectedB.user._id && (
-        <div>
-          <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="c-btn" btnText='New Post' />
-          <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
-        </div>
-      )}
       <div className="post-list">
         {blogPosts}
       </div>     
@@ -153,3 +156,37 @@ function mapStateToProps(state){
   };
 }
 export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost, updatePost, deleteBlog, favoriteBlog, fetchFavorites })(Blog));
+
+// {/* <div className="blog-left">
+//           <div className="blog-header-desc">
+//             <p>{selectedB.blogDescription}</p>
+//           </div>
+//           <div className="blog-header-details">
+//             <div className="blog-header-details-left">
+//               <div className="blog-header-profile-image"></div>
+//               <div className="blog-header-blogowner">
+//                 <div>by</div>
+//                 <div className="blog-header-username" onClick={this.userProfile.bind(this, selectedB._id)}>{selectedB.user.username}</div>
+//               </div>
+              
+//             </div>
+//             <div className="blog-header-details-right">
+//               <div className="blog-header-icons">
+//                 <i className="fas fa-newspaper fa-2x"/>
+//                 <i
+//                   className={favorites.includes(selectedB._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
+//                   onClick={this.favoriteBlog.bind(this, selectedB._id)}
+//                 />
+//               </div>
+//               <div className="blog-header-icon-text">
+//                 <div>{posts.length}</div>
+//                 <div>{favorites.length}</div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="blog-right">
+//           <div className="blog-right-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
+//           {/* <p>test image</p> */}
+//           </div>
+//         </div> */}

@@ -26,8 +26,11 @@ const blogSchema = new mongoose.Schema(
     },
     favorites: [{
       type: String
-    }]
-  }
+      }]
+    },
+    {
+      timestamps: true
+    }
 );
 
 // Validations

@@ -136,10 +136,106 @@
 .blog-header {
   width: 100%;
   height: 350px;
+  position: relative;
   /* background-color: aqua; */
+}
+
+.blog-image{
+  background-size:cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+.blog-information{
+  display:flex;
+  position: absolute;
+  justify-content: space-between;
+  background-color: #e4e4e4;
+  width: 100%;
+  height: 100px;
+  bottom:0;
+}
+.blog-header-title {
+  /* background-color: chartreuse; */
+  font-family: 'Noto Serif', serif;
+  font-size: 3em;
+}
+.blog-description{
+  flex-grow: 1;
+  padding: 5px 5px 5px 25px;
+  opacity: 0.75;
+}
+
+.blog-profile-image{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  border: 2px solid #e4e4e4;
+  box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75);
+  top: -50px;
+  left: 10px;
+  position: relative;
+  background-image: url(https://i.imgur.com/STwmMba.jpg);
+  background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;    
+}
+.blog-favourite{
+  position: absolute;
+  top:-35px;
+  right:-35px;
+  /* color: yellow; */
+}
+.blog-blogowner{
+   position: absolute;
+   bottom: 0;
+   padding: 0 0 5px 15px;
+}
+.blog-post-favourite-count{
+  display:flex;
+  width:200px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.count{
+  font-size: 2em;
+  text-align: center;
+}
+.count-header{
+  opacity: 0.75;
+}
+.blog-description-info{
+  display: flex;
+  justify-content: space-between;
+}
+.blog-owner-buttons{
+  display: flex;
+}
+.blog-created-date{
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.blog-header-desc {
+  /* background-color: blueviolet; */
+  padding: 7px;
+  opacity: 0.75;
 }
 .blog-left {
   border: 1px solid #e4e4e4;
+  background: white;
   border-radius:25px;
   width: 40%;
   height: 100%;
@@ -161,19 +257,15 @@
   background-position: center;
   border-radius:25px;
 }
-.blog-header-title {
-  /* background-color: chartreuse; */
-  font-family: 'Noto Serif', serif;
-  font-size: 3em;
+.blog-header-details-left{
+  display: flex;
 }
-.blog-header-desc {
-  /* background-color: blueviolet; */
-  padding: 7px;
-  opacity: 0.75;
+.blog-header-details-right{
+  display:flex;
 }
 .blog-header-details {
   /* background-color: red; */
-  border: 1px solid #e4e4e4;
+  /* border: 1px solid #e4e4e4; */
   border-radius:25px;
   bottom: 0;
   width: 100%;
@@ -182,36 +274,14 @@
   display:flex;
   justify-content: space-between;
 }
-.blog-header-profile-image{
-  height: 100%;
-  width: 80px;
-  border-radius: 50px;
-  background-image: url(https://i.imgur.com/STwmMba.jpg);
-  background-size:     cover;                      /* <------ */
-  background-repeat:   no-repeat;
-  background-position: center center;    
-}
-.blog-header-details-left{
-  display: flex;
-  
-}
-.blog-header-details-right{
-  display:flex;
-}
-.blog-header-blogowner{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; 
-}
-.blog-header-icons{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
 .blog-header-icon-text{
   font-size: 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-
+.blog-header-icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
