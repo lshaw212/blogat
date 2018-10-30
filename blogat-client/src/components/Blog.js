@@ -86,7 +86,13 @@ class Blog extends Component {
       (typeof selectedB!='undefined')?
       <div className="container">
       <div className="blog-header-title">
-        <p>{selectedB.blogName}</p>
+        <div id="blog-blogname">{selectedB.blogName}</div>
+        <div id="blog-favourite">
+          <i
+            className={favorites.includes(selectedB._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
+            onClick={this.favoriteBlog.bind(this, selectedB._id)}
+          />
+        </div>
       </div>
       <div className="blog-header">
         <div className="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
@@ -124,12 +130,6 @@ class Blog extends Component {
               <div className="count">{favorites.length}</div>
             </div>
           </div>
-        </div>
-        <div className="blog-favourite">
-          <i
-            className={favorites.includes(selectedB._id) ? 'fas fa-star fa-4x' : 'far fa-star fa-4x'}
-            onClick={this.favoriteBlog.bind(this, selectedB._id)}
-          />
         </div>
       </div>
       <div className="post-list">

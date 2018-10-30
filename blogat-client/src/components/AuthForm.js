@@ -8,7 +8,9 @@ export default class AuthForm extends Component {
       email:"",
       username:"",
       passsword:"",
-      profileImageUrl:""
+      profileImageUrl:"heheh",
+      'social.twitter': "www.twitter.com"
+      
     };
   }
 

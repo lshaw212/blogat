@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
   profileImageUrl: {
     type: String
   },
+  bio: {
+    type: String
+  },
   blogs: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Blog"
@@ -29,6 +32,24 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post"
   }],
+  social: {
+    twitter: {
+      type: String,
+      default: ''
+    },
+    linkedin: {
+      type: String,
+      default: ''
+    },
+    github: {
+      type: String,
+      default: ''
+    },
+    emailToggle: {
+      type: Boolean,
+      default: false
+    }  
+  },
   favorites: [{
     type: String
   }]

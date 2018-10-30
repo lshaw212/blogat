@@ -4,6 +4,7 @@
 @import "./css/blog.css";
 @import "./css/post.css";
 @import "./css/profile.css";
+@import "./css//Forms.css";
 
 
 
@@ -59,6 +60,14 @@ body {
   width: 100%;
   top: 0;
   left: 0;
+}
+
+.form-size{
+  /* width: 600px; */
+}
+.social-size{
+  padding-top: 5px;
+  font-size: 0.8em;
 }
 
 /* * {

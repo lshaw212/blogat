@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
 import EditBlogForm from "../containers/EditBlogForm";
 import EditPostForm from "../containers/EditPostForm";
+import EditProfileForm from "../containers/EditProfileForm";
 import PostForm from "../containers/PostForm";
 import AuthForm from "../components/AuthForm";
 import withRouter from "react-router-dom/withRouter";
@@ -60,6 +61,11 @@ const ModalContent = props => {
                 removeError={removeError}
                 errors={errors}
                 {...props}
+              />
+            )}
+            {mProps.editProfile && (
+              <EditProfileForm
+              
               />
             )}
             {mProps==="signin" && (

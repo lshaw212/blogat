@@ -1,0 +1,30 @@
+.form-header{
+  font-size: 3em;
+  padding-bottom: 50px;
+}
+.form-submit{
+  float: right;
+}
+.input-section{
+  display: flex;
+  align-items: center;
+}
+.input-section-text{
+ width: 33%;
+}
+.input-section-text-title{
+  font-size: 1.25em;
+}
+.input-section-text-extra{
+  font-size: 0.75em;
+  opacity: 0.75;
+  font-style: italic;
+  padding: 5px 5px 5px 0;
+}
+.input-section-input{
+width: 66%;
+}
+.input-buttons{
+  display: flex;
+  justify-content: flex-end;
+}
