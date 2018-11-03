@@ -28,3 +28,18 @@ width: 66%;
   display: flex;
   justify-content: flex-end;
 }
+.layout-images{
+  background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center; 
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  border: 2px solid #e4e4e4;
+  /* box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75); */
+  /* position: relative; */
+}
+.input-section-radiobuttons{
+  display: flex;
+  justify-content: space-between;
+}

@@ -104,7 +104,6 @@ class EditBlogForm extends Component {
               Save Changes
             </button>
           </div>
-          
         </form>
       </div>
     )

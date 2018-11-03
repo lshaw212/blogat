@@ -71,10 +71,13 @@ class Blog extends Component {
     let blogPosts = postList.map(p => (
       <Post
         key={p._id}
-        title={p.postTitle}
-        content={p.postContent}
+        title={p.title}
+        content={p.content}
+        image={p.imageUrl}
+        layout={p.layout}
         username={p.user.username}
         date={p.createdAt}
+        updatedAt={p.updatedAt}
         postId={p._id}
         blogId={p.blog._id}
         removePost={removePost.bind(this, p.user._id, p.blog._id, p._id)}

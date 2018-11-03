@@ -3,8 +3,10 @@ const db = require("../models");
 exports.createPost = async function(req,res,next){
   try {
     let post = await db.Post.create({
-      postTitle: req.body.postTitle,
-      postContent: req.body.postContent,
+      title: req.body.title,
+      content: req.body.content,
+      imageUrl: req.body.image,
+      layout: req.body.layout,
       blog: req.params.blog_id,
       user: req.params.user_id
     });
@@ -44,8 +46,10 @@ exports.updatePost = async function(req,res,next){
   try {
     // Store updated data into an object
     let updateData = {
-      postTitle: req.body.postTitle,
-      postContent: req.body.postContent
+      title: req.body.title,
+      content: req.body.content,
+      imageUrl: req.body.image,
+      layout: req.body.layout
     }
     // Update blog with new information after finding with the id provided
     let updatedPost = await db.Post.findByIdAndUpdate(req.params.post_id,updateData, {new: true, runValidators: true})

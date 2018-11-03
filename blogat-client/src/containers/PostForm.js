@@ -7,14 +7,16 @@ class PostForm extends Component {
     super(props);
     this.state = {
       title:"",
-      content:""
+      image:"",
+      content:"",
+      layout:""
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props
-    .createPost(this.state.title, this.state.content, this.props.blogId)
+    .createPost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId)
     .then( () =>{
       this.props.onClose();
     })
@@ -25,34 +27,98 @@ class PostForm extends Component {
     // createpost
   }
 
+  handleRadioButton(val){
+    this.setState({
+      layout: val
+    });
+  }
+
   render(){
 
     const { history, errors, removeError } = this.props;
 
     return(
       <div className="container">
-        <h1>New Post</h1>
+        <div className="form-header">Create Post</div>
+        <hr/>
         <form onSubmit={this.handleSubmit}>
         {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
-          <label htmlFor="title">Post Title:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={this.state.title}
-            onChange={e => this.setState({title: e.target.value})}
-          />
-          <label htmlFor="content">Post Contents:</label>
-          <textarea
-            cols="30"
-            rows="10"
-            className="form-control"
-            value={this.state.content}
-            onChange={e => this.setState({content: e.target.value})}
-          />
+          <div className="input-section">
+            <div className="input-section-text">
+              <label className="input-section-text-title" htmlFor="title">Title</label>
+              <div className="input-section-text-extra">Create a short name for your blog post.</div>
+            </div>
+            <div className="input-section-input">
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.title}
+                onChange={e => this.setState({title: e.target.value})}
+              />
+            </div>
+          </div>
           <hr/>
-          <button type="submit" className="btn btn-success pull-right">
-            Create Blog Post
-          </button>
+          <div className="input-section">
+            <div className="input-section-text">
+              <label className="input-section-text-title" htmlFor="image">Post Image and Layout</label>
+              <div className="input-section-text-extra">Use imgur.com to use an image and select your layout type</div>
+            </div>
+            <div className="input-section-input">
+              <div>
+                <div className="social-size">Image Url</div>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.image}
+                  onChange={e => this.setState({image: e.target.value})}
+                />
+              </div>
+              <div className="social-size">Select your layout</div>
+              <div className="input-section-radiobuttons">
+                <div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout1.jpg")})`}}></div>
+                  <input type="radio" checked={this.state.layout === 1} onChange={() => this.handleRadioButton(1)}/>
+                </div>
+                <div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout2.jpg")})`}}></div>
+                  <input type="radio" checked={this.state.layout === 2} onChange={() => this.handleRadioButton(2)}/>
+                </div>
+                <div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout3.jpg")})`}}></div>
+                  <input type="radio" checked={this.state.layout === 3} onChange={() => this.handleRadioButton(3)}/>
+                </div>
+                <div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout4.jpg")})`}}></div>
+                  <input type="radio" checked={this.state.layout === 4} onChange={() => this.handleRadioButton(4)}/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div className="input-section">
+            <div className="input-section-text">
+              <label className="input-section-text-title" htmlFor="content">Content</label>
+              <div className="input-section-text-extra">Write up your blog post and keep it as detailed and interesting as possible, you will have the ability to edit this post later on.</div>
+            </div>
+            <div className="input-section-input">
+              <textarea
+                cols="30"
+                rows="10"
+                className="form-control"
+                value={this.state.content}
+                onChange={e => this.setState({content: e.target.value})}
+              />
+            </div>
+          </div>
+          <hr/>
+          <div>
+            <button>
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-success pull-right">
+              Create Blog Post
+            </button>
+          </div>
         </form>
       </div>
     )

@@ -57,11 +57,11 @@ export const removePost = (user_id, blog_id, post_id) => {
   }
 }
 
-export const createPost = (postTitle, postContent, blog_id) => (dispatch, getState) => {
+export const createPost = (title, content, image, layout, blog_id) => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
   return new Promise((resolve, reject) => {
-    return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {postTitle, postContent})
+    return apiCall("post", `/api/users/${id}/blogs/${blog_id}/posts`, {title, content, image, layout})
       .then(res => {
         resolve();
         dispatch(create(res));
@@ -75,11 +75,11 @@ export const createPost = (postTitle, postContent, blog_id) => (dispatch, getSta
   });
 }
 
-export const updatePost = (postTitle, postContent, blog_id, post_id) => (dispatch, getState) => {
+export const updatePost = (title, content, image, layout, blog_id, post_id) => (dispatch, getState) => {
   let {currentUser} = getState();
   const id = currentUser.user.id;
   return new Promise((resolve, reject) => {
-    return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {postTitle, postContent})
+    return apiCall("put", `/api/users/${id}/blogs/${blog_id}/posts/${post_id}`, {title, content, image, layout})
       .then(res => {
         resolve();
         dispatch(update(res, post_id));

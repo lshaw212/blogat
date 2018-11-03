@@ -2,9 +2,42 @@
   font-family: 'Noto Serif', serif;
   font-size: 2em;
 }
-.post-content::first-letter {
+.post-details-text{
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+#post-details{
+  display:flex;
+  align-items: center;
+  /* font-size: 0.75em; */
+}
+/* .post-content::first-letter {
   font-size: 5em;
 }
 .post-content::first-line{
   line-height: 100%;
+} */
+.post-content {
+  padding: 5px;
+}
+.post-layout1-image{
+  background-size:cover;
+  background-position: center;
+  height: 400px;
+  width: 50%;
+  float: left;
+  margin: 5px;
+}
+.post-layout2-image{
+  background-size:cover;
+  background-position: center;
+  height: 400px;
+  width: 50%;
+  float: right;
+}
+.post-layout3-image{
+  background-size:cover;
+  background-position: center;
+  height: 400px;
+  width: 100%;
 }
