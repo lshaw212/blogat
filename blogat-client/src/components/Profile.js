@@ -14,7 +14,7 @@ class Profile extends Component {
   }
 
   async loadUser(){
-    let id = "5bd605dbfd868e2ad07814a0";
+    let id = this.props.match.params.id;
     let user = await apiCall("get", `/api/auth/user/${id}`)
     .then(res => {
       console.log("hehe");
@@ -63,7 +63,7 @@ class Profile extends Component {
             
           </div>
           <div className="profile-blogs">
-            <p>test2</p>
+            <div class="lds-dual-ring"></div>
           </div>
         </div>
       </div>

@@ -105,7 +105,7 @@ class Blog extends Component {
             <div className="blog-profile-image"></div>
             <div className="blog-blogowner">
               <div>by</div>
-              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB._id)}>{selectedB.user.username}</div>
+              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>{selectedB.user.username}</div>
             </div>
           </div>
           <div className="blog-description">
@@ -126,7 +126,7 @@ class Blog extends Component {
           <div className="blog-post-favourite-count">
             <div>
               <div className="count-header">Posts</div>
-              <div className="count">{posts.length}</div>
+              <div className="count">{postList.length}</div>
             </div>
             <div>
               <div className="count-header">Favourites</div>
@@ -139,7 +139,9 @@ class Blog extends Component {
         {blogPosts}
       </div>     
     </div>
-    : <div className="container">Loading...</div>
+    : <div className="container">
+        <div class="lds-dual-ring"></div>
+      </div>
     )
   }
 }

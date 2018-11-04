@@ -67,7 +67,9 @@ class BlogList extends Component {
             {blogList}
           </div>
         </div>
-        : <div>Loading....</div>
+        : <div className="container">
+            <div class="lds-dual-ring"></div>
+          </div>
       
     )
   }

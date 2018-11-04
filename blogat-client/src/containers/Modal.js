@@ -9,6 +9,7 @@ class Modal extends Component {
   state = { isOpen: false };
 
   onOpen = () => {
+    console.log("do we trigger?");
     this.setState({isOpen: true}, () => {
       this.closeButtonNode.focus();
     });
@@ -42,7 +43,7 @@ class Modal extends Component {
       
       <div>
         
-        <button className={btnClass} onClick={this.onOpen} ref={n => this.openButtonNode = n}>{btnText}</button>
+        <a className={btnClass} onClick={this.onOpen} ref={n => this.openButtonNode = n}>{btnText}</a>
         {isOpen &&
           <ModalContent
             buttonRef={n => this.closeButtonNode = n}
