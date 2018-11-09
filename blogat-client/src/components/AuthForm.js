@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import { authUser } from "../store/actions/auth";
+import { connect } from "react-redux";
+import { removeError } from "../store/actions/errors";
+import { withRouter } from "react-router-dom";
 
 
-export default class AuthForm extends Component {
+class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -25,7 +29,7 @@ export default class AuthForm extends Component {
     const authType = this.props.signUp ? "signup" : "signin"
     //const authType = "signin";
     this.props
-      .onAuth(authType, this.state)
+      .authUser(authType, this.state)
       .then(() => {
         //this.props.history.push("/");
         console.log("yes");
@@ -37,7 +41,7 @@ export default class AuthForm extends Component {
 
   render(){
     const { email, username, profileImageUrl } =this.state;
-    const { buttonText, heading, signUp, errors, history, removeError } = this.props;
+    const { buttonText, heading, signUp, errors, history, removeError, handleClose } = this.props;
     // This if statement not working as intended, removeError is called inside Modal
     if(errors.message){
       const unListen = history.listen(() => {
@@ -47,7 +51,7 @@ export default class AuthForm extends Component {
     }
 
     return(
-      <div className="container">
+      <div className="form-modal">
         <div>
           <div>
             <form onSubmit={this.handleSubmit}>
@@ -74,3 +78,11 @@ export default class AuthForm extends Component {
     );
   }
 }
+
+function mapStateToProps(state){
+  return{
+    errors: state.errors
+  };
+}
+
+export default withRouter(connect(mapStateToProps, {authUser, removeError})(AuthForm));

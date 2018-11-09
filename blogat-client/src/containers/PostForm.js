@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../store/actions/posts";
+import { Button } from "react-bootstrap";
 
 class PostForm extends Component {
   constructor(props){
@@ -18,7 +19,7 @@ class PostForm extends Component {
     this.props
     .createPost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId)
     .then( () =>{
-      this.props.onClose();
+      this.props.handleClose();
     })
     .catch(() => {
       return;
@@ -35,10 +36,10 @@ class PostForm extends Component {
 
   render(){
 
-    const { history, errors, removeError } = this.props;
+    const { history, errors, removeError, handleClose } = this.props;
 
     return(
-      <div className="container">
+      <div className="form-modal">
         <div className="form-header">Create Post</div>
         <hr/>
         <form onSubmit={this.handleSubmit}>
@@ -112,12 +113,12 @@ class PostForm extends Component {
           </div>
           <hr/>
           <div>
-            <button>
+            <Button onClick={handleClose}>
               Cancel
-            </button>
-            <button type="submit" className="btn btn-success pull-right">
+            </Button>
+            <Button type="submit" className="btn btn-success">
               Create Blog Post
-            </button>
+            </Button>
           </div>
         </form>
       </div>

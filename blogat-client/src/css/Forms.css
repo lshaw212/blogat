@@ -43,3 +43,7 @@ width: 66%;
   display: flex;
   justify-content: space-between;
 }
+.form-modal{
+  padding: 10px;
+  /* opacity: 0.75; */
+}

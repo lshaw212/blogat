@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
-import Modal from "../containers/Modal";
+// import Modal from "../containers/Modal";
+import PostForm from "../containers/PostForm";
+import EditBlogForm from "../containers/EditBlogForm";
 import Moment from "react-moment";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts, removePost, updatePost } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
-
+import { Modal, Dropdown } from 'react-bootstrap';
 
 class Blog extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      show: false,
+      newPost: false,
+      editBlog: false
+    }
+    this.handleNewPostShow = this.handleNewPostShow.bind(this);
+    this.handleEditBlogShow = this.handleEditBlogShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
   componentDidMount(){
     // Fetch blogs
@@ -48,6 +62,19 @@ class Blog extends Component {
   editBlog = e => {
     e.preventDefault();
     
+  }
+  handleClose() {
+    this.setState({ show: false, newPost: false, editBlog: false, editPost: false });
+  }
+
+  handleNewPostShow() {
+    this.setState({ show: true, newPost: true });
+  }
+  handleEditBlogShow(){
+    this.setState({ show: true, editBlog: true});
+  }
+  handleEditPostShow(){
+    this.setState({ show: true, editPost: true})
   }
 
   render(){
@@ -116,14 +143,44 @@ class Blog extends Component {
               </div>
             {currentUser === selectedB.user._id && (
               <div className="blog-owner-buttons">
-                <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="c-btn" btnText='New Post' />
-                <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
+                <button onClick={this.handleNewPostShow}>New</button>
+                <button onClick={this.handleEditBlogShow}>Edit</button>
+                {/* <i class="far fa-edit fa-2x" onClick={this.handleShow}></i> */}
+                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                  {this.state.newPost && 
+                    <PostForm
+                      handleClose={this.handleClose}
+                      {...this.props}
+                    />
+                  }
+                  {this.state.editBlog &&
+                    <EditBlogForm
+                      handleClose={this.handleClose}
+                      blogName={selectedB.blogName}
+                      blogDescription={selectedB.blogDescription}
+                      blogImage={selectedB.blogImage}
+                      {...this.props}
+                    />
+                  }
+                </Modal>
+                {/* <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="c-btn" btnText='New Post' />
+                <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' /> */}
               </div>
             )}
             </div>
             
           </div>
-          <div className="blog-post-favourite-count">
+          <Dropdown>
+            <Dropdown.Toggle>
+              <i class="far fa-edit fa-2x"></i>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <div>hi</div>
+              <div>Bye</div>
+            </Dropdown.Menu>
+          </Dropdown>
+          
+          {/* <div className="blog-post-favourite-count">
             <div>
               <div className="count-header">Posts</div>
               <div className="count">{postList.length}</div>
@@ -132,7 +189,19 @@ class Blog extends Component {
               <div className="count-header">Favourites</div>
               <div className="count">{favorites.length}</div>
             </div>
-          </div>
+          </div> */}
+          
+          {/* <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" href="#">Action</a>
+              <a className="dropdown-item" href="#">Another action</a>
+              <a className="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div> */}
+          
         </div>
       </div>
       <div className="post-list">
@@ -195,3 +264,19 @@ export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, rem
 //           {/* <p>test image</p> */}
 //           </div>
 //         </div> */}
+
+
+
+
+
+
+// <div>
+//             <div className="dropdown">
+//               <i class="far fa-edit fa-2x edit-icon dropdown-toggle"></i>
+//               <div id="dropdown-menu" className="edit-dropdown">
+//                 <div className="dropdown-item">Test</div>
+//                 <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="" btnText='New Post' />
+//                 <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
+//               </div>
+//             </div>
+//           </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Button } from 'react-bootstrap';
 
 class EditProfileForm extends Component {
   constructor(props){
@@ -25,9 +26,9 @@ class EditProfileForm extends Component {
   }
 
   render(){
-
+    const { handleClose } =this.props;
     return(
-      <div className="container">
+      <div className="form-modal">
         <div className="form-header">Edit your profile</div>
         <hr/>
         <form onSubmit={this.handleSubit}>
@@ -110,12 +111,12 @@ class EditProfileForm extends Component {
           </div>
           <hr/>
           <div className="input-buttons">
-            <button>
+            <Button onClick={handleClose}>
               Cancel
-            </button>
-            <button className="form-submit" type="submit" className="btn btn-success pull-right">
+            </Button>
+            <Button className="form-submit" type="submit" className="btn btn-success pull-right">
               Save Changes
-            </button>
+            </Button>
           </div>
         </form>
       </div>

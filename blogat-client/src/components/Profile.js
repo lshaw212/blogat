@@ -1,16 +1,30 @@
 import React, { Component } from "react";
-import Modal from "../containers/Modal";
+// import Modal from "../containers/Modal";
+// import Modal from "react-bootstrap/lib";
+import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import EditProfileForm from "../containers/EditProfileForm";
 import { apiCall } from "../services/api";
 
 class Profile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user:{}
+      user:{},
+      show: false
     }
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   componentDidMount(){
     this.loadUser();
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   async loadUser(){
@@ -40,6 +54,11 @@ class Profile extends Component {
       // github: user.social.github,
       // emailToggle: user.social.emailToggle
     }
+    const tooltip = (
+      <Tooltip>
+        Email
+      </Tooltip>
+    )
     return(
       <div className="container">
         <div className="profile-layout">
@@ -49,7 +68,14 @@ class Profile extends Component {
               <div className="profile-name-and-edit">
                 <div>{user.username}</div>
                 {/* <div><i class="far fa-edit fa-2x"></i></div> */}
-                <Modal triggerText="Edit Profile" mProps={editProfileProps} btnClass="c-btn" btnText="Edit Profile" />
+                {/* <Modal triggerText="Edit Profile" mProps={editProfileProps} btnClass="c-btn" btnText="Edit Profile" /> */}
+                {/* <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+                  test modal
+                </Button> */}
+                <i class="far fa-edit fa-2x" onClick={this.handleShow}></i>
+                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
+                  <EditProfileForm handleClose={this.handleClose} />
+                </Modal>
               </div>
               <hr/>
               <div>User description...</div>
@@ -57,13 +83,20 @@ class Profile extends Component {
                 <i class="fab fa-twitter fa-2x"></i>
                 <i class="fab fa-linkedin-in fa-2x"></i>
                 <i class="fab fa-github fa-2x"></i>
-                <i class="fas fa-envelope-square fa-2x"></i>
+                
+                  <OverlayTrigger placement="right" overlay={tooltip}>
+                  <div>
+                  <i class="fas fa-envelope-square fa-2x"></i>
+                  </div>
+                    
+                  </OverlayTrigger>
+                
               </div>
             </div>
             
           </div>
           <div className="profile-blogs">
-            <div class="lds-dual-ring"></div>
+            {/* <div class="lds-dual-ring"></div> */}
           </div>
         </div>
       </div>

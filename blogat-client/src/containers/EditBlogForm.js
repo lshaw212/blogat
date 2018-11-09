@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { removeError } from "../store/actions/errors";
 import { updateBlog } from "../store/actions/blogs";
+import { Button } from "react-bootstrap";
 
 class EditBlogForm extends Component {
 
@@ -34,7 +36,7 @@ class EditBlogForm extends Component {
   };
 
   render(){
-    const { history, errors, removeError } = this.props;
+    const { history, errors, removeError, handleClose } = this.props;
 
     if(errors.message){
       const unListen = history.listen(() => {
@@ -44,7 +46,7 @@ class EditBlogForm extends Component {
     }
 
     return(
-      <div className="container">
+      <div className="form-modal">
         <div className="form-header">Edit Blog</div>
         <hr/>
         <form onSubmit={this.handleSubmit}>
@@ -97,12 +99,12 @@ class EditBlogForm extends Component {
           </div>
           <hr/>
           <div>
-            <button>
+            <Button onClick={handleClose}>
               Cancel
-            </button>
-            <button type="submit" className="btn btn-success pull-right">
+            </Button>
+            <Button type="submit" className="btn btn-success">
               Save Changes
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -112,8 +114,8 @@ class EditBlogForm extends Component {
 
 function mapStateToProps(state){
   return {
-
+    errors: state.errors
   };
 }
 
-export default connect(mapStateToProps, { updateBlog })(EditBlogForm);
+export default connect(mapStateToProps, { updateBlog, removeError })(EditBlogForm);

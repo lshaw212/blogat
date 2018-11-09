@@ -1,15 +1,31 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import Modal from "../containers/Modal";
+import AuthForm from "../components/AuthForm";
+import { Modal } from "react-bootstrap";
 
 class Homepage extends Component {
   constructor(props){
     super(props);
     this.state={
+      show: false,
+      login: false,
+      signup: false,
       timerText: 0,
       spanText: "Test Text 0"
     }
-    
+    this.handleLoginShow = this.handleLoginShow.bind(this);
+    this.handleSignupShow = this.handleSignupShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+  handleClose() {
+    this.setState({ show: false, login: false, signup: false });
+  }
+
+  handleLoginShow() {
+    this.setState({ show: true, login: true });
+  }
+  handleSignupShow(){
+    this.setState({ show: true, signup: true});
   }
 
   render(){
@@ -39,8 +55,27 @@ class Homepage extends Component {
               </div>
             </p>
             <div className="btnContainer">
-              <Modal mProps="signin" btnText='Log In' btnClass="infoBtn" />
-              <Modal mProps="signup" btnText='Sign Up' btnClass="infoBtn" />
+              <button onClick={this.handleLoginShow} className="infoBtn">Log In</button>
+              <button onClick={this.handleSignupShow} className="infoBtn">Sign Up</button>
+              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                {this.state.login &&
+                  <AuthForm
+                    buttonText="Log in"
+                    heading="Please log in to continue"
+                    // {...props}
+                  />
+                }
+                {this.state.signup &&
+                  <AuthForm
+                    buttonText="Sign me up!"
+                    heading="Join Blog@ today!"
+                    signUp
+                    // {...props}
+                  />
+                }
+              </Modal>
+              {/* <Modal mProps="signin" btnText='Log In' btnClass="infoBtn" />
+              <Modal mProps="signup" btnText='Sign Up' btnClass="infoBtn" /> */}
             </div>
           </div>
         </div>

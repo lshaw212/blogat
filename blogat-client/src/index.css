@@ -1,4 +1,3 @@
-@import "./css/modal.css";
 @import "./css/homepage.css";
 @import "./css/navbar.css";
 @import "./css/blog.css";
@@ -75,4 +74,26 @@ body {
   background: #000 !important;
   color: #0f0 !important;
   outline: solid #f00 1px !important;
+} */
+
+/* .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 } */

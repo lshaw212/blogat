@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updatePost } from "../store/actions/posts";
+import { Button } from "react-bootstrap";
 
 class EditPostForm extends Component {
   constructor(props){
@@ -43,7 +44,7 @@ class EditPostForm extends Component {
     const { history, errors, removeError } = this.props;
 
     return(
-      <div className="container">
+      <div className="form-modal">
         <div className="form-header">Create Post</div>
         <hr/>
         <form onSubmit={this.handleSubmit}>
@@ -117,12 +118,12 @@ class EditPostForm extends Component {
           </div>
           <hr/>
           <div>
-            <button>
+            <Button>
               Cancel
-            </button>
-            <button type="submit" className="btn btn-success pull-right">
+            </Button>
+            <Button type="submit" className="btn btn-success pull-right">
               Save changes
-            </button>
+            </Button>
           </div>
         </form>
       </div>
