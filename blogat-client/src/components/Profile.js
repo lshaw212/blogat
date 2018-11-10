@@ -72,7 +72,7 @@ class Profile extends Component {
                 {/* <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
                   test modal
                 </Button> */}
-                <i class="far fa-edit fa-2x" onClick={this.handleShow}></i>
+                <i className="far fa-edit fa-2x" onClick={this.handleShow}></i>
                 <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
                   <EditProfileForm handleClose={this.handleClose} />
                 </Modal>
@@ -80,13 +80,13 @@ class Profile extends Component {
               <hr/>
               <div>User description...</div>
               <div className="profile-social">
-                <i class="fab fa-twitter fa-2x"></i>
-                <i class="fab fa-linkedin-in fa-2x"></i>
-                <i class="fab fa-github fa-2x"></i>
+                <i className="fab fa-twitter fa-2x"></i>
+                <i className="fab fa-linkedin-in fa-2x"></i>
+                <i className="fab fa-github fa-2x"></i>
                 
                   <OverlayTrigger placement="right" overlay={tooltip}>
                   <div>
-                  <i class="fas fa-envelope-square fa-2x"></i>
+                    <i className="fas fa-envelope-square fa-2x"></i>
                   </div>
                     
                   </OverlayTrigger>
