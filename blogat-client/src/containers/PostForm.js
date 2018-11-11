@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { removeError } from "../store/actions/errors";
 import { createPost } from "../store/actions/posts";
 import { Button } from "react-bootstrap";
 
@@ -14,16 +15,21 @@ class PostForm extends Component {
     };
   }
 
+  componentDidMount(){
+    // forced removal of errors on launch (otherwise if page was reloaded with an error on screen, same error would appear on open)
+    this.props.removeError(); 
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.props
-    .createPost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId)
-    .then( () =>{
-      this.props.handleClose();
-    })
-    .catch(() => {
-      return;
-    })  
+      .createPost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId)
+      .then( () =>{
+        this.props.handleClose();
+      })
+      .catch(() => {
+        return;
+      });
     
     // createpost
   }
@@ -37,6 +43,13 @@ class PostForm extends Component {
   render(){
 
     const { history, errors, removeError, handleClose } = this.props;
+
+    if(errors.message){
+      const unListen = history.listen(() => {
+        removeError();
+        unListen();
+      })
+    }
 
     return(
       <div className="form-modal">
@@ -132,4 +145,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { createPost })(PostForm);
+export default connect(mapStateToProps, { createPost, removeError })(PostForm);

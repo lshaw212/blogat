@@ -86,6 +86,7 @@ class Blog extends Component {
   handleClick(e){
     e.preventDefault();
 
+    // Find out if this is needed?
     // this.props.onClick(e);
   }
 
@@ -146,12 +147,14 @@ class Blog extends Component {
                 <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
                   {this.state.newPost && 
                     <PostForm
+                      blogId={this.props.match.params.id}
                       handleClose={this.handleClose}
                       {...this.props}
                     />
                   }
                   {this.state.editBlog &&
                     <EditBlogForm
+                      blogId={this.props.match.params.id}
                       handleClose={this.handleClose}
                       blogName={selectedB.blogName}
                       blogDescription={selectedB.blogDescription}

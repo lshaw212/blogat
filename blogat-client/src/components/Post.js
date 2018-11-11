@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import { Modal } from "react-bootstrap";
-import PostForm from "../containers/PostForm";
+import EditPostForm from "../containers/EditPostForm";
 
 class Post extends Component {
   constructor(props){
@@ -72,7 +72,15 @@ class Post extends Component {
             <a onClick={removePost} className="btn btn-danger">delete post</a>
             <button onClick={this.handleShow}>Edit</button>
             <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-              <PostForm handleClose={this.handleClose} />
+              <EditPostForm
+                title={title}
+                content={content}
+                image={image}
+                layout={layout}
+                blogId={blogId}
+                postId={postId}
+                handleClose={this.handleClose}
+              />
             </Modal>
           </div>
         )}

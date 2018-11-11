@@ -44,15 +44,16 @@ class Navbar extends Component {
           {this.props.currentUser.isAuthenticated ? (
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <div className="dropdown">
-                <Dropdown id="dropdown-custom-menu">
-                  <div className="navbar-profile" onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
-                  <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                    <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
-                    <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>
-                    <MenuItem onClick={this.logout.bind(this)}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
-                  </Dropdown.Menu>
-                </Dropdown>
+                <div>
+                  <Dropdown id="dropdown-custom-menu">
+                    <div className="navbar-profile" onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
+                    <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                      <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
+                      <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>
+                      <MenuItem divider />
+                      <MenuItem onClick={this.logout.bind(this)}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </div>
               </li>
               <li>

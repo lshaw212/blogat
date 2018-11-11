@@ -25,12 +25,9 @@ class EditBlogForm extends Component {
     this.props
       .updateBlog(this.state.name, this.state.desc, this.state.image, this.props.blogId)
       .then(() => {
-        this.setState({text:"", desc:"", image:""});
-        console.log("Yes");
-        this.props.onClose();
+        this.props.handleClose();
       })
       .catch(() => {
-        console.log("No");
         return;
       });
   };

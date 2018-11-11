@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { removeError } from "../store/actions/errors";
 import { updatePost } from "../store/actions/posts";
 import { Button } from "react-bootstrap";
 
@@ -21,12 +22,11 @@ class EditPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this);
     // Need to pass blog id and post id
     this.props.updatePost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId, this.props.postId)
       .then(() => {
         this.setState({title:"", content:""});
-        this.props.onClose();
+        this.props.handleClose();
       })
       .catch(() => {
         return;
@@ -41,7 +41,14 @@ class EditPostForm extends Component {
 
   render(){
 
-    const { history, errors, removeError } = this.props;
+    const { history, errors, removeError, handleClose } = this.props;
+
+    if(errors.message){
+      const unListen = history.listen(() => {
+        removeError();
+        unListen();
+      })
+    }
 
     return(
       <div className="form-modal">
@@ -118,7 +125,7 @@ class EditPostForm extends Component {
           </div>
           <hr/>
           <div>
-            <Button>
+            <Button onClick={handleClose}>
               Cancel
             </Button>
             <Button type="submit" className="btn btn-success pull-right">
@@ -137,4 +144,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { updatePost })(EditPostForm);
+export default connect(mapStateToProps, { updatePost, removeError })(EditPostForm);
