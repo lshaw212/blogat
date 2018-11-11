@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import { Modal } from "react-bootstrap";
+import { Modal, Dropdown, MenuItem } from "react-bootstrap";
 import EditPostForm from "../containers/EditPostForm";
 
 class Post extends Component {
@@ -20,14 +20,44 @@ class Post extends Component {
   handleShow() {
     this.setState({ show: true });
   }
+  handleClick(e){
+    e.preventDefault();
+
+    // Find out if this is needed?
+    // this.props.onClick(e);
+  }
 
   render(){
     const {title, content, image, layout, username, date, updatedAt, isCorrectUser, removePost, updatePost, postId, blogId} = this.props;
     return(
 
-      <div>
+      <div id="post-container">
         <div>
           <div id="post-title">{title}</div>
+          {isCorrectUser && (
+            <div>
+              <Dropdown id="dropdown-custom-menu">
+              <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
+                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                  <MenuItem>Click if you eat PIZZZA</MenuItem>
+                  <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
+                  <MenuItem divider/>
+                  <MenuItem onClick={removePost}>Delete Post</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                <EditPostForm
+                  title={title}
+                  content={content}
+                  image={image}
+                  layout={layout}
+                  blogId={blogId}
+                  postId={postId}
+                  handleClose={this.handleClose}
+                />
+              </Modal>
+            </div>
+          )}
           <div id="post-details">
             <div className="post-details-text">Article by {username}</div>
             <div> | </div>
@@ -65,23 +95,6 @@ class Post extends Component {
         {layout === 4 && (
           <div>
             <div className="post-content">{content}</div>
-          </div>
-        )}
-        {isCorrectUser && (
-          <div>
-            <a onClick={removePost} className="btn btn-danger">delete post</a>
-            <button onClick={this.handleShow}>Edit</button>
-            <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-              <EditPostForm
-                title={title}
-                content={content}
-                image={image}
-                layout={layout}
-                blogId={blogId}
-                postId={postId}
-                handleClose={this.handleClose}
-              />
-            </Modal>
           </div>
         )}
       </div>

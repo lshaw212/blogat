@@ -139,32 +139,26 @@ class Blog extends Component {
             <div className="blog-description-info">
               <div className="blog-created-date">
                 <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
-              </div>
-            {currentUser === selectedB.user._id && (
-              <div className="blog-owner-buttons">
-                <button onClick={this.handleNewPostShow}>New</button>
-                <button onClick={this.handleEditBlogShow}>Edit</button>
-                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-                  {this.state.newPost && 
-                    <PostForm
-                      blogId={this.props.match.params.id}
-                      handleClose={this.handleClose}
-                      {...this.props}
-                    />
-                  }
-                  {this.state.editBlog &&
-                    <EditBlogForm
-                      blogId={this.props.match.params.id}
-                      handleClose={this.handleClose}
-                      blogName={selectedB.blogName}
-                      blogDescription={selectedB.blogDescription}
-                      blogImage={selectedB.blogImage}
-                      {...this.props}
-                    />
-                  }
-                </Modal>
-              </div>
-            )}
+              </div> 
+              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                {this.state.newPost && 
+                  <PostForm
+                    blogId={this.props.match.params.id}
+                    handleClose={this.handleClose}
+                    {...this.props}
+                  />
+                }
+                {this.state.editBlog &&
+                  <EditBlogForm
+                    blogId={this.props.match.params.id}
+                    handleClose={this.handleClose}
+                    blogName={selectedB.blogName}
+                    blogDescription={selectedB.blogDescription}
+                    blogImage={selectedB.blogImage}
+                    {...this.props}
+                  />
+                }
+              </Modal>
             </div>
             
           </div>
@@ -180,30 +174,15 @@ class Blog extends Component {
             </Dropdown>
           </div>
 
-          {/* <div className="blog-post-favourite-count">
-            <div>
-              <div className="count-header">Posts</div>
-              <div className="count">{postList.length}</div>
-            </div>
-            <div>
-              <div className="count-header">Favourites</div>
-              <div className="count">{favorites.length}</div>
-            </div>
-          </div> */}
           
-          {/* <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div> */}
           
         </div>
       </div>
+      {currentUser === selectedB.user._id && (
+        <div className="blog-owner-buttons">
+          <button onClick={this.handleNewPostShow}>Submit a new blog post</button>
+        </div>
+      )}
       <div className="post-list">
         {blogPosts}
       </div>     
@@ -280,3 +259,26 @@ export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, rem
 //               </div>
 //             </div>
 //           </div>
+
+
+{/* <div className="blog-post-favourite-count">
+            <div>
+              <div className="count-header">Posts</div>
+              <div className="count">{postList.length}</div>
+            </div>
+            <div>
+              <div className="count-header">Favourites</div>
+              <div className="count">{favorites.length}</div>
+            </div>
+          </div> */}
+          
+          {/* <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" href="#">Action</a>
+              <a className="dropdown-item" href="#">Another action</a>
+              <a className="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div> */}

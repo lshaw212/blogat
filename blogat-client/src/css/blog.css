@@ -195,6 +195,8 @@
 }
 .blog-owner-buttons{
   display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 .blog-created-date{
   font-size: 0.75em;

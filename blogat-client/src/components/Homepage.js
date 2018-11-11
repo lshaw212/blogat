@@ -16,6 +16,7 @@ class Homepage extends Component {
     this.handleLoginShow = this.handleLoginShow.bind(this);
     this.handleSignupShow = this.handleSignupShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
   handleClose() {
     this.setState({ show: false, login: false, signup: false });
@@ -27,9 +28,15 @@ class Homepage extends Component {
   handleSignupShow(){
     this.setState({ show: true, signup: true});
   }
+  handleRegister(){
+    this.handleClose();
+    console.log("this works");
+    this.handleSignupShow();
+  }
 
   render(){
     const { currentUser } = this.props;
+    
     if(!currentUser.isAuthenticated){
       return(
         <div className="homepageTest">
@@ -57,18 +64,20 @@ class Homepage extends Component {
             <div className="btnContainer">
               <button onClick={this.handleLoginShow} className="infoBtn">Log In</button>
               <button onClick={this.handleSignupShow} className="infoBtn">Sign Up</button>
-              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+              <Modal bsSize="small" show={this.state.show} onHide={this.handleClose} style={{top: '25%', borderRadius: '5px !important'}}>
                 {this.state.login &&
                   <AuthForm
                     buttonText="Log in"
-                    heading="Please log in to continue"
+                    heading="Welcome back!"
+                    login
+                    register={this.handleRegister}
                     // {...props}
                   />
                 }
                 {this.state.signup &&
                   <AuthForm
                     buttonText="Sign me up!"
-                    heading="Join Blog@ today!"
+                    heading="Register at Blog@"
                     signUp
                     // {...props}
                   />

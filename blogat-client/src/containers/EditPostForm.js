@@ -52,7 +52,7 @@ class EditPostForm extends Component {
 
     return(
       <div className="form-modal">
-        <div className="form-header">Create Post</div>
+        <div className="form-header">Edit Post</div>
         <hr/>
         <form onSubmit={this.handleSubmit}>
         {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}

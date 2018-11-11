@@ -31,7 +31,6 @@ class Profile extends Component {
     let id = this.props.match.params.id;
     let user = await apiCall("get", `/api/auth/user/${id}`)
     .then(res => {
-      console.log("hehe");
       console.log(res);
       return res;
     })
@@ -39,21 +38,12 @@ class Profile extends Component {
       console.log(err)
     });
     this.setState({user});
-    console.log("KJAHGDSKHSAD");
     console.log(user);
   }
 
   render(){
     const { user } = this.state;
-    const editProfileProps = {
-      editProfile: true,
-      profileImageUrl: user.profileImageUrl,
-      bio: user.bio,
-      // twitter: user.social.twitter,
-      // linkedin: user.social.linkedin,
-      // github: user.social.github,
-      // emailToggle: user.social.emailToggle
-    }
+
     const tooltip = (
       <Tooltip>
         Email

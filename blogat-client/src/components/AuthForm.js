@@ -3,6 +3,7 @@ import { authUser } from "../store/actions/auth";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { withRouter } from "react-router-dom";
+import { FormGroup } from "react-bootstrap";
 
 
 class AuthForm extends Component {
@@ -39,9 +40,13 @@ class AuthForm extends Component {
       });
   };
 
+  skip = e => {
+    console.log("skip here");
+  }
+
   render(){
     const { email, username, profileImageUrl } =this.state;
-    const { buttonText, heading, signUp, errors, history, removeError, handleClose } = this.props;
+    const { buttonText, heading, login, signUp, errors, history, removeError, handleClose, register } = this.props;
     // This if statement not working as intended, removeError is called inside Modal
     if(errors.message){
       const unListen = history.listen(() => {
@@ -51,29 +56,40 @@ class AuthForm extends Component {
     }
 
     return(
-      <div className="form-modal">
-        <div>
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <h2>{heading}</h2>
-              {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
-              <label htmlFor="email">Email:</label>
-              <input type="text" className="form-control" id="email" name="email" onChange={this.handleChange} value={email}/>
-              <label htmlFor="password">Password:</label>
-              <input type="password" className="form-control" id="password" name="password" onChange={this.handleChange}/>
-              {signUp && (
-                <div>
-                  <label htmlFor="username">Username:</label>
-                  <input type="text" className="form-control" id="username" name="username" onChange={this.handleChange} value={username}/>
-                </div>
-              )}
-              <hr/>
-              <button className="btn btn-primary btn-block btn-lg">
-                {buttonText}
-              </button>
-            </form>
-          </div>
+      <div>
+        <div className="form-modal">
+          <div id="auth-form-header">{heading}</div>
+          <form onSubmit={this.handleSubmit}>
+            {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
+            {signUp && (
+              <div className="form-group">
+                <input type="text" className="form-control auth-form-input" id="username" name="username" onChange={this.handleChange} value={username} placeholder="Username"/>
+              </div>
+            )}
+            <div className="form-group">
+              <input type="text" className="form-control auth-form-input" id="email" name="email" onChange={this.handleChange} value={email} placeholder="Email Address"/>
+            </div>
+            <div className="form-group">
+              <input type="password" className="form-control auth-form-input" id="password" name="password" onChange={this.handleChange} placeholder="Password"/>
+            </div>
+            <hr/>
+            <button className="btn btn-primary btn-block btn-lg">
+              {buttonText}
+            </button>
+          </form>
         </div>
+        {login && (
+          <div className="auth-form-register">
+            <div>First time here?</div>
+            <div className="auth-form-signup-text" onClick={register}> Sign up!</div>
+          </div>
+        )}
+        {signUp && (
+          <div className="auth-form-register">
+            <div>Just want to see the app?</div>
+            <div className="auth-form-signup-text" onClick={this.skip.bind(this)}>Skip here</div>
+          </div>
+        )}
       </div>
     );
   }
