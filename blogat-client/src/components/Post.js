@@ -22,7 +22,6 @@ class Post extends Component {
   }
   handleClick(e){
     e.preventDefault();
-
     // Find out if this is needed?
     // this.props.onClick(e);
   }
@@ -62,14 +61,14 @@ class Post extends Component {
             <div className="post-details-text">Article by {username}</div>
             <div> | </div>
             <div className="post-details-text">
-              {{date} === {updatedAt} ?
+              {/* Shorthand text here would break the conditional rendering */}
+              { this.props.date === this.props.updatedAt ? (
                 <Moment fromNow>
                   {date}
                 </Moment>
-                :
-                <div>
-                  <Moment fromNow>{date}</Moment> (last updated <Moment fromNow>{updatedAt}</Moment>)</div>
-              }
+                ):(
+                <div><Moment fromNow>{date}</Moment> (last updated <Moment fromNow>{updatedAt}</Moment>)</div>
+                )}
               
             </div>
           </div>

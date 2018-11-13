@@ -180,7 +180,7 @@ class Blog extends Component {
       </div>
       {currentUser === selectedB.user._id && (
         <div className="blog-owner-buttons">
-          <button onClick={this.handleNewPostShow}>Submit a new blog post</button>
+          <button id="new-post-btn" onClick={this.handleNewPostShow}>Submit a new blog post</button>
         </div>
       )}
       <div className="post-list">

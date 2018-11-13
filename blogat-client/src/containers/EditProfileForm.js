@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button } from 'react-bootstrap';
+import { Button, InputGroup } from 'react-bootstrap';
+import { apiCall } from "../services/api";
 
 class EditProfileForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // profileImageUrl: this.props.profileImageUrl,
-      // bio: this.props.bio,
-      // twitter: this.props.twitter,
-      // linkedin: this.props.linkedin,
-      // github: this.props.github,
-      // emailToggle: this.props.emailToggle
+      profileImageUrl: this.props.profileImageUrl,
+      bio: this.props.bio,
+      twitter: this.props.twitter,
+      linkedin: this.props.linkedin,
+      github: this.props.github,
+      emailToggle: this.props.emailToggle
     }
   }
 
@@ -19,10 +20,30 @@ class EditProfileForm extends Component {
 
   }
 
-  handleSubit = e => {
+  handleSubmit = e => {
     e.preventDefault();
-
+    this.profileImageChecker(this.state.profileImageUrl);
+    console.log(this.state.profileImageUrl);
+    this.updateUser(this.state.profileImageUrl,this.state.bio,this.state.twitter,this.state.linkedin,this.state.github,this.state.emailToggle);
     // updateProfile
+  }
+  profileImageChecker(image){
+    if(image.indexOf('i.imgur.com') > -1)
+      console.log("Y")
+    else
+      this.setState({profileImageUrl: 'https://i.imgur.com/Mc3lrXL.jpg'});
+      console.log("W");
+  }
+
+  async updateUser(profileImageUrl,bio,twitter,linkedin,github,emailToggle){
+    let id = this.props.userId
+    let user = await apiCall("put", `/api/auth/user/${id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
+      .then(res => {
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render(){
@@ -31,7 +52,7 @@ class EditProfileForm extends Component {
       <div className="form-modal">
         <div className="form-header">Edit your profile</div>
         <hr/>
-        <form onSubmit={this.handleSubit}>
+        <form onSubmit={this.handleSubmit}>
         {/* error handling */}
           <div className="input-section">
             <div className="input-section-text">
@@ -44,8 +65,8 @@ class EditProfileForm extends Component {
                 rows="2"
                 type="text"
                 className="form-control"
-                value={this.state.desc}
-                onChange={e => this.setState({desc: e.target.value})}
+                value={this.state.bio}
+                onChange={e => this.setState({bio: e.target.value})}
               />
             </div>
           </div>
@@ -72,26 +93,35 @@ class EditProfileForm extends Component {
             </div>
             <div className="input-section-input">
             <div className="social-size">Twitter</div>
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.twitter}
-                onChange={e => this.setState({twitter: e.target.value})}
-              />
+              <InputGroup>
+                <InputGroup.Addon>https://twitter.com/</InputGroup.Addon>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.twitter}
+                  onChange={e => this.setState({twitter: e.target.value})}
+                />
+              </InputGroup>
               <div className="social-size">Linkedin</div>
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.linkedin}
-                onChange={e => this.setState({linkedin: e.target.value})}
-              />
+              <InputGroup>
+                <InputGroup.Addon>https://www.linkedin.com/in/</InputGroup.Addon>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.linkedin}
+                  onChange={e => this.setState({linkedin: e.target.value})}
+                />
+              </InputGroup>
               <div className="social-size">Github</div>
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.github}
-                onChange={e => this.setState({github: e.target.value})}
-              />
+              <InputGroup>
+                <InputGroup.Addon>https://github.com/</InputGroup.Addon>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.github}
+                  onChange={e => this.setState({github: e.target.value})}
+                />
+              </InputGroup>
             </div>
           </div>
           <hr/>
@@ -105,7 +135,8 @@ class EditProfileForm extends Component {
               <input
                 type="checkbox"
                 value={this.state.emailToggle}
-                onChange={e => this.setState({})}
+                defaultChecked={this.state.emailToggle}
+                onChange={() => this.setState({emailToggle: !this.state.emailToggle})}
               />
             </div>
           </div>

@@ -74,12 +74,34 @@ exports.getUser = async function(req, res, next){
     console.log("Beep");
     let userId = req.params.id;
     console.log(req.params.user_id);
-    let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio');
+    let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio email');
     console.log(user);
     return res.status(200).json(user[0]);
   } catch {
     console.log("Oops");
     return next(err);
+  }
+}
+
+exports.updateUser = async function(req, res, next){
+  try {
+    let updatedData = {
+      bio: req.body.bio,
+      profileImageUrl: req.body.profileImageUrl,
+      'social.twitter': req.body.twitter,
+      'social.linkedin': req.body.linkedin,
+      'social.github': req.body.github,
+      'social.emailToggle': req.body.emailToggle
+    }
+
+    let updatedUser = await db.User.findByIdAndUpdate(req.params.user_id, updatedData, {new: true, runValidators: true});
+    await updatedUser.save();
+    return res.status(200).json(updatedUser);
+  } catch(err) {
+    console.log(err.code);
+    if(err.code === 500){
+      err.message = "Sorry, please input the correct information.";
+    }
   }
 }
 

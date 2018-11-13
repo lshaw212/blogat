@@ -9,8 +9,9 @@ class Profile extends Component {
   constructor(props){
     super(props)
     this.state={
-      user:{},
-      show: false
+      user: {},
+      isLoading: false,
+      show: false,
     }
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -31,25 +32,29 @@ class Profile extends Component {
     let id = this.props.match.params.id;
     let user = await apiCall("get", `/api/auth/user/${id}`)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       return res;
     })
     .catch(err => {
       console.log(err)
     });
     this.setState({user});
-    console.log(user);
+    this.setState({isLoading: true});
+    // console.log(user.social.github);
   }
 
   render(){
-    const { user } = this.state;
-
+    const { user, isLoading } = this.state;
+    // console.log(user.social);
+    console.log(user);
+    
     const tooltip = (
       <Tooltip>
-        Email
+        {user.email}
       </Tooltip>
     )
     return(
+      (isLoading)?
       <div className="container">
         <div className="profile-layout">
           <div className="profile-information">
@@ -64,22 +69,38 @@ class Profile extends Component {
                 </Button> */}
                 <i className="far fa-edit fa-2x" onClick={this.handleShow}></i>
                 <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
-                  <EditProfileForm handleClose={this.handleClose} />
+                  <EditProfileForm
+                    userId={this.props.match.params.id}
+                    bio={user.bio}
+                    profileImageUrl={user.profileImageUrl}
+                    twitter={user.social.twitter}
+                    linkedin={user.social.linkedin}
+                    github={user.social.github}
+                    emailToggle={user.social.emailToggle}
+                    handleClose={this.handleClose}
+                  />
                 </Modal>
               </div>
               <hr/>
-              <div>User description...</div>
+              <div>{user.bio}</div>
               <div className="profile-social">
-                <i className="fab fa-twitter fa-2x"></i>
-                <i className="fab fa-linkedin-in fa-2x"></i>
-                <i className="fab fa-github fa-2x"></i>
-                
+                {user.social.twitter.length > 1 && (
+                  <a href="https://twitter.com/Lewis_Shaw" ><i className="fab fa-twitter fa-2x"></i></a>
+                )}
+                {user.social.linkedin.length > 1 && (
+                  <a href="https://www.linkedin.com/in/lshaw212/"><i className="fab fa-linkedin-in fa-2x"></i></a>
+                )}
+                {user.social.github.length > 1 && (
+                  <a href="https://github.com/lshaw212"><i className="fab fa-github fa-2x"></i></a>
+                )}
+                {user.social.emailToggle && (
                   <OverlayTrigger placement="right" overlay={tooltip}>
-                  <div>
-                    <i className="fas fa-envelope-square fa-2x"></i>
-                  </div>
-                    
+                    <div>
+                      <i className="fas fa-envelope-square fa-2x"></i>
+                    </div>
                   </OverlayTrigger>
+                )}
+                  
                 
               </div>
             </div>
@@ -90,6 +111,9 @@ class Profile extends Component {
           </div>
         </div>
       </div>
+      : <div className="container">
+          <div class="lds-dual-ring"></div>
+        </div>
     )
   }
 

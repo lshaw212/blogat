@@ -1,0 +1,33 @@
+#new-post-btn{
+  padding: 20px 40px;
+	background: none;
+	border: none;
+  position: relative;
+  font-family: 'Noto Serif', serif;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 3px;
+	cursor: pointer;
+}
+#new-post-btn:after,
+#new-post-btn:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: 1px solid #8a8c8e;
+  transition: transform .2s;
+}
+#new-post-btn:after{
+  transform: translate(3px, 3px);
+}
+#new-post-btn:before{
+  transform: translate(-3px, -3px);
+}
+#new-post-btn:hover:after,
+#new-post-btn:hover:before{
+  transform: translate(0);
+}
+#new-post-btn:focus {outline:0;}

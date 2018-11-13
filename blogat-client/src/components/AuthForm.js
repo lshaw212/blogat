@@ -14,7 +14,10 @@ class AuthForm extends Component {
       username:"",
       passsword:"",
       profileImageUrl:"heheh",
-      'social.twitter': "www.twitter.com"
+      'social.twitter': "",
+      'social.linkedin': "",
+      'social.github': "",
+      bio: ""
       
     };
   }
