@@ -13,11 +13,9 @@ class Navbar extends Component {
     this.props.logout();
   }
   profileClicked = e => {
-    console.log("Hiiii");
     e.preventDefault();
   }
   userProfile(id, e){
-    console.log("Hehehehe");
     this.props.history.push({
       pathname:`/user/${id}`,
       state: {id: id}  
@@ -46,7 +44,7 @@ class Navbar extends Component {
               <li>
                 <div>
                   <Dropdown id="dropdown-custom-menu">
-                    <div className="navbar-profile" onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
+                    <div className="navbar-profile" style={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}} onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
                     <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
                       <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
                       <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>

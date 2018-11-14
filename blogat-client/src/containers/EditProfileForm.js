@@ -20,19 +20,42 @@ class EditProfileForm extends Component {
 
   }
 
-  handleSubmit = e => {
+   handleSubmit = async (e) => {
     e.preventDefault();
-    this.profileImageChecker(this.state.profileImageUrl);
-    console.log(this.state.profileImageUrl);
-    this.updateUser(this.state.profileImageUrl,this.state.bio,this.state.twitter,this.state.linkedin,this.state.github,this.state.emailToggle);
+    // If url does not contain an i.imgur url, replace with default image
+    await this.profileImageChecker(this.state.profileImageUrl);
+    // Checking if the user entered a full url instead of just the username
+    await this.twitterCheck(this.state.twitter);
+    await this.linkedinCheck(this.state.linkedin);
+    await this.githubCheck(this.state.github);
     // updateProfile
+    await this.updateUser(this.state.profileImageUrl,this.state.bio,this.state.twitter,this.state.linkedin,this.state.github,this.state.emailToggle);
   }
-  profileImageChecker(image){
-    if(image.indexOf('i.imgur.com') > -1)
-      console.log("Y")
-    else
+
+   profileImageChecker(str){
+    if(!str.includes('i.imgur.com'))
       this.setState({profileImageUrl: 'https://i.imgur.com/Mc3lrXL.jpg'});
-      console.log("W");
+  }
+
+  twitterCheck(str){
+    if(str.includes("twitter.com")){
+      str = str.replace(/https:\/\/twitter.com\//g, '');
+      this.setState({twitter:str}); 
+    }
+  }
+  linkedinCheck(str){
+    if(str.includes("linkedin.com")){
+      str = str.replace(/https:\/\/www.linkedin.com\/in\//g, '');
+      this.setState({linkedin:str}); 
+    }
+  }
+  githubCheck(str){
+    if(str.includes("github.com")){
+      console.log(str);
+      str = str.replace(/https:\/\/github.com\//g, '');
+      console.log(str);
+      this.setState({github:str}); 
+    }
   }
 
   async updateUser(profileImageUrl,bio,twitter,linkedin,github,emailToggle){
@@ -52,7 +75,7 @@ class EditProfileForm extends Component {
       <div className="form-modal">
         <div className="form-header">Edit your profile</div>
         <hr/>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
         {/* error handling */}
           <div className="input-section">
             <div className="input-section-text">

@@ -27,7 +27,6 @@ ul.nav.navbar-nav li {
   /* box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75); */
 
   position: relative;
-  background-image: url(https://i.imgur.com/STwmMba.jpg);
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center;    

@@ -14,7 +14,8 @@ exports.createBlog = async function(req,res,next){
     await foundUser.save();
 
     let foundBlog = await db.Blog.findById(blog._id).populate("user", {
-      username: true
+      username: true,
+      profileImageUrl: true
     });
     return res.status(200).json(foundBlog);
   } catch(err) {
@@ -44,7 +45,8 @@ exports.updateBlog = async function(req,res,next){
     // Update blog with new information after finding with the id provided
     let updatedBlog = await db.Blog.findByIdAndUpdate(req.params.blog_id,updateData, {new: true, runValidators: true})
       .populate("user", {
-        username: true
+        username: true,
+        profileImageUrl: true
       });
     await updatedBlog.save();
     console.log("updatedBlog");

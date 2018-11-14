@@ -128,7 +128,7 @@ class Blog extends Component {
         </div>
         <div className="blog-information">
           <div className="blog-profile">
-            <div className="blog-profile-image"></div>
+            <div className="blog-profile-image" style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
             <div className="blog-blogowner">
               <div>by</div>
               <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>{selectedB.user.username}</div>

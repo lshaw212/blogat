@@ -58,7 +58,7 @@ class Profile extends Component {
       <div className="container">
         <div className="profile-layout">
           <div className="profile-information">
-            <div className="profile-picture"></div>
+            <div className="profile-picture" style={{backgroundImage: `url(${user.profileImageUrl})`}}></div>
             <div className="profile-details">
               <div className="profile-name-and-edit">
                 <div>{user.username}</div>
@@ -85,13 +85,13 @@ class Profile extends Component {
               <div>{user.bio}</div>
               <div className="profile-social">
                 {user.social.twitter.length > 1 && (
-                  <a href="https://twitter.com/Lewis_Shaw" ><i className="fab fa-twitter fa-2x"></i></a>
+                  <a href={`https://twitter.com/${user.social.twitter}`} ><i className="fab fa-twitter fa-2x"></i></a>
                 )}
                 {user.social.linkedin.length > 1 && (
-                  <a href="https://www.linkedin.com/in/lshaw212/"><i className="fab fa-linkedin-in fa-2x"></i></a>
+                  <a href={`https://www.linkedin.com/in/${user.social.linkedin}`}><i className="fab fa-linkedin-in fa-2x"></i></a>
                 )}
                 {user.social.github.length > 1 && (
-                  <a href="https://github.com/lshaw212"><i className="fab fa-github fa-2x"></i></a>
+                  <a href={`https://github.com/${user.social.github}`}><i className="fab fa-github fa-2x"></i></a>
                 )}
                 {user.social.emailToggle && (
                   <OverlayTrigger placement="right" overlay={tooltip}>

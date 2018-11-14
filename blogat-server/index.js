@@ -42,7 +42,8 @@ app.get("/api/blogs", async function(req,res,next){
     let blogs = await db.Blog.find()
       .sort({createdAt: "desc"})
       .populate("user", {
-        username: true
+        username: true,
+        profileImageUrl: true
       })
       .populate("posts", {
         postTitle: true
