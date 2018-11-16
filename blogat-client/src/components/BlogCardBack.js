@@ -1,19 +1,31 @@
 import React from 'react';
 
-const BlogCardBack =({desc, name, favToggle, favorite}) => (
+const BlogCardBack =({desc, name, favToggle, favorite, profileImage, postCount, favCount}) => (
   <div className="blog-side side-back">
-    <div className="container-fluid">
-      <div className="blog-back-desc">
-
-      </div>
-      <div id="blog-name">
-        <p>created by {name}</p>
-      </div>
-      <div id="blog-fav">
-        <i className={favorite} onClick={favToggle}/>
-      </div>
+    <div id="blog-back-desc">
+      {desc}
     </div>
-    
+    <div id="blog-back-information">
+      <div id="blog-name">
+        <div id="blog-back-profile-image" style={{backgroundImage: `url(${profileImage})`}}></div>
+        <div id="blog-back-profile-name">{name}</div>
+      </div>
+      <div id="blog-back-info-stats">
+        <div>
+          <i className="far fa-newspaper fa-3x"></i>
+        </div>
+        <div className="blog-back-info-stats-text">
+          {postCount}
+        </div>
+        <div>
+          <i className={favorite} onClick={favToggle}/>
+        </div>
+        <div className="blog-back-info-stats-text">
+          {favCount}
+        </div>
+        
+      </div>
+    </div> 
   </div>
 )
 

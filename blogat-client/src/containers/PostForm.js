@@ -11,7 +11,7 @@ class PostForm extends Component {
       title:"",
       image:"",
       content:"",
-      layout:""
+      layout: 4
     };
   }
 

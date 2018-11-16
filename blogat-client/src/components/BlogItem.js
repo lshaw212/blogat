@@ -4,7 +4,7 @@ import BlogCardBack from "./BlogCardBack";
 
 // style={{backgroundImage: `url(${image})`}}
 
-const BlogItem =({text, desc, image, username, favorite, date, isCorrectUser, favToggle, selectBlog, removeBlog}) => (
+const BlogItem =({text, desc, image, username, favorite, profileImage, postCount, favCount, date, isCorrectUser, favToggle, selectBlog, removeBlog}) => (
   <div onClick={selectBlog} className="blogCard" >
     <div className="blogBody">
       <BlogCardFront 
@@ -14,8 +14,11 @@ const BlogItem =({text, desc, image, username, favorite, date, isCorrectUser, fa
       <BlogCardBack
         desc={desc}
         name={username}
+        profileImage={profileImage}
         favToggle={favToggle}
         favorite={favorite}
+        postCount={postCount}
+        favCount={favCount}
       />
      </div>
   </div>

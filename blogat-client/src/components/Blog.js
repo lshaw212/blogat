@@ -166,7 +166,6 @@ class Blog extends Component {
             <Dropdown id="dropdown-custom-menu">
             <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
               <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                <MenuItem>Click if you wanna die</MenuItem>
                 <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
                 <MenuItem divider/>
                 <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>

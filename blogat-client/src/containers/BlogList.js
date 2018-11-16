@@ -5,6 +5,7 @@ import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class BlogList extends Component {
   componentDidMount(){
@@ -33,10 +34,11 @@ class BlogList extends Component {
     this.props.deleteBlog(id);
     e.stopPropagation();
   }
-  favoriteBlog(id, e){
+  async favoriteBlog(id, e){
     console.log("Favorited!");
-    this.props.favoriteBlog(id);
     e.stopPropagation();
+    await this.props.favoriteBlog(id);
+    await this.props.fetchBlogs();
   }
 
   render(){
@@ -45,26 +47,38 @@ class BlogList extends Component {
     //console.log(blogs);
     //debugger;
     //let bloggers = blogs;
-    let blogList = blogs.map(b => (
-      <BlogItem
-        key={b._id}
-        date={b.createAt}
-        text={b.blogName}
-        desc={b.blogDescription}
-        image={b.blogImage}
-        username={b.user.username}
-        favToggle={this.favoriteBlog.bind(this, b._id)}
-        selectBlog={this.selectBlog.bind(this, b._id)}
-        removeBlog={this.removeBlog.bind(this, b._id)}
-        favorite={favorites.includes(b._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
-        isCorrectUser={currentUser === b.user._id}
-      />
-    ));
+    let blogList = blogs;
     return(
       (typeof blogs!='undefined')?
         <div> 
           <div id="blogs">
-            {blogList}
+          {/* <TransitionGroup> */}
+              {blogList.map(b => (
+                <CSSTransition
+                  key={b._id}
+                  timeout={5000}
+                  classNames="fade"
+                >
+                  <BlogItem
+                    key={b._id}
+                    date={b.createAt}
+                    text={b.blogName}
+                    desc={b.blogDescription}
+                    image={b.blogImage}
+                    username={b.user.username}
+                    postCount={b.posts.length}
+                    favCount={b.favorites.length}
+                    profileImage={b.user.profileImageUrl}
+                    favToggle={this.favoriteBlog.bind(this, b._id)}
+                    selectBlog={this.selectBlog.bind(this, b._id)}
+                    removeBlog={this.removeBlog.bind(this, b._id)}
+                    favorite={favorites.includes(b._id) ? 'fas fa-star fa-3x' : 'far fa-star fa-3x'}
+                    isCorrectUser={currentUser === b.user._id}
+                  />
+                 </CSSTransition>
+              ))}
+            
+          {/* </TransitionGroup> */}
           </div>
         </div>
         : <div className="container">

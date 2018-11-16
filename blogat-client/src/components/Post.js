@@ -38,7 +38,6 @@ class Post extends Component {
               <Dropdown id="dropdown-custom-menu">
               <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
                 <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                  <MenuItem>Click if you eat PIZZZA</MenuItem>
                   <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
                   <MenuItem divider/>
                   <MenuItem onClick={removePost}>Delete Post</MenuItem>
