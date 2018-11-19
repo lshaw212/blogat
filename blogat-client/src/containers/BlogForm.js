@@ -21,7 +21,6 @@ class BlogForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     // this.props post new blog stuff
-    console.log("handleNewBlog");
     this.props
       .createNewBlog(this.state.text, this.state.desc, this.state.image)
       .then( () => {

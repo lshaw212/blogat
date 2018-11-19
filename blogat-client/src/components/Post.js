@@ -27,7 +27,7 @@ class Post extends Component {
   }
 
   render(){
-    const {title, content, image, layout, username, date, updatedAt, isCorrectUser, removePost, updatePost, postId, blogId} = this.props;
+    const {title, content, image, layout, username, date, updatedAt, isCorrectUser, removePost, postId, blogId} = this.props;
     return(
 
       <div id="post-container">

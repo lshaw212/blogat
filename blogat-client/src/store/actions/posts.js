@@ -1,7 +1,6 @@
 import { apiCall } from "../../services/api";
 import { addError } from "./errors";
 import { LOAD_POSTS, REMOVE_POST, CREATE_POST, REMOVE_ALL_POSTS, UPDATE_POST } from "../actionTypes";
-import { loadBlogs } from "./blogs";
 
 export const loadPosts = posts => ({
   type: LOAD_POSTS,
@@ -65,7 +64,6 @@ export const createPost = (title, content, image, layout, blog_id) => (dispatch,
       .then(res => {
         resolve();
         dispatch(create(res));
-        console.log("lol");
       })
       .catch(err => {
         console.log(err);

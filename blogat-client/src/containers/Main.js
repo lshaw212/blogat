@@ -15,17 +15,16 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
-  const timeout = { enter: 300, exit: 200 }
   return (
     
-    <div className="">
-    <TransitionGroup className="transition-group">
+    <div className="transition-group">
+    {/* <TransitionGroup className="transition-group">
     <CSSTransition
       key={location.key}
       timeout={timeout}
       classNames="fade"
       appear
-      >
+      > */}
         <section className="route-section">
         <Switch location={location}>
           <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
@@ -60,8 +59,8 @@ const Main = props => {
           <Route path="/user/:id" component={(Profile)} /> 
         </Switch>
         </section>
-      </CSSTransition>
-      </TransitionGroup>
+      {/* </CSSTransition>
+      </TransitionGroup> */}
     </div>
   );
 }

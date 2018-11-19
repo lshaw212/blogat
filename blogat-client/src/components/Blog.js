@@ -37,20 +37,19 @@ class Blog extends Component {
 
   handleClick(e){
     e.preventDefault();
-    this.props.onClick(e);
+    // this.props.onClick(e);
   }
   
   deleteBlog = e => {
     e.preventDefault();
-    console.log("This is firing");
-    // this.props
-    //   .deleteBlog(this.props.location.state.id)
-    //   .then(() => {
-    //     this.props.history.push("/");
-    //   })
-    //   .catch(() => {
-    //     return;
-    //   });
+    this.props
+      .deleteBlog(this.props.location.state.id)
+      .then(() => {
+        this.props.history.push("/");
+      })
+      .catch(() => {
+        return;
+      });
   }
 
   userProfile(id,e){
@@ -61,7 +60,6 @@ class Blog extends Component {
   }
 
   favoriteBlog(id, e){
-    console.log("Favorited!");
     this.props.favoriteBlog(id);
     e.stopPropagation();
   }
@@ -83,15 +81,16 @@ class Blog extends Component {
   handleEditPostShow(){
     this.setState({ show: true, editPost: true})
   }
-  handleClick(e){
-    e.preventDefault();
 
-    // Find out if this is needed?
-    // this.props.onClick(e);
-  }
+  // handleClick(e){
+  //   e.preventDefault();
+
+  //   // Find out if this is needed?
+  //   this.props.onClick(e);
+  // }
 
   render(){
-    const { blogs, posts, currentUser, removePost, favorites, updatePost, removeBlog } = this.props;
+    const { blogs, posts, currentUser, removePost, favorites } = this.props;
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -112,9 +111,9 @@ class Blog extends Component {
     ));
     
     return(
-      (typeof selectedB!='undefined')?
+      (typeof selectedB!=='undefined')?
       <div className="container">
-      <div className="blog-header-title">
+      <div id="blog-header-title">
         <div id="blog-blogname">{selectedB.blogName}</div>
         <div id="blog-favourite">
           <i
@@ -123,21 +122,21 @@ class Blog extends Component {
           />
         </div>
       </div>
-      <div className="blog-header">
-        <div className="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
+      <div id="blog-header">
+        <div id="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
         </div>
-        <div className="blog-information">
+        <div id="blog-information">
           <div className="blog-profile">
-            <div className="blog-profile-image" style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
-            <div className="blog-blogowner">
+            <div id="blog-profile-image" style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
+            <div id="blog-blogowner">
               <div>by</div>
               <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>{selectedB.user.username}</div>
             </div>
           </div>
-          <div className="blog-description">
+          <div id="blog-description">
             <p>{selectedB.blogDescription}</p>
-            <div className="blog-description-info">
-              <div className="blog-created-date">
+            <div id="blog-description-info">
+              <div id="blog-created-date">
                 <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
               </div> 
               <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
@@ -178,7 +177,7 @@ class Blog extends Component {
         </div>
       </div>
       {currentUser === selectedB.user._id && (
-        <div className="blog-owner-buttons">
+        <div id="blog-owner-buttons">
           <button id="new-post-btn" onClick={this.handleNewPostShow}>Submit a new blog post</button>
         </div>
       )}
@@ -187,18 +186,12 @@ class Blog extends Component {
       </div>     
     </div>
     : <div className="container">
-        <div class="lds-dual-ring"></div>
+        <div className="lds-dual-ring"></div>
       </div>
     )
   }
 }
 
-// const Blog = ({text, blogs}) => (
-//   <div className="container">
-//     <h1>Welcome to the {text} blog!</h1>
-//     <p> blah blah blah blah blah blah blah blah blah blah blah blah</p>
-//   </div>
-// )
 function mapStateToProps(state){
   return {
     blogs: state.blogs,
@@ -208,76 +201,3 @@ function mapStateToProps(state){
   };
 }
 export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost, updatePost, deleteBlog, favoriteBlog, fetchFavorites })(Blog));
-
-// {/* <div className="blog-left">
-//           <div className="blog-header-desc">
-//             <p>{selectedB.blogDescription}</p>
-//           </div>
-//           <div className="blog-header-details">
-//             <div className="blog-header-details-left">
-//               <div className="blog-header-profile-image"></div>
-//               <div className="blog-header-blogowner">
-//                 <div>by</div>
-//                 <div className="blog-header-username" onClick={this.userProfile.bind(this, selectedB._id)}>{selectedB.user.username}</div>
-//               </div>
-              
-//             </div>
-//             <div className="blog-header-details-right">
-//               <div className="blog-header-icons">
-//                 <i className="fas fa-newspaper fa-2x"/>
-//                 <i
-//                   className={favorites.includes(selectedB._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
-//                   onClick={this.favoriteBlog.bind(this, selectedB._id)}
-//                 />
-//               </div>
-//               <div className="blog-header-icon-text">
-//                 <div>{posts.length}</div>
-//                 <div>{favorites.length}</div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//         <div className="blog-right">
-//           <div className="blog-right-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
-//           {/* <p>test image</p> */}
-//           </div>
-//         </div> */}
-
-
-
-
-
-
-// <div>
-//             <div className="dropdown">
-//               <i class="far fa-edit fa-2x edit-icon dropdown-toggle"></i>
-//               <div id="dropdown-menu" className="edit-dropdown">
-//                 <div className="dropdown-item">Test</div>
-//                 <Modal triggerText='New Post' blogId={this.props.match.params.id} mProps={newPostProps} btnClass="" btnText='New Post' />
-//                 <Modal triggerText='Edit Blog' blogId={this.props.match.params.id} mProps={editBlogProps} btnClass="c-btn" btnText='Edit Blog' />
-//               </div>
-//             </div>
-//           </div>
-
-
-{/* <div className="blog-post-favourite-count">
-            <div>
-              <div className="count-header">Posts</div>
-              <div className="count">{postList.length}</div>
-            </div>
-            <div>
-              <div className="count-header">Favourites</div>
-              <div className="count">{favorites.length}</div>
-            </div>
-          </div> */}
-          
-          {/* <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div> */}

@@ -37,7 +37,6 @@ export function authUser(type, userData){
     return new Promise((resolve, reject) => {
       return apiCall("post", `/api/auth/${type}`, userData)
         .then(({token, ...user}) => {
-          console.log("ayyy");
           localStorage.setItem("jwtToken", token);
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
@@ -76,9 +75,7 @@ export const fetchFavorites = () => (dispatch, getState) => {
     return apiCall("get", `/api/auth/${userId}`)
       .then(res => {
         resolve();
-        console.log("1");
         dispatch(getFavoriteBlogs(res));
-        console.log("2");
       })
       .catch(err => {
         dispatch(addError(err.message));

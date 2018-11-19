@@ -148,44 +148,8 @@ height: 20%;
 .post-list {
   white-space: pre-line;
 }
-/*
-.image:hover{
-  filter: blur(4px);  
-}
 
-#blogTitle {
-  pointer-events: none;
-  position: relative;
-  top: -280px;
-  left: 10px;
-
-  position: absolute;
-  top: 12%;
-  left: 23%;
-
-  margin-right: 0%;
-}
-#blogDesc {
-  pointer-events: none;
-  position: relative;
-  top: -280px;
-  left: 10px; 
-}
-#blogFav {
-  pointer-events: none;
-  position: relative;
-  top: -150px;
-  left: 10px; 
-}
-
-#blogPost {
-  pointer-events: none;
-  position: relative;
-  top: -190px;
-  left: 250px; 
-} */
-
-.blog-header {
+#blog-header {
   width: 100%;
   height: 350px;
   position: relative;
@@ -193,13 +157,13 @@ height: 20%;
   /* background-color: aqua; */
 }
 
-.blog-image{
+#blog-image{
   background-size:cover;
   background-position: center;
   height: 100%;
   width: 100%;
 }
-.blog-information{
+#blog-information{
   display:flex;
   position: absolute;
   justify-content: space-between;
@@ -209,7 +173,7 @@ height: 20%;
   height: 100px;
   bottom:0;
 }
-.blog-header-title {
+#blog-header-title {
   /* background-color: chartreuse; */
   display: flex;
   justify-content: space-between;
@@ -227,7 +191,7 @@ height: 20%;
 #blog-favourite{
   padding-right: 10px;
 }
-.blog-description{
+#blog-description{
   /* flex-grow: 1; */
   /* display: flex; */
   position: relative;
@@ -239,22 +203,22 @@ height: 20%;
   white-space: pre-wrap;
   overflow: hidden;
 }
-.blog-description-info{
+#blog-description-info{
   display: flex;
   justify-content: space-between;
   position: absolute;
   bottom: 0;
 }
-.blog-owner-buttons{
+#blog-owner-buttons{
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-.blog-created-date{
+#blog-created-date{
   font-size: 0.75em;
   opacity: 0.75;
 }
-.blog-profile-image{
+#blog-profile-image{
   height: 100px;
   width: 100px;
   border-radius: 50px;
@@ -267,133 +231,16 @@ height: 20%;
   background-repeat:   no-repeat;
   background-position: center center;    
 }
-.blog-blogowner{
+#blog-blogowner{
    position: absolute;
    bottom: 0;
    padding: 0 0 5px 15px;
 }
-.blog-post-favourite-count{
+/* Use this later  */
+#blog-post-favourite-count{
   display:flex;
   width:200px;
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-}
-.count{
-  font-size: 2em;
-  text-align: center;
-}
-.count-header{
-  opacity: 0.75;
-}
-.edit-icon{
-  transition: all 300ms ease;
-}
-.edit-icon:hover{
-  /* transform: scale(0.85); */
-  opacity:0.55;
-}
-
-/* .edit-dropdown{
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 2;
-}
-.edit-dropdown div {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.edit-dropdown div:hover {background-color: #ddd}
-.edit-test:hover .edit-dropdown{
-  display: block;
-} */
-
-/* .dropdown-menu{
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 2;
-}
-.dropdown-menu div {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-menu div:hover {background-color: #ddd} */
-
-
-
-
-
-
-
-
-
-
-
-
-.blog-header-desc {
-  /* background-color: blueviolet; */
-  padding: 7px;
-  opacity: 0.75;
-}
-.blog-left {
-  border: 1px solid #e4e4e4;
-  background: white;
-  border-radius:25px;
-  width: 40%;
-  height: 100%;
-  float: left;
-  position: relative;
-}
-.blog-right {
-  /* background-color: yellow; */
-  width: 60%;
-  height: 100%;
-  float: right;
-  padding: 5px 5px 5px 5px;
-  
-}
-.blog-right-image{
-  width:100%;
-  height:100%;
-  background-size: cover;
-  background-position: center;
-  border-radius:25px;
-}
-.blog-header-details-left{
-  display: flex;
-}
-.blog-header-details-right{
-  display:flex;
-}
-.blog-header-details {
-  /* background-color: red; */
-  /* border: 1px solid #e4e4e4; */
-  border-radius:25px;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  position: absolute;
-  display:flex;
-  justify-content: space-between;
-}
-.blog-header-icon-text{
-  font-size: 1.5em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.blog-header-icons{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }

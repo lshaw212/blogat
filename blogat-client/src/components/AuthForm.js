@@ -3,7 +3,6 @@ import { authUser } from "../store/actions/auth";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { withRouter } from "react-router-dom";
-import { FormGroup } from "react-bootstrap";
 
 
 class AuthForm extends Component {
@@ -21,6 +20,11 @@ class AuthForm extends Component {
       
     };
   }
+  
+  componentDidMount(){
+    // forced removal of errors on launch (otherwise if page was reloaded with an error on screen, same error would appear on open)
+    this.props.removeError(); 
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -36,7 +40,7 @@ class AuthForm extends Component {
       .authUser(authType, this.state)
       .then(() => {
         //this.props.history.push("/");
-        console.log("yes");
+        console.log("fix this area");
       }).catch(() =>{
         console.log("No");
         return;
@@ -48,7 +52,7 @@ class AuthForm extends Component {
   }
 
   render(){
-    const { email, username, profileImageUrl } =this.state;
+    const { email, username } =this.state;
     const { buttonText, heading, login, signUp, errors, history, removeError, handleClose, register } = this.props;
     // This if statement not working as intended, removeError is called inside Modal
     if(errors.message){

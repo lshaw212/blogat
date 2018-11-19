@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import Modal from "../containers/Modal";
-// import Modal from "react-bootstrap/lib";
-import { Modal, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Modal, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import EditProfileForm from "../containers/EditProfileForm";
 import { apiCall } from "../services/api";
 
@@ -32,7 +30,6 @@ class Profile extends Component {
     let id = this.props.match.params.id;
     let user = await apiCall("get", `/api/auth/user/${id}`)
     .then(res => {
-      // console.log(res);
       return res;
     })
     .catch(err => {
@@ -40,13 +37,10 @@ class Profile extends Component {
     });
     this.setState({user});
     this.setState({isLoading: true});
-    // console.log(user.social.github);
   }
 
   render(){
     const { user, isLoading } = this.state;
-    // console.log(user.social);
-    console.log(user);
     
     const tooltip = (
       <Tooltip>
@@ -56,11 +50,11 @@ class Profile extends Component {
     return(
       (isLoading)?
       <div className="container">
-        <div className="profile-layout">
-          <div className="profile-information">
-            <div className="profile-picture" style={{backgroundImage: `url(${user.profileImageUrl})`}}></div>
-            <div className="profile-details">
-              <div className="profile-name-and-edit">
+        <div id="profile-layout">
+          <div id="profile-information">
+            <div id="profile-picture" style={{backgroundImage: `url(${user.profileImageUrl})`}}></div>
+            <div id="profile-details">
+              <div id="profile-name-and-edit">
                 <div>{user.username}</div>
                 {/* <div><i class="far fa-edit fa-2x"></i></div> */}
                 {/* <Modal triggerText="Edit Profile" mProps={editProfileProps} btnClass="c-btn" btnText="Edit Profile" /> */}
@@ -83,7 +77,7 @@ class Profile extends Component {
               </div>
               <hr/>
               <div>{user.bio}</div>
-              <div className="profile-social">
+              <div id="profile-social">
                 {user.social.twitter.length > 1 && (
                   <a href={`https://twitter.com/${user.social.twitter}`} ><i className="fab fa-twitter fa-2x"></i></a>
                 )}
@@ -100,19 +94,18 @@ class Profile extends Component {
                     </div>
                   </OverlayTrigger>
                 )}
-                  
-                
               </div>
             </div>
             
           </div>
-          <div className="profile-blogs">
+          <div id="profile-blogs">
             {/* <div class="lds-dual-ring"></div> */}
           </div>
         </div>
       </div>
       : <div className="container">
-          <div class="lds-dual-ring"></div>
+        {/* Make this loading icon center of screen */}
+          <div className="lds-dual-ring"></div>
         </div>
     )
   }

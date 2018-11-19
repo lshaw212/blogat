@@ -30,7 +30,6 @@ class Homepage extends Component {
   }
   handleRegister(){
     this.handleClose();
-    console.log("this works");
     this.handleSignupShow();
   }
 

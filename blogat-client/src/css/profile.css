@@ -1,8 +1,8 @@
-.profile-layout{
+#profile-layout{
   width: 100%;
   height: 500px;
 }
-.profile-information{
+#profile-information{
   width: 33%;
   height: 100%;
   float: left;
@@ -10,7 +10,7 @@
   border: 2px solid grey;
   background-color: #e4e4e4;
 }
-.profile-picture{
+#profile-picture{
   height: 300px;
   width: 100%;
   
@@ -24,36 +24,36 @@
   background-repeat:   no-repeat;
   background-position: center center;  
 }
-.profile-details{
+#profile-details{
   width: 100%;
   padding: 10px;
   border-top: 2px solid grey;
 }
-.profile-name-and-edit{
+#profile-name-and-edit{
   display: flex;
   justify-content: space-between;
 }
-.profile-name-and-edit i{
+#profile-name-and-edit i{
   transition: all 300ms ease;
 }
-.profile-name-and-edit i:hover{
+#profile-name-and-edit i:hover{
   opacity: 0.75;
 }
-.profile-social{
+#profile-social{
   display:flex;
   position: absolute;
   bottom: 0px;
 }
-.profile-social a { color: inherit; } 
-.profile-social i{
+#profile-social a { color: inherit; } 
+#profile-social i{
   padding-right: 10px;
   padding-bottom: 10px;
   transition: all 300ms ease;
 }
-.profile-social i:hover{
+#profile-social i:hover{
   opacity: 0.75;
 }
-.profile-blogs{
+#profile-blogs{
  width: 66%;
  height: 100%;
  float: right;

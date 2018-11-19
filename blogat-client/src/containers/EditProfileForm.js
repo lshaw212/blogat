@@ -51,9 +51,7 @@ class EditProfileForm extends Component {
   }
   githubCheck(str){
     if(str.includes("github.com")){
-      console.log(str);
       str = str.replace(/https:\/\/github.com\//g, '');
-      console.log(str);
       this.setState({github:str}); 
     }
   }
@@ -62,6 +60,7 @@ class EditProfileForm extends Component {
     let id = this.props.userId
     let user = await apiCall("put", `/api/auth/user/${id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
       .then(res => {
+        this.props.handleClose();
         return res;
       })
       .catch(err => {
@@ -168,7 +167,7 @@ class EditProfileForm extends Component {
             <Button onClick={handleClose}>
               Cancel
             </Button>
-            <Button className="form-submit" type="submit" className="btn btn-success pull-right">
+            <Button type="submit" className="btn btn-success pull-right form-submit">
               Save Changes
             </Button>
           </div>

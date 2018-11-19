@@ -99,17 +99,26 @@ body {
   }
 } */
 
-.fade-enter {
+/* 
+.blogItem-enter {
   opacity: 0.01;
 }
-.fade-enter-active {
+.blogItem-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
-.fade-exit {
+.blogItem-exit {
   opacity: 1;
 }
-.fade-exit-active {
+.blogItem-exit-active {
   opacity: 0.01;
   transition: opacity 500ms ease-in;
+} */
+
+.blogItem {
+  opacity: 0;
+  transition: opacity 4s linear;
+}
+.blogItem-in {
+  opacity: 1;
 }

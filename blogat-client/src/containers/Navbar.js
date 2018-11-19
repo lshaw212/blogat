@@ -3,10 +3,38 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
-import { Dropdown, MenuItem } from "react-bootstrap";
+import { Modal, Dropdown, MenuItem } from "react-bootstrap";
+import AuthForm from "../components/AuthForm";
 
 class Navbar extends Component {
 
+  constructor(props){
+    super(props);
+    this.state={
+      show: false,
+      login: false,
+      signup: false
+    }
+    this.handleLoginShow = this.handleLoginShow.bind(this);
+    this.handleSignupShow = this.handleSignupShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+  }
+
+  handleClose() {
+    this.setState({ show: false, login: false, signup: false });
+  }
+
+  handleLoginShow() {
+    this.setState({ show: true, login: true });
+  }
+  handleSignupShow(){
+    this.setState({ show: true, signup: true});
+  }
+  handleRegister(){
+    this.handleClose();
+    this.handleSignupShow();
+  }
   //logout
   logout = e => {
     e.preventDefault();
@@ -22,7 +50,6 @@ class Navbar extends Component {
     });
   }
   newBlog(id, e){
-    console.log("New blog");
     this.props.history.push({
       pathname:`/users/${id}/blog/new`
     });
@@ -61,11 +88,30 @@ class Navbar extends Component {
           ) : (
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <Link to="/signup">Sign up</Link>
+              <button onClick={this.handleLoginShow} className="">Log In</button>
               </li>
               <li>
-                <Link to="/signin">Log in</Link>
+              <button onClick={this.handleSignupShow} className="">Sign Up</button>
               </li>
+              <Modal bsSize="small" show={this.state.show} onHide={this.handleClose} style={{top: '25%', borderRadius: '5px !important'}}>
+                {this.state.login &&
+                  <AuthForm
+                    buttonText="Log in"
+                    heading="Welcome back!"
+                    login
+                    register={this.handleRegister}
+                    // {...props}
+                  />
+                }
+                {this.state.signup &&
+                  <AuthForm
+                    buttonText="Sign me up!"
+                    heading="Register at Blog@"
+                    signUp
+                    // {...props}
+                  />
+                }
+              </Modal>
             </ul>
           )}
           

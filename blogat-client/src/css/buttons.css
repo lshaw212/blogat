@@ -31,3 +31,12 @@
   transform: translate(0);
 }
 #new-post-btn:focus {outline:0;}
+
+/* Hover Effects */
+.edit-icon{
+  transition: all 300ms ease;
+}
+.edit-icon:hover{
+  /* transform: scale(0.85); */
+  opacity:0.55;
+}
