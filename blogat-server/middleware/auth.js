@@ -25,6 +25,8 @@ exports.loginRequired = function(req, res, next){
 exports.ensureCorrectUser = function(req, res, next){
   try {
     const token = req.headers.authorization.split(" ")[1];
+    console.log("ensureCorrectUser");
+    console.log(req.params.user_id);
     jwt.verify(token, process.env.SECRET_KEY, function(err, decoded){
       if(decoded && decoded.id === req.params.user_id){
         return next();
@@ -36,6 +38,7 @@ exports.ensureCorrectUser = function(req, res, next){
       }
     });
   } catch(err) {
+    console.log("no?");
     return next({
       status: 401,
       message: "Unauthorized"

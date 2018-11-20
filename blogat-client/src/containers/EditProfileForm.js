@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { removeError } from "../store/actions/errors";
 import { Button, InputGroup } from 'react-bootstrap';
 import { apiCall } from "../services/api";
 
@@ -17,7 +18,7 @@ class EditProfileForm extends Component {
   }
 
   componentDidMount(){
-
+    // this.props.removeError(); 
   }
 
    handleSubmit = async (e) => {
@@ -57,25 +58,27 @@ class EditProfileForm extends Component {
   }
 
   async updateUser(profileImageUrl,bio,twitter,linkedin,github,emailToggle){
-    let id = this.props.userId
-    let user = await apiCall("put", `/api/auth/user/${id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
+    let user_id = this.props.userId
+    let user = await apiCall("put", `/api/user/${user_id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
       .then(res => {
+        console.log("1");
         this.props.handleClose();
         return res;
       })
       .catch(err => {
+        console.log("2");
         console.log(err);
       });
   }
 
   render(){
-    const { handleClose } =this.props;
+    const { errors, handleClose } =this.props;
     return(
       <div className="form-modal">
         <div className="form-header">Edit your profile</div>
         <hr/>
         <form onSubmit={(e) => this.handleSubmit(e)}>
-        {/* error handling */}
+        {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
           <div className="input-section">
             <div className="input-section-text">
               <label className="input-section-text-title" htmlFor="bio">Bio</label>
@@ -179,8 +182,8 @@ class EditProfileForm extends Component {
 
 function mapStateToProps(state){
   return{
-
+    errors: state.errors
   };
 }
 
-export default connect(mapStateToProps, {})(EditProfileForm);
+export default connect(mapStateToProps, { removeError })(EditProfileForm);

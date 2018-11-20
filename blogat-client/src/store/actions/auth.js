@@ -53,9 +53,9 @@ export function authUser(type, userData){
 // Add res
 export const favoriteBlog = (blogId) => (dispatch, getState) => {
   let { currentUser } = getState();
-  const userId = currentUser.user.id;
+  const user_id = currentUser.user.id;
   return new Promise((resolve, reject) => {
-    return apiCall("put", `/api/auth/${userId}`, {blogId})
+    return apiCall("put", `/api/user/${user_id}`, {blogId})
       .then(res => {
         resolve();
         dispatch(setFavoriteBlog(res));

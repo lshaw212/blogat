@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 const db = require("./models");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/users");
 const blogRoutes = require("./routes/blogs");
 const postRoutes = require("./routes/posts");
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use("/api/auth", authRoutes);
+app.use("/api/user/:user_id", loginRequired, ensureCorrectUser, userRoutes);
 app.use("/api/users/:user_id/blogs",loginRequired, ensureCorrectUser, blogRoutes);
 app.use("/api/users/:user_id/blogs/:blog_id/posts",loginRequired, ensureCorrectUser, postRoutes);
 //app.use("/api/blog/:id/posts",loginRequired, ensureCorrectUser, postRoutes);
