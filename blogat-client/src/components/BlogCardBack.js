@@ -23,7 +23,6 @@ const BlogCardBack =({desc, name, favToggle, favorite, profileImage, postCount, 
         <div className="blog-back-info-stats-text">
           {favCount}
         </div>
-        
       </div>
     </div> 
   </div>

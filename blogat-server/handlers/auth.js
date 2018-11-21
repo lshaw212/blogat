@@ -71,14 +71,9 @@ exports.signup = async function(req, res, next){
 
 exports.getUser = async function(req, res, next){
   try {
-    console.log("Beep");
-    let userId = req.params.id;
-    console.log(req.params.user_id);
     let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio email');
-    console.log(user);
     return res.status(200).json(user[0]);
   } catch {
-    console.log("Oops");
     return next(err);
   }
 }
