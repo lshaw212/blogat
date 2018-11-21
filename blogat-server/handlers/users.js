@@ -26,7 +26,7 @@ exports.getFavoriteBlogs = async function(req,res,next){
     let favBlogs = await db.User.find({_id: req.params.user_id});
     // console.log(this.favBlogs.favorites);
     // console.log(favBlogs);
-    console.log(favBlogs[0].favorites);
+    // console.log(favBlogs[0].favorites);
     return res.status(200).json(favBlogs[0].favorites);
   } catch(err) {
     return next(err);

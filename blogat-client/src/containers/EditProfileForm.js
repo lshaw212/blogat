@@ -61,14 +61,13 @@ class EditProfileForm extends Component {
     let user_id = this.props.userId
     let user = await apiCall("put", `/api/user/${user_id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
       .then(res => {
-        console.log("1");
         this.props.handleClose();
         return res;
       })
       .catch(err => {
-        console.log("2");
         console.log(err);
       });
+      this.props.updateProfile(user);
   }
 
   render(){

@@ -55,7 +55,7 @@ export const favoriteBlog = (blogId) => (dispatch, getState) => {
   let { currentUser } = getState();
   const user_id = currentUser.user.id;
   return new Promise((resolve, reject) => {
-    return apiCall("put", `/api/user/${user_id}`, {blogId})
+    return apiCall("put", `/api/user/${user_id}/fav`, {blogId})
       .then(res => {
         resolve();
         dispatch(setFavoriteBlog(res));
@@ -72,7 +72,7 @@ export const fetchFavorites = () => (dispatch, getState) => {
   let { currentUser } = getState();
   const userId = currentUser.user.id;
   return new Promise((resolve, reject) => {
-    return apiCall("get", `/api/auth/${userId}`)
+    return apiCall("get", `/api/user/${userId}/fav`)
       .then(res => {
         resolve();
         dispatch(getFavoriteBlogs(res));

@@ -38,6 +38,9 @@ class Profile extends Component {
     this.setState({user});
     this.setState({isLoading: true});
   }
+  updateProfile(user){
+    this.setState({user});
+  }
 
   render(){
     const { user, isLoading } = this.state;
@@ -71,6 +74,7 @@ class Profile extends Component {
                     linkedin={user.social.linkedin}
                     github={user.social.github}
                     emailToggle={user.social.emailToggle}
+                    updateProfile={this.updateProfile.bind(this)}
                     handleClose={this.handleClose}
                   />
                 </Modal>

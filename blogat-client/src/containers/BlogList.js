@@ -38,6 +38,7 @@ class BlogList extends Component {
   }
   async favoriteBlog(id, e){
     e.stopPropagation();
+    console.log("boo");
     await this.props.favoriteBlog(id);
     await this.props.fetchBlogs();
   }

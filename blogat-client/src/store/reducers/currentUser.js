@@ -15,6 +15,7 @@ export default (state = DEFAULT_STATE, action) => {
         user: action.user
       };
     case FAVORITE_BLOG:
+      console.log("and we reach THIS??");
       return {...state, favorites:action.blog};
     case GET_FAVORITE_BLOGS:
       // debugger;
