@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "../store";
 import Navbar from "./Navbar";
 import Main from "./Main";
+import Footer from "../components/Footer";
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
 import { persistStore } from "redux-persist";
@@ -27,14 +28,14 @@ const App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <Router>
-        <div>
+        <div className="Site">
           <Navbar />
           <Main />
+          
         </div>
       </Router>
     </PersistGate>
   </Provider>
-  
 );
 
 export default App;

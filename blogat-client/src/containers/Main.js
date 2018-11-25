@@ -8,8 +8,8 @@ import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
 import Profile from "../components/Profile";
-import BlogForm from "../containers/BlogForm";
-import BlogList from "../containers/BlogList";
+import BlogForm from "./BlogForm";
+import BlogList from "./BlogList";
 import Navbar from "./Navbar";
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 

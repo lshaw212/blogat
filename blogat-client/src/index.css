@@ -3,16 +3,17 @@
 @import "./css/blog.css";
 @import "./css/post.css";
 @import "./css/profile.css";
-@import "./css//Forms.css";
-@import "./css//general.css";
-@import "./css//buttons.css";
+@import "./css/Forms.css";
+@import "./css/general.css";
+@import "./css/buttons.css";
+@import "./css/footer.css";
 
 
 
 html,body
 {
   /* font-family: 'Montserrat', sans-serif; */
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   /* background-color: #e6ecf0; */
   background-color: #f5f5f5;
   width: 100%;
@@ -54,13 +55,15 @@ body {
 
 .transition-group {
   position: relative;
+  /* flex: 1; */
 }
 
+/* Look at below, see why this was needed */
 .route-section {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
+  /* position: absolute; */
+  /* width: 100%; */
+  /* top: 0; */
+  /* left: 0; */
 }
 
 .form-size{
@@ -121,4 +124,13 @@ body {
 }
 .blogItem-in {
   opacity: 1;
+}
+.Site {
+  flex: 1 0 auto;
+  /* padding: 10px; */
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

@@ -112,7 +112,7 @@ class Blog extends Component {
     
     return(
       (typeof selectedB!=='undefined')?
-      <div className="container">
+      <div className="container blog-container">
       <div id="blog-header-title">
         <div id="blog-blogname">{selectedB.blogName}</div>
         <div id="blog-favourite">
@@ -183,7 +183,7 @@ class Blog extends Component {
       )}
       <div className="post-list">
         {blogPosts}
-      </div>     
+      </div>
     </div>
     : <div className="container">
         <div className="lds-dual-ring"></div>

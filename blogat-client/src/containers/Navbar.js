@@ -3,10 +3,10 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
-import { Modal, Dropdown, MenuItem } from "react-bootstrap";
+import { Modal, Dropdown, MenuItem, Navbar, Nav } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 
-class Navbar extends Component {
+class NavbarComponent extends Component {
 
   constructor(props){
     super(props);
@@ -58,41 +58,31 @@ class Navbar extends Component {
 
   render(){
     return(
-      <nav className="navbar navbar-expand">
-        <div className="container">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">
-              <p>Blog@</p>
-            </Link>
-            <Link to={`/users/${this.props.currentUser.user.id}/blog/new`} >New Blog</Link>
-          </div>
+      <Navbar style={{height: '70px'}}>
+      <div >
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/" className="navbar-brand">
+                <div>BLOG@</div>
+              </Link>
+            </Navbar.Brand>
+          </Navbar.Header>
           {this.props.currentUser.isAuthenticated ? (
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <div>
-                  <Dropdown id="dropdown-custom-menu">
-                    <div className="navbar-profile" style={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}} onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
-                    <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                      <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
-                      <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>
-                      <MenuItem divider />
-                      <MenuItem onClick={this.logout.bind(this)}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-              </li>
-              <li>
-                <a onClick={this.logout}>Logout</a>
-              </li>
-            </ul>
+            <Nav pullRight className="navbar-testing" >
+              <Dropdown id="dropdown-custom-menu">
+                <div className="navbar-profile" style={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}} onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
+                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                  <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
+                  <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>
+                  <MenuItem divider />
+                  <MenuItem onClick={this.logout.bind(this)}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav>
           ) : (
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-              <button onClick={this.handleLoginShow} className="">Log In</button>
-              </li>
-              <li>
-              <button onClick={this.handleSignupShow} className="">Sign Up</button>
-              </li>
+            <Nav pullRight className="navbar-testing">
+              <li><button onClick={this.handleLoginShow} className="">Log In</button></li>
+              <li><button onClick={this.handleSignupShow} className="">Sign Up</button></li>
               <Modal bsSize="small" show={this.state.show} onHide={this.handleClose} style={{top: '25%', borderRadius: '5px !important'}}>
                 {this.state.login &&
                   <AuthForm
@@ -112,11 +102,10 @@ class Navbar extends Component {
                   />
                 }
               </Modal>
-            </ul>
+            </Nav>
           )}
-          
-        </div>
-      </nav>
+          </div>
+      </Navbar>
     );
   }
 }
@@ -127,4 +116,4 @@ function mapStateToProps(state){
   };
 }
 
-export default withRouter(connect(mapStateToProps,{ logout })(Navbar));
+export default withRouter(connect(mapStateToProps,{ logout })(NavbarComponent));

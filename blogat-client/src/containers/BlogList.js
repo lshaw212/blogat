@@ -9,13 +9,6 @@ import { CSSTransition, TransitionGroup, Transition } from 'react-transition-gro
 
 class BlogList extends Component {
 
-  constructor(props){
-    super(props);
-    this.state={
-      inToggle:false
-    }
-  }
-
   componentDidMount(){
     // Fetch blogs
     //debugger;
@@ -25,8 +18,6 @@ class BlogList extends Component {
     this.props.fetchFavorites();
     
   }
-
-
 
   // Potential to refactor this to work as an action
   selectBlog(id, e){

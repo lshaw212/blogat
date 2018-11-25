@@ -1,0 +1,7 @@
+
+#footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: #e4e4e4;
+  color: black;
+}
