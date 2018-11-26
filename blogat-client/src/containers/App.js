@@ -29,9 +29,9 @@ const App = () => (
     {/* <PersistGate loading={null} persistor={persistor}> */}
       <Router>
         <div className="Site">
-          <Navbar />
-          <Main />
-          
+          <Navbar/>
+          <Main/>
+          <Footer/> 
         </div>
       </Router>
     {/* </PersistGate> */}

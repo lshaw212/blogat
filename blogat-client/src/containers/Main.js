@@ -17,8 +17,7 @@ import AboutMe from "../components/AboutMe";
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
   return (
-    
-    <div className="transition-group">
+    <div className="transition-group Site-content">
     {/* <TransitionGroup className="transition-group">
     <CSSTransition
       key={location.key}

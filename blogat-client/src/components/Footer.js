@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer id="footer">
-    {/* <Link to="/aboutme"> */}
+    <Link to="/aboutme">
       <div>About me</div>
-    {/* </Link> */}
+    </Link>
   </footer>
 )
 

@@ -78,17 +78,17 @@ class NavbarComponent extends Component {
     const {isDesktop, show, login, signup} = this.state;
     return(
       <Navbar collapseOnSelect>
-      <div>
+      <div className="navbar-main">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/" className="navbar-brand">
                 <div>BLOG@</div>
               </Link>
             </Navbar.Brand>
-            <Navbar.Toggle />
+            <Navbar.Toggle/>
           </Navbar.Header>
           {this.props.currentUser.isAuthenticated ? (
-            <div>
+            <Nav pullRight className="navbar-testing" >
               {isDesktop ? (
                   <ProfileButton
                     imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
@@ -104,8 +104,7 @@ class NavbarComponent extends Component {
                     logout={this.logout.bind(this)}
                   />
                 )}
-              
-            </div>
+              </Nav>
           ) : (
             <LoginItems 
               handleLogin={this.handleLoginShow}

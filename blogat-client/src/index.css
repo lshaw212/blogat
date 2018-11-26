@@ -126,11 +126,17 @@ body {
   opacity: 1;
 }
 .Site {
-  flex: 1 0 auto;
+  /* flex: 1 0 auto; */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   /* padding: 10px; */
 }
-#root {
+.Site-content{
+  flex:1;
+}
+/* #root {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
+} */

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Nav, Dropdown, MenuItem } from 'react-bootstrap';
+import { Nav, Dropdown, MenuItem, NavItem } from 'react-bootstrap';
 
 const ProfileButton = ({userProfile, newBlog, logout, imageStyle, profileClicked}) => (
-  <Nav pullRight className="navbar-testing" >
+  
     <Dropdown id="dropdown-custom-menu">
       <div className="navbar-profile" style={imageStyle} onClick={profileClicked} bsRole="toggle"></div>
       <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
@@ -12,7 +12,7 @@ const ProfileButton = ({userProfile, newBlog, logout, imageStyle, profileClicked
         <MenuItem onClick={logout}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
       </Dropdown.Menu>
     </Dropdown>
-  </Nav>
+
 )
 
 export default ProfileButton;

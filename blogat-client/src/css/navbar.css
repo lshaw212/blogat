@@ -39,11 +39,19 @@ ul.nav.navbar-nav li {
   z-index: 2;
 }
 .navbar-testing{
-  height:70px;
-  display:flex;
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  /* height:70px; */
+  /* display:flex;
   justify-content: row;
-  align-items: center;
+  align-items: center; */
 }
+/* .navbar-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+} */
 /* Links inside the dropdown */
 /* .dropdown-content div {
   color: black;
