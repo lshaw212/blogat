@@ -47,15 +47,15 @@ class BlogList extends Component {
           {/* <div id="blogs"> */}
             <TransitionGroup id="blogs" enter={true}>
                 {blogList.map(b => (
-                  <CSSTransition
-                    key={b._id}
-                    classNames="blogItem"
-                    in={true}
-                    mountOnEnter={false}
-                    appear={true}
-                    enter={true}
-                    // onEnter={true}
-                  >
+                  // <CSSTransition
+                  //   key={b._id}
+                  //   classNames="blogItem"
+                  //   in={true}
+                  //   mountOnEnter={false}
+                  //   appear={true}
+                  //   enter={true}
+                  //   onEnter={true}
+                  // >
                     <BlogItem
                       key={b._id}
                       date={b.createAt}
@@ -71,7 +71,7 @@ class BlogList extends Component {
                       favorite={favorites.includes(b._id) ? 'fas fa-star fa-3x' : 'far fa-star fa-3x'}
                       isCorrectUser={currentUser === b.user._id}
                     />
-                  </CSSTransition>
+                  // </CSSTransition>
                 ))}
               </TransitionGroup>
           {/* </div> */}

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer id="footer">
-    <p>Footer to be completed soon</p>
+    {/* <Link to="/aboutme"> */}
+      <div>About me</div>
+    {/* </Link> */}
   </footer>
 )
 

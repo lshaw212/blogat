@@ -3,8 +3,11 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
-import { Modal, Dropdown, MenuItem, Navbar, Nav } from "react-bootstrap";
+import { Modal, Dropdown, MenuItem, Navbar, Nav, NavItem, Col } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
+import ProfileButton from '../components/navbar/ProfileButton';
+import CollapseItems from '../components/navbar/CollapseItems';
+import LoginItems from '../components/navbar/LoginItems';
 
 class NavbarComponent extends Component {
 
@@ -13,12 +16,23 @@ class NavbarComponent extends Component {
     this.state={
       show: false,
       login: false,
-      signup: false
+      signup: false,
+      isDesktop: false
     }
     this.handleLoginShow = this.handleLoginShow.bind(this);
     this.handleSignupShow = this.handleSignupShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
   }
 
   handleClose() {
@@ -55,54 +69,53 @@ class NavbarComponent extends Component {
     });
   }
 
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth > 767 });
+  }
+
 
   render(){
+    const {isDesktop, show, login, signup} = this.state;
     return(
-      <Navbar style={{height: '70px'}}>
-      <div >
+      <Navbar collapseOnSelect>
+      <div>
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/" className="navbar-brand">
                 <div>BLOG@</div>
               </Link>
             </Navbar.Brand>
+            <Navbar.Toggle />
           </Navbar.Header>
           {this.props.currentUser.isAuthenticated ? (
-            <Nav pullRight className="navbar-testing" >
-              <Dropdown id="dropdown-custom-menu">
-                <div className="navbar-profile" style={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}} onClick={this.profileClicked.bind(this)} bsRole="toggle"></div>
-                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                  <MenuItem onClick={this.userProfile.bind(this, this.props.currentUser.user.id)}><i className="fas fa-user"></i> Profile</MenuItem>
-                  <MenuItem onClick={this.newBlog.bind(this, this.props.currentUser.user.id)}><i className="fas fa-newspaper"></i> New Blog</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem onClick={this.logout.bind(this)}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Nav>
+            <div>
+              {isDesktop ? (
+                  <ProfileButton
+                    imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
+                    profileClicked={this.profileClicked.bind(this)}
+                    userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
+                    newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
+                    logout={this.logout.bind(this)}
+                  />
+                ) : (
+                  <CollapseItems
+                    userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
+                    newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
+                    logout={this.logout.bind(this)}
+                  />
+                )}
+              
+            </div>
           ) : (
-            <Nav pullRight className="navbar-testing">
-              <li><button onClick={this.handleLoginShow} className="">Log In</button></li>
-              <li><button onClick={this.handleSignupShow} className="">Sign Up</button></li>
-              <Modal bsSize="small" show={this.state.show} onHide={this.handleClose} style={{top: '25%', borderRadius: '5px !important'}}>
-                {this.state.login &&
-                  <AuthForm
-                    buttonText="Log in"
-                    heading="Welcome back!"
-                    login
-                    register={this.handleRegister}
-                    // {...props}
-                  />
-                }
-                {this.state.signup &&
-                  <AuthForm
-                    buttonText="Sign me up!"
-                    heading="Register at Blog@"
-                    signUp
-                    // {...props}
-                  />
-                }
-              </Modal>
-            </Nav>
+            <LoginItems 
+              handleLogin={this.handleLoginShow}
+              handleSignup={this.handleSignupShow}
+              handleRegister={this.handleRegister}
+              modalShow={show}
+              modalHide={this.handleClose}
+              login={login}
+              signup={signup}
+            />
           )}
           </div>
       </Navbar>

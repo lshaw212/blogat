@@ -12,6 +12,7 @@ import BlogForm from "./BlogForm";
 import BlogList from "./BlogList";
 import Navbar from "./Navbar";
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import AboutMe from "../components/AboutMe";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
@@ -56,7 +57,8 @@ const Main = props => {
           }}/>
           <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
           <Route path="/blogs/:id" component={(Blog)}/>
-          <Route path="/user/:id" component={(Profile)} /> 
+          <Route path="/user/:id" component={(Profile)}/>
+          <Route path="/aboutme" component={(AboutMe)}/>
         </Switch>
         </section>
       {/* </CSSTransition>
