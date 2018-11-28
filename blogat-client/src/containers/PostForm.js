@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { createPost } from "../store/actions/posts";
-import { Button } from "react-bootstrap";
+import { Button, FormControl, FormGroup } from "react-bootstrap";
 
 class PostForm extends Component {
   constructor(props){
@@ -11,7 +11,7 @@ class PostForm extends Component {
       title:"",
       image:"",
       content:"",
-      layout: 4
+      layout: 1
     };
   }
 
@@ -20,9 +20,10 @@ class PostForm extends Component {
     this.props.removeError(); 
   }
 
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.props
+    await this.imageChecker(this.state.image);
+    await this.props
       .createPost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId)
       .then( () =>{
         this.props.handleClose();
@@ -33,11 +34,23 @@ class PostForm extends Component {
     
     // createpost
   }
+  
+  imageChecker(str){
+    if(!str.includes('i.imgur.com')){
+      this.setState({image: ''});
+      this.setState({layout:1});
+    } 
+  }
 
   handleRadioButton(val){
     this.setState({
       layout: val
     });
+  }
+  getValidationTitleState() {
+    const length = this.state.title.length;
+    if (length > 100) return 'error';
+    return null;
   }
 
   render(){
@@ -63,12 +76,15 @@ class PostForm extends Component {
               <div className="input-section-text-extra">Create a short name for your blog post.</div>
             </div>
             <div className="input-section-input">
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.title}
-                onChange={e => this.setState({title: e.target.value})}
-              />
+              <FormGroup validationState={this.getValidationTitleState()}>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.title}
+                  onChange={e => this.setState({title: e.target.value})}
+                />
+                <FormControl.Feedback/>
+              </FormGroup>
             </div>
           </div>
           <hr/>
@@ -125,7 +141,7 @@ class PostForm extends Component {
             </div>
           </div>
           <hr/>
-          <div>
+          <div className="input-buttons">
             <Button onClick={handleClose}>
               Cancel
             </Button>

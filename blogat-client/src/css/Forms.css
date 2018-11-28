@@ -2,6 +2,10 @@
   font-size: 3em;
   padding-bottom: 10px;
 }
+.form-group{
+  /* React-bootstrap applies 15px bottom margin, we don't want */
+  margin-bottom: 0px;
+}
 #auth-form-header{
   font-size: 1.5em;
   text-align: center;

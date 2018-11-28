@@ -77,7 +77,9 @@ class BlogList extends Component {
           {/* </div> */}
         </div>
         : <div className="container">
-            <div class="lds-dual-ring"></div>
+            <div id="loading-ring-container">
+              <div className="lds-dual-ring"></div>
+            </div>
           </div>
       
     )

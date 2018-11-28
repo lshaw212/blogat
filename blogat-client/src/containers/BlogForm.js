@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createNewBlog } from "../store/actions/blogs";
 import { removeError } from "../store/actions/errors";
+import { FormGroup, FormControl } from "react-bootstrap";
 
 class BlogForm extends Component {
   constructor(props){
     super(props);
     this.state = {
-      text:"",
+      name:"",
       desc:"",
       image:""
     };
@@ -22,9 +23,9 @@ class BlogForm extends Component {
     e.preventDefault();
     // this.props post new blog stuff
     this.props
-      .createNewBlog(this.state.text, this.state.desc, this.state.image)
+      .createNewBlog(this.state.name, this.state.desc, this.state.image)
       .then( () => {
-        this.setState({text:"",desc:"",image:""})
+        this.setState({name:"",desc:"",image:""})
         this.props.history.push("/");
       })
       .catch(() => {
@@ -32,6 +33,16 @@ class BlogForm extends Component {
       })
     
     //this.props.history.push("/"); // Could go straight to new blog?
+  }
+  getValidationNameState() {
+    const length = this.state.name.length;
+    if (length > 100) return 'error';
+    return null;
+  }
+  getValidationDescState() {
+    const length = this.state.desc.length;
+    if (length > 200) return 'error';
+    return null;
   }
 
   render(){
@@ -44,16 +55,19 @@ class BlogForm extends Component {
         {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
           <div className="input-section">
             <div className="input-section-text">
-              <label className="input-section-text-title" htmlFor="text">Name</label>
+              <label className="input-section-text-title" htmlFor="name">Name</label>
               <div className="input-section-text-extra">Create a blog about anything! but make sure the name is relevant</div>
             </div>
             <div className="input-section-input">
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.text}
-                onChange={e => this.setState({text: e.target.value})}
-              />
+              <FormGroup validationState={this.getValidationNameState()}>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.name}
+                  onChange={e => this.setState({name: e.target.value})}
+                />
+                <FormControl.Feedback/>
+              </FormGroup>
             </div>
           </div>
           <hr/>
@@ -79,14 +93,17 @@ class BlogForm extends Component {
               <div className="input-section-text-extra">Describe best your blog and what users should expect from your continued blog posts.</div>
             </div>
             <div className="input-section-input">
-              <textarea
-                cols="30"
-                rows="5"
-                type="text"
-                className="form-control"
-                value={this.state.desc}
-                onChange={e => this.setState({desc: e.target.value})}
-              />
+              <FormGroup validationState={this.getValidationDescState()}>
+                <textarea
+                  cols="30"
+                  rows="5"
+                  type="text"
+                  className="form-control"
+                  value={this.state.desc}
+                  onChange={e => this.setState({desc: e.target.value})}
+                />
+                <FormControl.Feedback />
+              </FormGroup>
             </div>
           </div>
           <hr/>

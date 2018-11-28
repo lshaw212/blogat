@@ -33,29 +33,6 @@ class Post extends Component {
       <div id="post-container">
         <div>
           <div id="post-title">{title}</div>
-          {isCorrectUser && (
-            <div>
-              <Dropdown id="dropdown-custom-menu">
-              <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
-                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                  <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
-                  <MenuItem divider/>
-                  <MenuItem onClick={removePost}>Delete Post</MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-                <EditPostForm
-                  title={title}
-                  content={content}
-                  image={image}
-                  layout={layout}
-                  blogId={blogId}
-                  postId={postId}
-                  handleClose={this.handleClose}
-                />
-              </Modal>
-            </div>
-          )}
           <div id="post-details">
             <div className="post-details-text">Article by {username}</div>
             <div> | </div>
@@ -68,13 +45,34 @@ class Post extends Component {
                 ):(
                 <div><Moment fromNow>{date}</Moment> (last updated <Moment fromNow>{updatedAt}</Moment>)</div>
                 )}
-              
             </div>
+            {isCorrectUser && (
+              <div id="post-edit">
+                <Dropdown id="dropdown-custom-menu">
+                <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
+                  <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                    <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
+                    <MenuItem divider/>
+                    <MenuItem onClick={removePost}>Delete Post</MenuItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                  <EditPostForm
+                    title={title}
+                    content={content}
+                    image={image}
+                    layout={layout}
+                    blogId={blogId}
+                    postId={postId}
+                    handleClose={this.handleClose}
+                  />
+                </Modal>
+              </div>
+            )}
           </div>
         </div>
         {layout === 1 && (
           <div>
-            <div className="post-layout1-image" style={{backgroundImage: `url(${image})`}}></div>
             <div className="post-content">{content}</div>
           </div>
         )}
@@ -92,9 +90,11 @@ class Post extends Component {
         )}
         {layout === 4 && (
           <div>
+            <div className="post-layout4-image" style={{backgroundImage: `url(${image})`}}></div>
             <div className="post-content">{content}</div>
           </div>
         )}
+        
       </div>
   
   

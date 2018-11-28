@@ -16,6 +16,7 @@ import AboutMe from "../components/AboutMe";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
+  const timeout = { enter: 300, exit: 200 }
   return (
     <div className="transition-group Site-content">
     {/* <TransitionGroup className="transition-group">

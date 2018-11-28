@@ -23,7 +23,6 @@ class Blog extends Component {
     this.handleNewPostShow = this.handleNewPostShow.bind(this);
     this.handleEditBlogShow = this.handleEditBlogShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -127,10 +126,9 @@ class Blog extends Component {
         </div>
         <div id="blog-information">
           <div className="blog-profile">
-            <div id="blog-profile-image" style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
+            <div id="blog-profile-image" onClick={this.userProfile.bind(this, selectedB.user._id)} style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
             <div id="blog-blogowner">
-              <div>by</div>
-              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>{selectedB.user.username}</div>
+              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
             </div>
           </div>
           <div id="blog-description">

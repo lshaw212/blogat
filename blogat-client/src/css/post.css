@@ -17,6 +17,9 @@
   align-items: center;
   /* font-size: 0.75em; */
 }
+#post-edit{
+  margin-left: 5px;
+}
 /* .post-content::first-letter {
   font-size: 5em;
 }
@@ -26,7 +29,7 @@
 .post-content {
   padding: 5px;
 }
-.post-layout1-image{
+.post-layout2-image{
   background-size:cover;
   background-position: center;
   height: 400px;
@@ -34,14 +37,14 @@
   float: left;
   margin: 5px;
 }
-.post-layout2-image{
+.post-layout3-image{
   background-size:cover;
   background-position: center;
   height: 400px;
   width: 50%;
   float: right;
 }
-.post-layout3-image{
+.post-layout4-image{
   background-size:cover;
   background-position: center;
   height: 400px;

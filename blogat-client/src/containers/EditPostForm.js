@@ -20,10 +20,11 @@ class EditPostForm extends Component {
     this.props.removeError(); 
   }
 
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     // Need to pass blog id and post id
-    this.props.updatePost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId, this.props.postId)
+    await this.imageChecker(this.state.image);
+    await this.props.updatePost(this.state.title, this.state.content, this.state.image, this.state.layout, this.props.blogId, this.props.postId)
       .then(() => {
         this.setState({title:"", content:""});
         this.props.handleClose();
@@ -32,7 +33,12 @@ class EditPostForm extends Component {
         return;
       })    
   }
-
+  imageChecker(str){
+    if(!str.includes('i.imgur.com')){
+      this.setState({image: ''});
+      this.setState({layout:1});
+    } 
+  }
   handleRadioButton(val){
     this.setState({
       layout: val
@@ -124,7 +130,7 @@ class EditPostForm extends Component {
             </div>
           </div>
           <hr/>
-          <div>
+          <div className="input-buttons">
             <Button onClick={handleClose}>
               Cancel
             </Button>

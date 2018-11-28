@@ -1,5 +1,6 @@
 @import "./css/homepage.css";
 @import "./css/navbar.css";
+@import "./css/blogcard.css";
 @import "./css/blog.css";
 @import "./css/post.css";
 @import "./css/profile.css";
@@ -8,7 +9,11 @@
 @import "./css/buttons.css";
 @import "./css/footer.css";
 
-
+/* * {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+} */
 
 html,body
 {
@@ -60,10 +65,10 @@ body {
 
 /* Look at below, see why this was needed */
 .route-section {
-  /* position: absolute; */
-  /* width: 100%; */
-  /* top: 0; */
-  /* left: 0; */
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .form-size{
@@ -73,50 +78,6 @@ body {
   padding-top: 5px;
   font-size: 0.8em;
 }
-
-/* * {
-  background: #000 !important;
-  color: #0f0 !important;
-  outline: solid #f00 1px !important;
-} */
-
-/* .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-} */
-
-/* 
-.blogItem-enter {
-  opacity: 0.01;
-}
-.blogItem-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-.blogItem-exit {
-  opacity: 1;
-}
-.blogItem-exit-active {
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-} */
 
 .blogItem {
   opacity: 0;
@@ -135,8 +96,3 @@ body {
 .Site-content{
   flex:1;
 }
-/* #root {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-} */

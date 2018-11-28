@@ -109,7 +109,9 @@ class Profile extends Component {
       </div>
       : <div className="container">
         {/* Make this loading icon center of screen */}
-          <div className="lds-dual-ring"></div>
+          <div id="loading-ring-container">
+            <div className="lds-dual-ring"></div>
+          </div>
         </div>
     )
   }

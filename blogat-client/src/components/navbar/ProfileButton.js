@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Dropdown, MenuItem, NavItem } from 'react-bootstrap';
+import { Nav, Dropdown, MenuItem, OverlayTrigger, Tooltip, NavItem } from 'react-bootstrap';
 
 const ProfileButton = ({userProfile, newBlog, logout, imageStyle, profileClicked}) => (
   
@@ -12,7 +12,6 @@ const ProfileButton = ({userProfile, newBlog, logout, imageStyle, profileClicked
         <MenuItem onClick={logout}><i className="fas fa-sign-out-alt"></i> Logout</MenuItem>
       </Dropdown.Menu>
     </Dropdown>
-
 )
 
 export default ProfileButton;

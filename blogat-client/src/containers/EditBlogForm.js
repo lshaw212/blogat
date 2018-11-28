@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { updateBlog } from "../store/actions/blogs";
-import { Button } from "react-bootstrap";
+import { Button, FormControl, FormGroup } from "react-bootstrap";
 
 class EditBlogForm extends Component {
 
@@ -32,6 +32,17 @@ class EditBlogForm extends Component {
       });
   };
 
+  getValidationNameState() {
+    const length = this.state.name.length;
+    if (length > 100) return 'error';
+    return null;
+  }
+  getValidationDescState() {
+    const length = this.state.desc.length;
+    if (length > 200) return 'error';
+    return null;
+  }
+
   render(){
     const { history, errors, removeError, handleClose } = this.props;
 
@@ -54,12 +65,15 @@ class EditBlogForm extends Component {
               <div className="input-section-text-extra">Create a blog about anything! but make sure the name is relevant</div>
             </div>
             <div className="input-section-input">
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
-              />
+              <FormGroup validationState={this.getValidationNameState()}>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.name}
+                  onChange={e => this.setState({name: e.target.value})}
+                />
+                <FormControl.Feedback />
+              </FormGroup>
             </div>
           </div>
           <hr/>
@@ -84,6 +98,7 @@ class EditBlogForm extends Component {
               <div className="input-section-text-extra">Describe best your blog and what users should expect from your continued blog posts.</div>
             </div>
             <div className="input-section-input">
+            <FormGroup validationState={this.getValidationDescState()}>
               <textarea
                 cols="30"
                 rows="5"
@@ -92,10 +107,12 @@ class EditBlogForm extends Component {
                 value={this.state.desc}
                 onChange={e => this.setState({desc: e.target.value})}
               />
+              <FormControl.Feedback />
+              </FormGroup>
             </div>
           </div>
           <hr/>
-          <div>
+          <div className="input-buttons">
             <Button onClick={handleClose}>
               Cancel
             </Button>
