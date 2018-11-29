@@ -79,12 +79,19 @@ body {
   font-size: 0.8em;
 }
 
-.blogItem {
-  opacity: 0;
-  transition: opacity 4s linear;
+.blogItem-enter {
+  opacity: 0.01;
 }
-.blogItem-in {
+.blogItem-enter-active {
   opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.blogItem-exit {
+  opacity: 1;
+}
+.blogItem-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }
 .Site {
   /* flex: 1 0 auto; */

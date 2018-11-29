@@ -9,6 +9,10 @@ import { CSSTransition, TransitionGroup, Transition } from 'react-transition-gro
 
 class BlogList extends Component {
 
+  constructor(props){
+    super(props);
+    this.state={ in: false }
+  }
   componentDidMount(){
     // Fetch blogs
     //debugger;
@@ -16,16 +20,19 @@ class BlogList extends Component {
     //debugger;
     this.props.fetchPosts();
     this.props.fetchFavorites();
+    this.setState({ in: false });
     
   }
 
   // Potential to refactor this to work as an action
   selectBlog(id, e){
+    this.setState({ in: false });
     // e.preventDefault();
-    this.props.history.push({
-      pathname:`/blogs/${id}`,
-      state: {id: id}  
-    });
+    // console.log(this.state.in);
+    // this.props.history.push({
+    //   pathname:`/blogs/${id}`,
+    //   state: {id: id}  
+    // });
   }
   async favoriteBlog(id, e){
     e.stopPropagation();
@@ -45,17 +52,14 @@ class BlogList extends Component {
       (typeof blogs!=='undefined')?
         <div> 
           {/* <div id="blogs"> */}
-            <TransitionGroup id="blogs" enter={true}>
+            <TransitionGroup id="blogs">
                 {blogList.map(b => (
-                  // <CSSTransition
-                  //   key={b._id}
-                  //   classNames="blogItem"
-                  //   in={true}
-                  //   mountOnEnter={false}
-                  //   appear={true}
-                  //   enter={true}
-                  //   onEnter={true}
-                  // >
+                  <CSSTransition
+                    key={b._id}
+                    classNames="blogItem"
+                    timeout={5000}
+                    in={false}
+                  >
                     <BlogItem
                       key={b._id}
                       date={b.createAt}
@@ -71,7 +75,7 @@ class BlogList extends Component {
                       favorite={favorites.includes(b._id) ? 'fas fa-star fa-3x' : 'far fa-star fa-3x'}
                       isCorrectUser={currentUser === b.user._id}
                     />
-                  // </CSSTransition>
+                  </CSSTransition>
                 ))}
               </TransitionGroup>
           {/* </div> */}
