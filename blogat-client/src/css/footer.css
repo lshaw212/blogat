@@ -5,3 +5,8 @@
   background-color: #e4e4e4;
   color: black;
 }
+#root {	
+  display: flex;	
+  flex-direction: column;	
+  height: 100%;	
+} 

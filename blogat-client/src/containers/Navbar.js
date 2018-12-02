@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
-import { Modal, Dropdown, MenuItem, Navbar, Nav, NavItem, Col } from "react-bootstrap";
+import { Modal, Dropdown, MenuItem, Navbar, Nav, FormGroup, FormControl } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 import ProfileButton from '../components/navbar/ProfileButton';
 import CollapseItems from '../components/navbar/CollapseItems';
@@ -90,13 +90,18 @@ class NavbarComponent extends Component {
           {this.props.currentUser.isAuthenticated ? (
             <Nav pullRight className="navbar-testing" >
               {isDesktop ? (
-                  <ProfileButton
-                    imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
-                    profileClicked={this.profileClicked.bind(this)}
-                    userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
-                    newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
-                    logout={this.logout.bind(this)}
-                  />
+                  <div>
+                    {/* <FormGroup>
+                      <FormControl type="text" placeholder="Search" />
+                    </FormGroup>{' '} */}
+                    <ProfileButton
+                      imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
+                      profileClicked={this.profileClicked.bind(this)}
+                      userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
+                      newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
+                      logout={this.logout.bind(this)}
+                    />
+                  </div>
                 ) : (
                   <CollapseItems
                     userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}

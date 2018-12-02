@@ -1,5 +1,9 @@
 /* Blog contents */
-
+.sizer {
+  position: absolute;
+  visibility: hidden;
+  width: 8.3333%;
+}
 #blogs {
   display: flex;
   flex-wrap: wrap;

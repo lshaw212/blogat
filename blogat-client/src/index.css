@@ -65,10 +65,10 @@ body {
 
 /* Look at below, see why this was needed */
 .route-section {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
   top: 0;
-  left: 0;
+  left: 0; */
 }
 
 .form-size{
