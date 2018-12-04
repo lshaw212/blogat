@@ -8,6 +8,7 @@ import AuthForm from "../components/AuthForm";
 import ProfileButton from '../components/navbar/ProfileButton';
 import CollapseItems from '../components/navbar/CollapseItems';
 import LoginItems from '../components/navbar/LoginItems';
+import SearchBox from "../components/navbar/SearchBox";
 
 class NavbarComponent extends Component {
 
@@ -87,6 +88,7 @@ class NavbarComponent extends Component {
             </Navbar.Brand>
             <Navbar.Toggle/>
           </Navbar.Header>
+          <SearchBox />
           {this.props.currentUser.isAuthenticated ? (
             <Nav pullRight className="navbar-testing" >
               {isDesktop ? (
