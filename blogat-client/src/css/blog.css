@@ -9,6 +9,13 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+#blog-list-empty{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:500px;
+  width:100%;
+}
 
 #blog-name {
   /* position: absolute; */

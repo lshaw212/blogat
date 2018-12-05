@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import { Navbar, FormGroup, FormControl } from "react-bootstrap";
 import qs from "qs";
 
 const defaultState = {
@@ -24,9 +25,11 @@ class SearchBox extends Component{
       ...qs.parse(this.props.location.search.replace("?", ""))
     }
     return(
-      <div>
-        <input type="text" value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
-      </div>
+      
+        <FormGroup>
+          <FormControl type="text" placeholder="Search Blogs.." value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
+        </FormGroup>
+      
     )
   }
   

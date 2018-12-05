@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import SearchBox from "./SearchBox";
 
 const CollapseItems = ({userProfile, newBlog, logout}) => (
   <Navbar.Collapse>
     <Nav>
+      <SearchBox />
       <NavItem onClick={userProfile}>
         Profile
       </NavItem>

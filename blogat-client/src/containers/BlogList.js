@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import BlogItem from "../components/BlogItem";
 import Loading from "../components/Loading";
+import NoResult from "../components/NoResult";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts } from "../store/actions/posts";
@@ -19,7 +20,8 @@ class BlogList extends Component {
   constructor(props){
     super(props);
     this.state={
-      blogList: []
+      blogList: [],
+      favourites: []
     }
   }
   componentDidMount(){
@@ -28,7 +30,7 @@ class BlogList extends Component {
     this.loadBlogs();
     //debugger;
     this.props.fetchPosts();
-    this.props.fetchFavorites();
+    
     
   }
 
@@ -42,9 +44,11 @@ class BlogList extends Component {
   }
 
   async loadBlogs(){
-    this.setState({blogList: this.props.blogs});
+    // this.setState({blogList: this.props.blogs});
     await this.props.fetchBlogs();
+    await this.props.fetchFavorites();
     this.setState({blogList: this.props.blogs});
+    this.setState({favourites: this.props.favorites});
   }
 
   // Potential to refactor this to work as an action
@@ -69,18 +73,19 @@ class BlogList extends Component {
       ...defaultState,
       ...qs.parse(this.props.location.search.replace("?", ""))
     }
-
-    const blogList = (this.state.blogList).filter(({blogName}) => blogName.includes(queryParamState.filter));
-
-    console.log(this.props.location);
+    // const favList = (this.state.blogList);
+    const favList = (this.state.blogList).filter(({_id}) => favorites.includes(_id));
+    console.log(this.state.blogList[0]);
+    console.log(this.props.favorites);
+    const blogList = (favList)
+      .filter(({blogName}) => blogName.includes(queryParamState.filter));
 
     return(
       (typeof blogs!=='undefined')?
         <div>
           <Flipper flipKey={blogList}>
-            {/* <input type="text" value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/> */}
             {blogList.length === 0 ? (
-              <div>Empty!</div>
+              <NoResult/>
             ) : (
               <div id="blogs">
                 {blogList.map(b => (
