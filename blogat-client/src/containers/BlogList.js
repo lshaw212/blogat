@@ -27,9 +27,9 @@ class BlogList extends Component {
   componentDidMount(){
     // Fetch blogs
     //debugger;
-    this.loadBlogs();
-    //debugger;
     this.props.fetchPosts();
+    this.props.fetchBlogs();
+    this.props.fetchFavorites();
     
     
   }
@@ -41,14 +41,6 @@ class BlogList extends Component {
         ...obj
       })}`
     })
-  }
-
-  async loadBlogs(){
-    // this.setState({blogList: this.props.blogs});
-    await this.props.fetchBlogs();
-    await this.props.fetchFavorites();
-    this.setState({blogList: this.props.blogs});
-    this.setState({favourites: this.props.favorites});
   }
 
   // Potential to refactor this to work as an action
@@ -68,17 +60,23 @@ class BlogList extends Component {
   }
   
   render(){
-    const { blogs, currentUser, favorites } = this.props;
+    const { blogs, currentUser, favorites, showFavourites } = this.props;
     const queryParamState = {
       ...defaultState,
       ...qs.parse(this.props.location.search.replace("?", ""))
     }
-    // const favList = (this.state.blogList);
-    const favList = (this.state.blogList).filter(({_id}) => favorites.includes(_id));
-    console.log(this.state.blogList[0]);
-    console.log(this.props.favorites);
+    let favList
+    if(showFavourites){
+      favList = (blogs).filter(({_id}) => favorites.includes(_id));
+    } else {
+      favList = (blogs)
+    }
+    
+
     const blogList = (favList)
       .filter(({blogName}) => blogName.includes(queryParamState.filter));
+
+      console.log(this.props.currentUser);
 
     return(
       (typeof blogs!=='undefined')?
@@ -104,7 +102,7 @@ class BlogList extends Component {
                       favToggle={this.favoriteBlog.bind(this, b._id)}
                       selectBlog={this.selectBlog.bind(this, b._id)}
                       favorite={favorites.includes(b._id) ? 'fas fa-star fa-3x' : 'far fa-star fa-3x'}
-                      isCorrectUser={currentUser === b.user._id}
+                      isCorrectUser={currentUser.id === b.user._id}
                       flippedProps={flippedProps}
                       navigate={this.navigate}
                     />
@@ -124,8 +122,9 @@ class BlogList extends Component {
 function mapStateToProps(state){
   return {
     blogs: state.blogs|| [],
-    currentUser: state.currentUser.user.id,
-    favorites: state.currentUser.favorites || []
+    currentUser: state.currentUser.user,
+    favorites: state.currentUser.favorites || [],
+    showFavourites: state.currentUser.showFavorites
   };
 }
 

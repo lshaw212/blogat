@@ -1,5 +1,5 @@
 import { apiCall, setTokenHeader } from "../../services/api";
-import { SET_CURRENT_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS } from "../actionTypes";
+import { SET_CURRENT_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS, SHOW_FAVORITE_BLOGS } from "../actionTypes";
 import { addError, removeError } from "./errors";
 
 export function setAuthorizationToken(token){
@@ -23,6 +23,11 @@ export const getFavoriteBlogs = blogs => ({
   blogs
 });
 
+export const showFavoriteBlogs = boolean => ({
+  type: SHOW_FAVORITE_BLOGS,
+  boolean
+})
+
 export function logout(){
   return dispatch => {
     localStorage.clear();
@@ -32,6 +37,7 @@ export function logout(){
 }
 
 export function authUser(type, userData){
+  console.log(userData);
   return dispatch => {
     // wrap a thunk in a promise so we can wait for the API call
     return new Promise((resolve, reject) => {

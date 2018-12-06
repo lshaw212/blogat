@@ -19,13 +19,13 @@ const Main = props => {
   const timeout = { enter: 300, exit: 200 }
   return (
     <div className="transition-group Site-content">
-    {/* <TransitionGroup className="transition-group">
+    <TransitionGroup className="transition-group">
     <CSSTransition
       key={location.key}
       timeout={timeout}
       classNames="fade"
       appear
-      > */}
+      >
         <section className="route-section">
         <Switch location={location}>
           <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
@@ -61,8 +61,8 @@ const Main = props => {
           <Route path="/aboutme" component={(AboutMe)}/>
         </Switch>
         </section>
-      {/* </CSSTransition>
-      </TransitionGroup> */}
+      </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../store/actions/auth";
+import { logout, showFavoriteBlogs } from "../store/actions/auth";
 import { Modal, Dropdown, MenuItem, Navbar, Nav, FormGroup, FormControl } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 import ProfileButton from '../components/navbar/ProfileButton';
@@ -50,6 +50,10 @@ class NavbarComponent extends Component {
     this.handleClose();
     this.handleSignupShow();
   }
+  showFavourites(){
+    // console.log(this.props.currentUser.showFavorites);
+    this.props.showFavoriteBlogs(this.props.currentUser.showFavorites);
+  }
   //logout
   logout = e => {
     e.preventDefault();
@@ -77,6 +81,7 @@ class NavbarComponent extends Component {
 
   render(){
     const {isDesktop, show, login, signup} = this.state;
+    
     return(
       <Navbar collapseOnSelect>
       <div className="navbar-main">
@@ -92,6 +97,7 @@ class NavbarComponent extends Component {
             <Nav>
               <Navbar.Form>
                 <SearchBox />
+                <button onClick={this.showFavourites.bind(this)}>favs</button>
               </Navbar.Form>
             </Nav>
           }
@@ -136,4 +142,4 @@ function mapStateToProps(state){
   };
 }
 
-export default withRouter(connect(mapStateToProps,{ logout })(NavbarComponent));
+export default withRouter(connect(mapStateToProps,{ logout, showFavoriteBlogs })(NavbarComponent));

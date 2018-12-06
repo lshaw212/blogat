@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { authUser } from "../store/actions/auth";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
+import { fetchFavorites } from "../store/actions/auth";
 import { withRouter } from "react-router-dom";
 
 
@@ -39,6 +40,8 @@ class AuthForm extends Component {
     this.props
       .authUser(authType, this.state)
       .then(() => {
+        if(authType == "signin")
+          this.props.fetchFavorites();
         //this.props.history.push("/");
         console.log("fix this area");
       }).catch(() =>{
@@ -104,8 +107,9 @@ class AuthForm extends Component {
 
 function mapStateToProps(state){
   return{
+    favorites: state.currentUser.favorites || [],
     errors: state.errors
   };
 }
 
-export default withRouter(connect(mapStateToProps, {authUser, removeError})(AuthForm));
+export default withRouter(connect(mapStateToProps, {authUser, fetchFavorites, removeError})(AuthForm));
