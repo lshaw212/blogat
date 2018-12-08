@@ -9,6 +9,7 @@ import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import shuffle from "lodash.shuffle";
+import Icon from "../components/icons/StarFull";
 import qs from "qs";
 
 const defaultState = {
@@ -76,7 +77,8 @@ class BlogList extends Component {
     const blogList = (favList)
       .filter(({blogName}) => blogName.includes(queryParamState.filter));
 
-      console.log(this.props.currentUser);
+      // console.log(this.props.currentUser);
+      // console.log(this.props.history.location);
 
     return(
       (typeof blogs!=='undefined')?

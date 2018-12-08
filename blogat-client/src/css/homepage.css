@@ -16,7 +16,9 @@
   color: white;
 }
 #titleText{
-	font-size: 240px;
+	/* font-size: 240px; */
+	font-size: 20em;
+	font-family: 'Satisfy', cursive;
 	text-shadow: 2px 2px 5px rgba(5, 5, 5, 1);
 }
 .btnContainer{
@@ -128,7 +130,7 @@
 }
 .backgroundLoop:after {
 	content: '';
-	background-image: transparent url(https://i.imgur.com/FdlN76q.jpg) repeat top left;
+	background-image: transparent url(../images/homepage/home1.jpg) repeat top left;
 }
 .backgroundLoop li { list-style: none; }
 .backgroundLoop li span {
@@ -147,26 +149,26 @@
 	animation: imgAnimation 36s linear infinite 0s;
 }
 .backgroundLoop li:nth-child(1) span {
-	background-image: url(https://i.imgur.com/FdlN76q.jpg);
+	background-image: url(../images/homepage/home1.jpg);
 }
 .backgroundLoop li:nth-child(2) span {
-	background-image: url(https://i.imgur.com/ooCXJv3.jpg);
+	background-image: url(../images/homepage/home2.jpg);
 	animation-delay: 6s;
 }
 .backgroundLoop li:nth-child(3) span {
-	background-image: url(https://i.imgur.com/rlxC7vF.jpg);
+	background-image: url(../images/homepage/home3.jpg);
 	animation-delay: 12s;
 }
 .backgroundLoop li:nth-child(4) span {
-	background-image: url(https://i.imgur.com/TU3R11E.jpg);
+	background-image: url(../images/homepage/home4.jpg);
 	animation-delay: 18s;
 }
 .backgroundLoop li:nth-child(5) span {
-	background-image: url(https://i.imgur.com/CagDNl7.jpg);
+	background-image: url(../images/homepage/home5.jpg);
 	animation-delay: 24s;
 }
 .backgroundLoop li:nth-child(6) span {
-	background-image: url(https://i.imgur.com/zEqfx2N.jpg);
+	background-image: url(../images/homepage/home6.jpg);
 	animation-delay: 30s;
 }
 

@@ -81,14 +81,15 @@ class NavbarComponent extends Component {
 
   render(){
     const {isDesktop, show, login, signup} = this.state;
+    const pathname = (this.props.history.location.pathname);
     
     return(
       <Navbar collapseOnSelect>
       <div className="navbar-main">
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">
-                <div>BLOG@</div>
+              <Link to="/" id="navbar-title">
+                Blog@
               </Link>   
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -96,7 +97,9 @@ class NavbarComponent extends Component {
           {(isDesktop) &&
             <Nav>
               <Navbar.Form>
-                <SearchBox />
+                {(pathname.includes('blogs')) && 
+                  <SearchBox />
+                }
                 <button onClick={this.showFavourites.bind(this)}>favs</button>
               </Navbar.Form>
             </Nav>

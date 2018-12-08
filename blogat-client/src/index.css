@@ -41,21 +41,25 @@ body {
 .fade-appear,
 .fade-enter {
   opacity: 0;
+  /* position: absolute; */
 }
 
 .fade-appear-active,
 .fade-enter-active {
   transition: opacity .3s linear;
+  /* position: absolute; */
   opacity: 1;
 }
 
 .fade-exit {
   transition: opacity .2s linear;
   opacity: 1;
+  /* position: absolute; */
 }
 
 .fade-exit-active {
   opacity: 0;
+  /* position: absolute; */
 }
 
 .transition-group {
@@ -65,10 +69,14 @@ body {
 
 /* Look at below, see why this was needed */
 .route-section {
-  position: absolute;
+  /* position: absolute; */
+  height: 100%;
   width: 100%;
   top: 0;
   left: 0;
+}
+.test-fix{
+  /* position: relative; */
 }
 
 .form-size{
@@ -94,7 +102,7 @@ body {
   transition: opacity 500ms ease-in;
 }
 .Site {
-  /* flex: 1 0 auto; */
+  flex: 1 0 auto;
   display: flex;
   min-height: 100vh;
   flex-direction: column;

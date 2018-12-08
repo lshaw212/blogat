@@ -31,8 +31,8 @@ const App = () => (
         <div className="Site">
           <Navbar/>
           <Main/>
-          <Footer/> 
-        </div>
+          <Footer/>
+        </div> 
       </Router>
     {/* </PersistGate> */}
   </Provider>

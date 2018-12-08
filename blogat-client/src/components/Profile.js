@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Modal, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Modal, Tooltip, OverlayTrigger, Tabs, Tab } from 'react-bootstrap';
 import EditProfileForm from "../containers/EditProfileForm";
+import ProfileBlogs from "../components/ProfileBlogs";
 import { apiCall } from "../services/api";
 
 class Profile extends Component {
@@ -35,16 +36,19 @@ class Profile extends Component {
     .catch(err => {
       console.log(err)
     });
+    
     this.setState({user});
+    console.log(this.state.user);
     this.setState({isLoading: true});
   }
   updateProfile(user){
-    this.setState({user});
+    // this.setState({user});
+    this.loadUser();
   }
 
   render(){
     const { user, isLoading } = this.state;
-    
+
     const tooltip = (
       <Tooltip>
         {user.email}
@@ -103,7 +107,9 @@ class Profile extends Component {
             
           </div>
           <div id="profile-blogs">
-            {/* <div class="lds-dual-ring"></div> */}
+            <ProfileBlogs
+              blogs={user.blogs}
+            />
           </div>
         </div>
       </div>

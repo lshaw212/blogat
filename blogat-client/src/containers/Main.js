@@ -17,6 +17,7 @@ import AboutMe from "../components/AboutMe";
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
   const timeout = { enter: 300, exit: 200 }
+  console.log(currentUser);
   return (
     <div className="transition-group Site-content">
     <TransitionGroup className="transition-group">
@@ -26,6 +27,7 @@ const Main = props => {
       classNames="fade"
       appear
       >
+      <div className="test-fix">
         <section className="route-section">
         <Switch location={location}>
           <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
@@ -61,6 +63,7 @@ const Main = props => {
           <Route path="/aboutme" component={(AboutMe)}/>
         </Switch>
         </section>
+        </div>
       </CSSTransition>
       </TransitionGroup>
     </div>

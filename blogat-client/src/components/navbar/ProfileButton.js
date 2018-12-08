@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Dropdown, MenuItem, OverlayTrigger, Tooltip, NavItem } from 'react-bootstrap';
+import { Dropdown, MenuItem } from 'react-bootstrap';
 
 const ProfileButton = ({userProfile, newBlog, logout, imageStyle, profileClicked}) => (
   
