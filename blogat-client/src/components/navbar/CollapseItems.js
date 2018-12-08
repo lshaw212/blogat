@@ -1,11 +1,20 @@
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import SearchBox from "./SearchBox";
+import FavouritesIcon from "./FavouritesIcon";
 
-const CollapseItems = ({userProfile, newBlog, logout}) => (
+const CollapseItems = ({userProfile, newBlog, logout, pathname, showFavourites, favorite}) => (
   <Navbar.Collapse>
     <Nav>
-      <SearchBox />
+    {(pathname.includes('blogs')) && 
+      <div>
+        <SearchBox />
+        <FavouritesIcon
+          showFavourites={showFavourites}
+          favorite={favorite}
+        />
+      </div>
+      }
       <NavItem onClick={userProfile}>
         Profile
       </NavItem>

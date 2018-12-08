@@ -39,6 +39,14 @@ ul.nav.navbar-nav li {
   font-size: 2.5em;
   text-decoration: none !important;
 }
+.icon-spacing{
+  padding-left: 10px;
+  opacity: 0.60;
+  transition: all 300ms ease;
+}
+.icon-spacing:hover{
+  transform: scale(1.2);
+}
 /* #navbar-title:hover{
   text-decoration: none !important;
 } */

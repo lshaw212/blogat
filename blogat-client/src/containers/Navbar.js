@@ -9,6 +9,7 @@ import ProfileButton from '../components/navbar/ProfileButton';
 import CollapseItems from '../components/navbar/CollapseItems';
 import LoginItems from '../components/navbar/LoginItems';
 import SearchBox from "../components/navbar/SearchBox";
+import FavouritesIcon from "../components/navbar/FavouritesIcon";
 
 class NavbarComponent extends Component {
 
@@ -18,7 +19,8 @@ class NavbarComponent extends Component {
       show: false,
       login: false,
       signup: false,
-      isDesktop: false
+      isDesktop: false,
+      showFavs: false
     }
     this.handleLoginShow = this.handleLoginShow.bind(this);
     this.handleSignupShow = this.handleSignupShow.bind(this);
@@ -52,6 +54,7 @@ class NavbarComponent extends Component {
   }
   showFavourites(){
     // console.log(this.props.currentUser.showFavorites);
+    this.setState({showFavs: !this.state.showFavs})
     this.props.showFavoriteBlogs(this.props.currentUser.showFavorites);
   }
   //logout
@@ -80,8 +83,10 @@ class NavbarComponent extends Component {
 
 
   render(){
-    const {isDesktop, show, login, signup} = this.state;
+    const {isDesktop, show, login, signup, showFavs} = this.state;
     const pathname = (this.props.history.location.pathname);
+    const fadedHeart = { color:"black"}
+    const pinkHeart = { color:"#ea4c89"}
     
     return(
       <Navbar collapseOnSelect>
@@ -98,9 +103,16 @@ class NavbarComponent extends Component {
             <Nav>
               <Navbar.Form>
                 {(pathname.includes('blogs')) && 
-                  <SearchBox />
+                  <div style={{display:"flex", alignItems:"center"}}>
+                    <SearchBox />
+                    <FavouritesIcon
+                      showFavourites={this.showFavourites.bind(this)}
+                      favorite={showFavs ? pinkHeart : fadedHeart}
+                    />
+                  </div>
+                  
                 }
-                <button onClick={this.showFavourites.bind(this)}>favs</button>
+                
               </Navbar.Form>
             </Nav>
           }
@@ -116,6 +128,9 @@ class NavbarComponent extends Component {
                   />
                 ) : (
                   <CollapseItems
+                    pathname={pathname}
+                    showFavourites={this.showFavourites.bind(this)}
+                    favorite={showFavs ? pinkHeart : fadedHeart}
                     userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
                     newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
                     logout={this.logout.bind(this)}

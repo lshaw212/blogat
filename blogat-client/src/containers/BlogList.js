@@ -16,6 +16,15 @@ const defaultState = {
   filter: ""
 }
 
+const styles = {
+  fadedHeart:{
+    color:"#ea4c89"
+  },
+  pinkHeart:{
+    color:"#ea4c89"
+  }
+}
+
 class BlogList extends Component {
 
   constructor(props){
@@ -62,6 +71,9 @@ class BlogList extends Component {
   
   render(){
     const { blogs, currentUser, favorites, showFavourites } = this.props;
+    // const { fadedHeart, pinkHeart } = styles;
+    const fadedHeart = { opacity: "0.75",color:"black"}
+    const pinkHeart = { color:"#ea4c89"}
     const queryParamState = {
       ...defaultState,
       ...qs.parse(this.props.location.search.replace("?", ""))
@@ -79,7 +91,7 @@ class BlogList extends Component {
 
       // console.log(this.props.currentUser);
       // console.log(this.props.history.location);
-
+      
     return(
       (typeof blogs!=='undefined')?
         <div>
@@ -89,6 +101,7 @@ class BlogList extends Component {
             ) : (
               <div id="blogs">
                 {blogList.map(b => (
+                  
                   <Flipped key={b._id} flipId={b._id}>
                   {flippedProps =>
                     <BlogItem
@@ -103,7 +116,7 @@ class BlogList extends Component {
                       profileImage={b.user.profileImageUrl}
                       favToggle={this.favoriteBlog.bind(this, b._id)}
                       selectBlog={this.selectBlog.bind(this, b._id)}
-                      favorite={favorites.includes(b._id) ? 'fas fa-star fa-3x' : 'far fa-star fa-3x'}
+                      favorite={favorites.includes(b._id) ? pinkHeart : fadedHeart}
                       isCorrectUser={currentUser.id === b.user._id}
                       flippedProps={flippedProps}
                       navigate={this.navigate}

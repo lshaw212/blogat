@@ -90,6 +90,9 @@ class Blog extends Component {
 
   render(){
     const { blogs, posts, currentUser, removePost, favorites } = this.props;
+    const fadedHeart = { opacity:"0.75", color:"black"}
+    const pinkHeart = { opacity:"0.75", color:"#ea4c89"}
+
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -116,7 +119,8 @@ class Blog extends Component {
         <div id="blog-blogname">{selectedB.blogName}</div>
         <div id="blog-favourite">
           <i
-            className={favorites.includes(selectedB._id) ? 'fas fa-star fa-2x' : 'far fa-star fa-2x'}
+            className="fas fa-heart fa-3x"
+            style={favorites.includes(selectedB._id) ? pinkHeart : fadedHeart}
             onClick={this.favoriteBlog.bind(this, selectedB._id)}
           />
         </div>
