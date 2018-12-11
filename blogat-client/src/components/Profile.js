@@ -14,6 +14,8 @@ class Profile extends Component {
     }
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    // this.goBlog = this.goBlog.bind(this);
+    // this.selectBlog = this.selectBlog.bind(this);
   }
   componentDidMount(){
     this.loadUser();
@@ -43,7 +45,19 @@ class Profile extends Component {
   }
   updateProfile(user){
     // this.setState({user});
+    console.log("Hello?");
     this.loadUser();
+  }
+  // Potential to refactor this to work as an action
+  goBlog(blogId){
+    // e.preventDefault();
+    console.log("triggar");
+    console.log(blogId);
+    // this.setState({blogList: this.props.blogs})
+    this.props.history.push({
+      pathname:`/blogs/${blogId}`,
+      state: {blogId: blogId}  
+    });
   }
 
   render(){
@@ -109,6 +123,7 @@ class Profile extends Component {
           <div id="profile-blogs">
             <ProfileBlogs
               blogs={user.blogs}
+              goBlog={this.goBlog.bind(this)}
             />
           </div>
         </div>

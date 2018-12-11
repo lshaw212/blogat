@@ -28,7 +28,9 @@ app.get("/api/users", async function(req,res,next){
     let users = await db.User.find()
       .sort({createdAt: "desc"})
       .populate("blogs", {
-        blogName: true
+        blogName: true,
+        blogImage: true,
+        blogDescription: true
       })
       .populate("posts", {
         text: true

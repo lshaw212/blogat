@@ -1,9 +1,12 @@
 import React from 'react';
 import { Tab, Row, Nav, NavItem } from "react-bootstrap";
 
-const Blog =({blogName}) => (
-  <div className="tab-pane-test">
-    {blogName}
+const Blog =({blogName, blogDescription, blogImage, blogId, goBlog}) => (
+  <div className="tab-blog" onClick={goBlog.bind(this, blogId)} >
+    
+    <div className="tab-blog-name">{blogName}</div>
+    <div className="tab-blog-desc">{blogDescription}</div>
+    {/* <div className="tab-blog-image" style={{backgroundImage: `url(${blogImage})`}}></div> */}
   </div>
 )
 
@@ -13,7 +16,7 @@ const Favourite =({blogName}) => (
   </div>
 )
 
-const ProfileBlogs = ({blogs}) => (
+const ProfileBlogs = ({blogs, goBlog}) => (
   <Tab.Container id="left-tabs-example" defaultActiveKey="first">
     <Row className="clearfix">
       {/* <Col sm={4}> */}
@@ -25,11 +28,21 @@ const ProfileBlogs = ({blogs}) => (
       {/* <Col sm={8}> */}
         <Tab.Content animation>
           <Tab.Pane eventKey="first">
-          {blogs.map(b => (
-            <Blog blogName={b.blogName} id={b._id}/>
-          ))}
+            <div className="tab-pane-test">
+              {blogs.map(b => (
+                <Blog
+                  key={b._id}
+                  blogName={b.blogName}
+                  blogDescription={b.blogDescription}
+                  blogImage={b.blogImage}
+                  goBlog={goBlog}
+                  blogId={b._id}
+                />
+              ))}
+            </div>
           </Tab.Pane>
           <Tab.Pane eventKey="second">
+            <div className="tab-pane-test">Hey</div>
           {/* {blogs.map(b => (
             <Favourite blogName={b} id={b._id}/>
           ))} */}

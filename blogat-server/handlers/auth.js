@@ -73,7 +73,9 @@ exports.getUser = async function(req, res, next){
   try {
     let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio email')
       .populate("blogs", {
-        blogName: true
+        blogName: true,
+        blogImage: true,
+        blogDescription: true
       })
       .populate("favorites", {
         // doesn't work yet
