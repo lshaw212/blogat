@@ -5,8 +5,8 @@ import AuthForm from "../AuthForm";
 const LoginItems = ({handleLogin, handleSignup, handleRegister, modalShow, modalHide, login, signup}) => (
   <Navbar.Collapse>
     <Nav pullRight className="navbar-testing">
-      <NavItem onClick={handleLogin} className="">Log In</NavItem>
-      <NavItem onClick={handleSignup} className="">Sign Up</NavItem>
+      <NavItem onClick={handleLogin} className="navbar-auth">Log In</NavItem>
+      <NavItem onClick={handleSignup} className="navbar-auth">Sign Up</NavItem>
       <Modal bsSize="small" show={modalShow} onHide={modalHide} style={{top: '25%', borderRadius: '5px !important'}}>
         {login &&
           <AuthForm

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createNewBlog } from "../store/actions/blogs";
 import { removeError } from "../store/actions/errors";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 class BlogForm extends Component {
   constructor(props){
@@ -107,9 +107,9 @@ class BlogForm extends Component {
             </div>
           </div>
           <hr/>
-          <button className="form-submit" type="submit" className="btn btn-success pull-right">
+          <Button type="submit" className="btn btn-success pull-right form-button">
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     )

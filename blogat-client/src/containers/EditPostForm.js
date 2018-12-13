@@ -131,10 +131,10 @@ class EditPostForm extends Component {
           </div>
           <hr/>
           <div className="input-buttons">
-            <Button onClick={handleClose}>
+            <Button onClick={handleClose} className="form-button">
               Cancel
             </Button>
-            <Button type="submit" className="btn btn-success pull-right">
+            <Button type="submit" className="btn btn-success form-button" style={{marginLeft: '5px'}}>
               Save changes
             </Button>
           </div>

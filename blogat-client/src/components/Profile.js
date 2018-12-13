@@ -76,7 +76,7 @@ class Profile extends Component {
             <div id="profile-picture" style={{backgroundImage: `url(${user.profileImageUrl})`}}></div>
             <div id="profile-details">
               <div id="profile-name-and-edit">
-                <div>{user.username}</div>
+                <div id="profile-username">{user.username}</div>
                 {/* <div><i class="far fa-edit fa-2x"></i></div> */}
                 {/* <Modal triggerText="Edit Profile" mProps={editProfileProps} btnClass="c-btn" btnText="Edit Profile" /> */}
                 {/* <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
@@ -97,25 +97,26 @@ class Profile extends Component {
                   />
                 </Modal>
               </div>
-              <hr/>
-              <div>{user.bio}</div>
-              <div id="profile-social">
-                {user.social.twitter.length > 1 && (
-                  <a href={`https://twitter.com/${user.social.twitter}`} ><i className="fab fa-twitter fa-2x"></i></a>
-                )}
-                {user.social.linkedin.length > 1 && (
-                  <a href={`https://www.linkedin.com/in/${user.social.linkedin}`}><i className="fab fa-linkedin-in fa-2x"></i></a>
-                )}
-                {user.social.github.length > 1 && (
-                  <a href={`https://github.com/${user.social.github}`}><i className="fab fa-github fa-2x"></i></a>
-                )}
-                {user.social.emailToggle && (
-                  <OverlayTrigger placement="right" overlay={tooltip}>
-                    <div>
-                      <i className="fas fa-envelope-square fa-2x"></i>
-                    </div>
-                  </OverlayTrigger>
-                )}
+              <div>
+                <div id="profile-bio-info">{user.bio}</div>
+                <div id="profile-social">
+                  {user.social.twitter.length > 1 && (
+                    <a href={`https://twitter.com/${user.social.twitter}`} ><i className="fab fa-twitter fa-2x"></i></a>
+                  )}
+                  {user.social.linkedin.length > 1 && (
+                    <a href={`https://www.linkedin.com/in/${user.social.linkedin}`}><i className="fab fa-linkedin-in fa-2x"></i></a>
+                  )}
+                  {user.social.github.length > 1 && (
+                    <a href={`https://github.com/${user.social.github}`}><i className="fab fa-github fa-2x"></i></a>
+                  )}
+                  {user.social.emailToggle && (
+                    <OverlayTrigger placement="right" overlay={tooltip}>
+                      <div>
+                        <i className="fas fa-envelope-square fa-2x"></i>
+                      </div>
+                    </OverlayTrigger>
+                  )}
+                </div>
               </div>
             </div>
             

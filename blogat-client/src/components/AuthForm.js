@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { fetchFavorites } from "../store/actions/auth";
 import { withRouter } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 
 
 class AuthForm extends Component {
@@ -83,7 +84,7 @@ class AuthForm extends Component {
               <input type="password" className="form-control auth-form-input" id="password" name="password" onChange={this.handleChange} placeholder="Password"/>
             </div>
             <hr/>
-            <button className="btn btn-primary btn-block btn-lg">
+            <button className="btn btn-primary btn-block btn-lg form-button">
               {buttonText}
             </button>
           </form>

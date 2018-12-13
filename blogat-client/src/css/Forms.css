@@ -1,4 +1,5 @@
 .form-header{
+  font-family: 'Montserrat', sans-serif;
   font-size: 3em;
   padding-bottom: 10px;
 }
@@ -7,9 +8,10 @@
   /* margin-bottom: 0px; */
 }
 #auth-form-header{
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
   padding: 25px 0 25px 0;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
 .form-submit{
@@ -24,6 +26,7 @@
 }
 .input-section-text-title{
   font-size: 1.25em;
+  font-family: 'Montserrat', sans-serif;
 }
 .input-section-text-extra{
   font-size: 0.75em;

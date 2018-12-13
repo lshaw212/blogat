@@ -113,10 +113,10 @@ class EditBlogForm extends Component {
           </div>
           <hr/>
           <div className="input-buttons">
-            <Button onClick={handleClose}>
+            <Button onClick={handleClose} className="form-button">
               Cancel
             </Button>
-            <Button type="submit" className="btn btn-success">
+            <Button type="submit" className="btn btn-success form-button" style={{marginLeft: '5px'}}>
               Save Changes
             </Button>
           </div>

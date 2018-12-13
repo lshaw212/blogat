@@ -9,7 +9,7 @@ import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
 import { fetchPosts, removePost, updatePost } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
-import { Modal, Dropdown, MenuItem } from 'react-bootstrap';
+import { Modal, Dropdown, MenuItem, Button } from 'react-bootstrap';
 
 class Blog extends Component {
 
@@ -115,72 +115,70 @@ class Blog extends Component {
     return(
       (typeof selectedB!=='undefined')?
       <div className="container blog-container">
-      <div id="blog-header-title">
-        <div id="blog-blogname">{selectedB.blogName}</div>
-        <div id="blog-favourite">
-          <i
-            className="fas fa-heart fa-3x"
-            style={favorites.includes(selectedB._id) ? pinkHeart : fadedHeart}
-            onClick={this.favoriteBlog.bind(this, selectedB._id)}
-          />
+        <div id="blog-header-title">
+          <div id="blog-blogname">{selectedB.blogName}</div>
+          <div id="blog-favourite">
+            <i
+              className="fas fa-heart fa-3x"
+              style={favorites.includes(selectedB._id) ? pinkHeart : fadedHeart}
+              onClick={this.favoriteBlog.bind(this, selectedB._id)}
+            />
+          </div>
         </div>
-      </div>
-      <div id="blog-header">
-        <div id="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}>
+        <div id="blog-header">
+          <div id="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}></div> 
         </div>
         <div id="blog-information">
-          <div className="blog-profile">
-            <div id="blog-profile-image" onClick={this.userProfile.bind(this, selectedB.user._id)} style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
-            <div id="blog-blogowner">
-              <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
+            <div className="blog-profile">
+              <div id="blog-profile-image" onClick={this.userProfile.bind(this, selectedB.user._id)} style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
+              <div id="blog-blogowner">
+                <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
+              </div>
             </div>
-          </div>
-          <div id="blog-description">
-            <p>{selectedB.blogDescription}</p>
-            <div id="blog-description-info">
-              <div id="blog-created-date">
-                <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
-              </div> 
-              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-                {this.state.newPost && 
-                  <PostForm
-                    blogId={this.props.match.params.id}
-                    handleClose={this.handleClose}
-                    {...this.props}
-                  />
-                }
-                {this.state.editBlog &&
-                  <EditBlogForm
-                    blogId={this.props.match.params.id}
-                    handleClose={this.handleClose}
-                    blogName={selectedB.blogName}
-                    blogDescription={selectedB.blogDescription}
-                    blogImage={selectedB.blogImage}
-                    {...this.props}
-                  />
-                }
-              </Modal>
+            <div id="blog-description">
+              <p>{selectedB.blogDescription}</p>
+              <div id="blog-description-info">
+                <div id="blog-created-date">
+                  <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
+                </div> 
+                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                  {this.state.newPost && 
+                    <PostForm
+                      blogId={this.props.match.params.id}
+                      handleClose={this.handleClose}
+                      {...this.props}
+                    />
+                  }
+                  {this.state.editBlog &&
+                    <EditBlogForm
+                      blogId={this.props.match.params.id}
+                      handleClose={this.handleClose}
+                      blogName={selectedB.blogName}
+                      blogDescription={selectedB.blogDescription}
+                      blogImage={selectedB.blogImage}
+                      {...this.props}
+                    />
+                  }
+                </Modal>
+              </div>
+              
             </div>
-            
+            <div>
+              <Dropdown id="dropdown-custom-menu">
+              <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
+                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                  <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
+                  <MenuItem divider/>
+                  <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>            
           </div>
-          <div>
-            <Dropdown id="dropdown-custom-menu">
-            <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
-              <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
-                <MenuItem divider/>
-                <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-
-          
-          
-        </div>
-      </div>
+        
       {currentUser === selectedB.user._id && (
         <div id="blog-owner-buttons">
-          <button id="new-post-btn" onClick={this.handleNewPostShow}>Submit a new blog post</button>
+        <Button className="btn-override" bsSize="large" onClick={this.handleNewPostShow}>New Post</Button>
+          {/* <button className="homepageBtn" onClick={this.handleNewPostShow}>Submit a new blog post</button> */}
         </div>
       )}
       <div className="post-list">

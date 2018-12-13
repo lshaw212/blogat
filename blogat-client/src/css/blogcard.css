@@ -22,6 +22,7 @@
           transform-style: preserve-3d;
   -webkit-transition: all .4s linear;
   transition: all .4s linear;
+  /* border: 1px solid black; */
 }
 .blogCard:hover .blogBody {
   -webkit-transform: rotateY(180deg);
@@ -35,8 +36,9 @@
   top: 0;
   overflow: hidden;
   border-radius: 10px;
+  box-shadow: inset 0 0 2px #000000;
   box-shadow: 10px 10px 13px 1px rgba(199,199,199,0.75);
-  /* border: 5px solid white; */
+  /* border: 5px solid black; */
   width: 100%;
   height: 100%;
   color: #212121;
@@ -65,7 +67,7 @@
   flex-direction: column;
   justify-content: flex-end;
   box-shadow: inset 0 0 20px #000000;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   width:100%;
   height:80%;
   background-size: cover;
@@ -74,6 +76,7 @@
 }
 #blog-card-front-text{
   /* box-shadow: inset 0 0 20px #000000; */
+  font-family: 'Montserrat', sans-serif;
   height: 20%;
   font-size: 1.5em;
   display: flex;
