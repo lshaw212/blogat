@@ -31,46 +31,44 @@ class Post extends Component {
     return(
 
       <div id="post-container">
-        <div>
-          <div id="post-title">{title}</div>
-          <div id="post-details">
-            <div className="post-details-text">Article by {username}</div>
-            <div> | </div>
-            <div className="post-details-text">
-              {/* Shorthand text here would break the conditional rendering */}
-              { this.props.date === this.props.updatedAt ? (
-                <Moment fromNow>
-                  {date}
-                </Moment>
-                ):(
-                <div><Moment fromNow>{date}</Moment> (last updated <Moment fromNow>{updatedAt}</Moment>)</div>
-                )}
+        <div id="post-title">{title}</div>
+        <div id="post-details">
+          <div className="post-details-text">Article by {username}</div>
+          <div> | </div>
+          <div className="post-details-text">
+            {/* Shorthand text here would break the conditional rendering */}
+            { this.props.date === this.props.updatedAt ? (
+              <Moment fromNow>
+                {date}
+              </Moment>
+              ):(
+              <div><Moment fromNow>{date}</Moment> (last updated <Moment fromNow>{updatedAt}</Moment>)</div>
+              )}
+          </div>
+          {isCorrectUser && (
+            <div id="post-edit">
+              <Dropdown id="dropdown-custom-menu">
+              <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
+                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                  <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
+                  <MenuItem divider/>
+                  <MenuItem onClick={removePost}>Delete Post</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
+                <EditPostForm
+                  title={title}
+                  content={content}
+                  image={image}
+                  layout={layout}
+                  blogId={blogId}
+                  postId={postId}
+                  handleClose={this.handleClose}
+                />
+              </Modal>
             </div>
-            {isCorrectUser && (
-              <div id="post-edit">
-                <Dropdown id="dropdown-custom-menu">
-                <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
-                  <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                    <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
-                    <MenuItem divider/>
-                    <MenuItem onClick={removePost}>Delete Post</MenuItem>
-                  </Dropdown.Menu>
-                </Dropdown>
-                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>
-                  <EditPostForm
-                    title={title}
-                    content={content}
-                    image={image}
-                    layout={layout}
-                    blogId={blogId}
-                    postId={postId}
-                    handleClose={this.handleClose}
-                  />
-                </Modal>
-              </div>
             )}
           </div>
-        </div>
         {layout === 1 && (
           <div>
             <div className="post-content">{content}</div>
@@ -94,45 +92,9 @@ class Post extends Component {
             <div className="post-content">{content}</div>
           </div>
         )}
-        
       </div>
-  
-  
-      // <div>
-      //   <hr/>
-      //   <p id="post-title">{title}</p>
-      //   <div>
-      //     <p className="post-content">{content}</p>
-      //     <p>Article by {username}</p>
-      //     <span>
-      //       <Moment format="Do MMM YYYY">
-      //         {date}
-      //       </Moment>
-      //     </span>
-      //   </div>
-      //   {isCorrectUser && (
-      //     <div>
-      //       <a onClick={removePost} className="btn btn-danger">delete post</a>
-      //       <Modal triggerText='Edit Post' postId={postId} blogId={blogId} mProps={editPostProps} btnText='Edit Post' btnClass="c-btn" />
-      //     </div>
-      //   )}
-      // </div>
     )
   }
 }
-
-// const Post =() => {
-  
-//   const editPostProps = {
-//     ariaLabel: 'A label describing the Modal\'s current content',
-//     editPost: true,
-//     title: title,
-//     content: content,
-//     image: image,
-//     layout: layout
-//   };
-
-  
-// }
 
 export default Post;

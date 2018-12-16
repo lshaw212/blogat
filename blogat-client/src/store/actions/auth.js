@@ -1,5 +1,5 @@
 import { apiCall, setTokenHeader } from "../../services/api";
-import { SET_CURRENT_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS, SHOW_FAVORITE_BLOGS } from "../actionTypes";
+import { SET_CURRENT_USER, UPDATE_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS, SHOW_FAVORITE_BLOGS } from "../actionTypes";
 import { addError, removeError } from "./errors";
 
 export function setAuthorizationToken(token){
@@ -10,6 +10,13 @@ export function setCurrentUser(user){
   return {
     type: SET_CURRENT_USER,
     user
+  };
+}
+
+export function updateCurrentUserImage(data){
+  return {
+    type: UPDATE_USER,
+    data
   };
 }
 

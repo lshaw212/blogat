@@ -9,15 +9,16 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 3em;
 }
-.post-details-text{
-  font-size: 0.75em;
-  opacity: 0.75;
-}
 #post-details{
   display:flex;
   align-items: center;
   /* font-size: 0.75em; */
 }
+.post-details-text{
+  font-size: 0.75em;
+  opacity: 0.75;
+}
+
 #post-edit{
   margin-left: 5px;
 }

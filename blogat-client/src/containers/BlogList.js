@@ -138,7 +138,7 @@ function mapStateToProps(state){
   return {
     blogs: state.blogs|| [],
     currentUser: state.currentUser.user,
-    favorites: state.currentUser.favorites || [],
+    favorites: state.currentUser.user.favorites || [],
     showFavourites: state.currentUser.showFavorites
   };
 }

@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer id="footer">
-    <Link to="/aboutme">
-      <div>About me</div>
-    </Link>
+    <div id="footer-flex">
+      <div id="footer-copyright">© 2018-2019 Lewis Shaw. All rights reserved.</div>
+      <Link to="/aboutme">
+        <div>About</div>
+      </Link>
+    </div>
   </footer>
 )
 

@@ -5,6 +5,7 @@ import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
 import { Button, InputGroup } from 'react-bootstrap';
 import { apiCall } from "../services/api";
+import { updateCurrentUserImage } from "../store/actions/auth";
 
 class EditProfileForm extends Component {
   constructor(props){
@@ -33,7 +34,6 @@ class EditProfileForm extends Component {
     await this.githubCheck(this.state.github);
     // updateProfile
     await this.updateUser(this.state.profileImageUrl,this.state.bio,this.state.twitter,this.state.linkedin,this.state.github,this.state.emailToggle);
-    await this.testUpdate();
   }
 
    profileImageChecker(str){
@@ -65,24 +65,13 @@ class EditProfileForm extends Component {
     let user = await apiCall("put", `/api/user/${user_id}`, {profileImageUrl,bio,twitter,linkedin,github,emailToggle})
       .then(res => {
         this.props.handleClose();
+        this.props.updateCurrentUserImage(this.state.profileImageUrl);
         return res;
       })
       .catch(err => {
         console.log(err);
       });
       this.props.updateProfile(user);
-  }
-
-  testUpdate(){
-    setAuthorizationToken(localStorage.jwtToken);
-    try {
-      console.log("yes");
-      console.log(jwtDecode(localStorage.jwtToken));
-      this.props.setCurrentUser(jwtDecode(localStorage.jwtToken));
-    } catch (e) {
-      console.log("no");
-      this.props.setCurrentUser({});
-    }
   }
 
   render(){
@@ -200,4 +189,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { removeError, setAuthorizationToken, setCurrentUser })(EditProfileForm);
+export default connect(mapStateToProps, { updateCurrentUserImage, removeError, setAuthorizationToken, setCurrentUser })(EditProfileForm);

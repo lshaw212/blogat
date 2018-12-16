@@ -38,12 +38,12 @@
 #profile-name-and-edit i{
   transition: all 300ms ease;
 }
+#profile-name-and-edit i:hover{
+  opacity: 0.75;
+}
 #profile-username{
   font-family: 'Montserrat', sans-serif;
   font-size: 2em;
-}
-#profile-name-and-edit i:hover{
-  opacity: 0.75;
 }
 #profile-bio-info{
   /* background: hsl(0,0%,97%); */
@@ -75,6 +75,7 @@
   background-color: violet;
 }
 
+/* rename this */
 .tab-pane-test{
   padding: 5px;
   height: 500px;

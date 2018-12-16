@@ -6,14 +6,15 @@ exports.signin = async function(req,res,next){
     let user = await db.User.findOne({
       email: req.body.email
     });
-    let { id, username, profileImageUrl } = user;
+    let { id, username, profileImageUrl, favorites } = user;
     let isMatch = await user.comparePassword(req.body.password);
     if(isMatch){
       let token = jwt.sign(
         {
           id,
           username,
-          profileImageUrl
+          profileImageUrl,
+          favorites
         },
         process.env.SECRET_KEY
       );
@@ -21,6 +22,7 @@ exports.signin = async function(req,res,next){
         id,
         username,
         profileImageUrl,
+        favorites,
         token
       });
     } else {
@@ -42,12 +44,13 @@ exports.signin = async function(req,res,next){
 exports.signup = async function(req, res, next){
   try {
     let user = await db.User.create(req.body);
-    let { id, username, profileImageUrl } = user;
+    let { id, username, profileImageUrl, favorites } = user;
     let token = jwt.sign(
       {
         id,
         username,
-        profileImageUrl
+        profileImageUrl,
+        favorites
       },
       process.env.SECRET_KEY
     );
@@ -56,6 +59,7 @@ exports.signup = async function(req, res, next){
       id,
       username,
       profileImageUrl,
+      favorites,
       token
     });
   } catch(err) {

@@ -90,65 +90,63 @@ class NavbarComponent extends Component {
     
     return(
       <Navbar collapseOnSelect>
-      <div className="navbar-main">
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/" id="navbar-title">
-                Blog@
-              </Link>   
-            </Navbar.Brand>
-            <Navbar.Toggle/>
-          </Navbar.Header>
-          {(isDesktop) &&
-            <Nav>
-              <Navbar.Form>
-                {(pathname.includes('blogs')) && 
-                  <div style={{display:"flex", alignItems:"center"}}>
-                    <SearchBox />
-                    <FavouritesIcon
-                      showFavourites={this.showFavourites.bind(this)}
-                      favorite={showFavs ? pinkHeart : fadedHeart}
-                    />
-                  </div>
-                  
-                }
-                
-              </Navbar.Form>
-            </Nav>
-          }
-          {this.props.currentUser.isAuthenticated ? (
-            <Nav pullRight className="navbar-testing" >
-              {isDesktop ? (
-                  <ProfileButton
-                    imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
-                    profileClicked={this.profileClicked.bind(this)}
-                    userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
-                    newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
-                    logout={this.logout.bind(this)}
-                  />
-                ) : (
-                  <CollapseItems
-                    pathname={pathname}
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/" id="navbar-title">
+              Blog@
+            </Link>   
+          </Navbar.Brand>
+          <Navbar.Toggle/>
+        </Navbar.Header>
+        {(isDesktop) &&
+          <Nav>
+            <Navbar.Form>
+              {(pathname.includes('blogs')) && 
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <SearchBox />
+                  <FavouritesIcon
                     showFavourites={this.showFavourites.bind(this)}
                     favorite={showFavs ? pinkHeart : fadedHeart}
-                    userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
-                    newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
-                    logout={this.logout.bind(this)}
                   />
-                )}
-              </Nav>
-          ) : (
-            <LoginItems 
-              handleLogin={this.handleLoginShow}
-              handleSignup={this.handleSignupShow}
-              handleRegister={this.handleRegister}
-              modalShow={show}
-              modalHide={this.handleClose}
-              login={login}
-              signup={signup}
-            />
-          )}
-          </div>
+                </div>
+                
+              }
+              
+            </Navbar.Form>
+          </Nav>
+        }
+        {this.props.currentUser.isAuthenticated ? (
+          <Nav pullRight className="navbar-testing" >
+            {isDesktop ? (
+                <ProfileButton
+                  imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  
+                  profileClicked={this.profileClicked.bind(this)}
+                  userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
+                  newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
+                  logout={this.logout.bind(this)}
+                />
+              ) : (
+                <CollapseItems
+                  pathname={pathname}
+                  showFavourites={this.showFavourites.bind(this)}
+                  favorite={showFavs ? pinkHeart : fadedHeart}
+                  userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
+                  newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
+                  logout={this.logout.bind(this)}
+                />
+              )}
+            </Nav>
+        ) : (
+          <LoginItems 
+            handleLogin={this.handleLoginShow}
+            handleSignup={this.handleSignupShow}
+            handleRegister={this.handleRegister}
+            modalShow={show}
+            modalHide={this.handleClose}
+            login={login}
+            signup={signup}
+          />
+        )}
       </Navbar>
     );
   }

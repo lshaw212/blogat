@@ -1,35 +1,12 @@
-/* Navbar */
-
-.navbar{
-  margin-bottom: 1rem;
-  /* background-color: grey; */
-}
-
-.navbar a {
-  font-weight: bold;
-  color: rgb(160, 159, 159);
-}
-
-.navbar a:hover {
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-}
-.navbar-auth{
-  /* font-family: 'Montserrat', sans-serif; */
-  /* font-size:1.25em; */
-}
-
-ul.nav.navbar-nav li {
-  /* margin: 0 0.5rem; */
-}
+/* Navbar Properties */
 .navbar-profile{
+  cursor: pointer;
   height: 50px;
   width: 50px;
   border-radius: 50px;
   box-shadow: inset 0 0 2px #000000;
   position: relative;
-  background-size:     cover;                      /* <------ */
+  background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
   transition: all 300ms ease;  
@@ -40,7 +17,7 @@ ul.nav.navbar-nav li {
 #navbar-title{
   font-family: 'Satisfy', cursive;
   font-weight: normal;
-  font-size: 2.5em;
+  font-size: 2.3em;
   text-decoration: none !important;
 }
 .icon-spacing{
@@ -52,6 +29,3 @@ ul.nav.navbar-nav li {
 .icon-spacing:hover{
   transform: scale(1.2);
 }
-/* #navbar-title:hover{
-  text-decoration: none !important;
-} */

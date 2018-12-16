@@ -1,34 +1,22 @@
 import React from "react";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
 import AuthForm from "../components/AuthForm";
-import withAuth from "../hocs/withAuth";
 import Homepage from "../components/Homepage";
 import Blog from "../components/Blog";
 import Profile from "../components/Profile";
 import BlogForm from "./BlogForm";
 import BlogList from "./BlogList";
-import Navbar from "./Navbar";
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import AboutMe from "../components/AboutMe";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
-  const timeout = { enter: 300, exit: 200 }
   console.log(currentUser);
   return (
-    <div className="transition-group Site-content">
-    <TransitionGroup className="transition-group">
-    <CSSTransition
-      key={location.key}
-      timeout={timeout}
-      classNames="fade"
-      appear
-      >
-      <div className="test-fix">
-        <section className="route-section">
+    <div className="Site-content">
+      <section className="route-section">
         <Switch location={location}>
           <Route exact path="/" render={props => <Homepage currentUser={currentUser} {...props}/>}/>
           <Route exact path="/blogs" component={BlogList} />
@@ -62,10 +50,7 @@ const Main = props => {
           <Route path="/user/:id" component={(Profile)}/>
           <Route path="/aboutme" component={(AboutMe)}/>
         </Switch>
-        </section>
-        </div>
-      </CSSTransition>
-      </TransitionGroup>
+      </section>
     </div>
   );
 }
