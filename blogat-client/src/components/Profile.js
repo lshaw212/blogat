@@ -11,6 +11,7 @@ class Profile extends Component {
       user: {},
       isLoading: false,
       show: false,
+      userFavourites:[]
     }
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -31,16 +32,18 @@ class Profile extends Component {
 
   async loadUser(){
     let id = this.props.match.params.id;
-    let user = await apiCall("get", `/api/auth/user/${id}`)
+    let user = await apiCall("get", `/api/user/${id}`)
     .then(res => {
       return res;
     })
     .catch(err => {
       console.log(err)
     });
+
+    let userFavourites = await apiCall("get", `/api/user/${id}/fav`);
     
     this.setState({user});
-    console.log(this.state.user);
+    this.setState({userFavourites});
     this.setState({isLoading: true});
   }
   updateProfile(user){
@@ -61,7 +64,7 @@ class Profile extends Component {
   }
 
   render(){
-    const { user, isLoading } = this.state;
+    const { user, isLoading, userFavourites } = this.state;
 
     const tooltip = (
       <Tooltip>
@@ -124,6 +127,7 @@ class Profile extends Component {
           <div id="profile-blogs">
             <ProfileBlogs
               blogs={user.blogs}
+              favourites={userFavourites}
               goBlog={this.goBlog.bind(this)}
             />
           </div>

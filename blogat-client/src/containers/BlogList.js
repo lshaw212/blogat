@@ -4,7 +4,7 @@ import BlogItem from "../components/BlogItem";
 import Loading from "../components/Loading";
 import NoResult from "../components/NoResult";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
-import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
+import { favoriteBlog } from "../store/actions/auth";
 import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
 import { Flipper, Flipped } from 'react-flip-toolkit';
@@ -14,15 +14,6 @@ import qs from "qs";
 
 const defaultState = {
   filter: ""
-}
-
-const styles = {
-  fadedHeart:{
-    color:"#ea4c89"
-  },
-  pinkHeart:{
-    color:"#ea4c89"
-  }
 }
 
 class BlogList extends Component {
@@ -39,9 +30,8 @@ class BlogList extends Component {
     //debugger;
     this.props.fetchPosts();
     this.props.fetchBlogs();
-    this.props.fetchFavorites();
-    
-    
+    // let favourites
+    // this.props.fetchFavorites();  
   }
 
   updateQueryParam = obj => {
@@ -72,8 +62,8 @@ class BlogList extends Component {
   render(){
     const { blogs, currentUser, favorites, showFavourites } = this.props;
     // const { fadedHeart, pinkHeart } = styles;
-    const fadedHeart = { opacity: "0.75",color:"black"}
-    const pinkHeart = { color:"#ea4c89"}
+    const fadedHeart = { opacity: "0.25",color:"black"}
+    const fullHeart = { opacity: "0.85",color:"black"}
     const queryParamState = {
       ...defaultState,
       ...qs.parse(this.props.location.search.replace("?", ""))
@@ -84,10 +74,14 @@ class BlogList extends Component {
     } else {
       favList = (blogs)
     }
-    
+    // console.log(favorites);
+    // console.log()
+
+    // const blogList = (favList)
+    //   .filter(({blogName}) => blogName.includes(queryParamState.filter));
 
     const blogList = (favList)
-      .filter(({blogName}) => blogName.includes(queryParamState.filter));
+      .filter(({blogName}) => blogName.toLowerCase().includes(queryParamState.filter));
 
       // console.log(this.props.currentUser);
       // console.log(this.props.history.location);
@@ -116,7 +110,7 @@ class BlogList extends Component {
                       profileImage={b.user.profileImageUrl}
                       favToggle={this.favoriteBlog.bind(this, b._id)}
                       selectBlog={this.selectBlog.bind(this, b._id)}
-                      favorite={favorites.includes(b._id) ? pinkHeart : fadedHeart}
+                      favorite={favorites.includes(b._id) ? fullHeart : fadedHeart}
                       isCorrectUser={currentUser.id === b.user._id}
                       flippedProps={flippedProps}
                       navigate={this.navigate}
@@ -144,4 +138,4 @@ function mapStateToProps(state){
 }
 
 
-export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts, favoriteBlog, fetchFavorites })(BlogList));
+export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts, favoriteBlog })(BlogList));

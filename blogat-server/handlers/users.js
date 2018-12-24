@@ -24,10 +24,12 @@ exports.updateUser = async function(req, res, next){
 exports.getFavoriteBlogs = async function(req,res,next){
   try {
     let favBlogs = await db.User.find({_id: req.params.user_id});
+    let favBlogs2 = await db.Blog.find({_id: favBlogs[0].favorites});
     // console.log(this.favBlogs.favorites);
-    // console.log(favBlogs);
     // console.log(favBlogs[0].favorites);
-    return res.status(200).json(favBlogs[0].favorites);
+    console.log(favBlogs2);
+    // console.log(favBlogs[0].favorites);
+    return res.status(200).json(favBlogs2);
   } catch(err) {
     return next(err);
   }
@@ -72,6 +74,7 @@ exports.favorite = async function(req, res, next){
       console.log("Favorite blog has been removed");
     }
     let updatedUser = await db.User.find({_id: req.params.user_id});
+    console.log(updatedUser[0].favorites);
     return res.status(200).json(updatedUser[0].favorites);
     // return res.status(200);
   } catch(err) {
@@ -80,5 +83,23 @@ exports.favorite = async function(req, res, next){
       status: 400,
       message: err.message
     });
+  }
+}
+
+exports.getUser = async function(req, res, next){
+  try {
+    let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio email')
+      .populate("blogs", {
+        blogName: true,
+        blogImage: true,
+        blogDescription: true
+      })
+      .populate("favorites", {
+        // doesn't work yet
+        blogName: true
+      });
+    return res.status(200).json(user[0]);
+  } catch {
+    return next(err);
   }
 }

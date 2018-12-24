@@ -81,19 +81,21 @@ export const favoriteBlog = (blogId) => (dispatch, getState) => {
   });
 };
 
-export const fetchFavorites = () => (dispatch, getState) => {
-  let { currentUser } = getState();
-  const userId = currentUser.user.id;
-  return new Promise((resolve, reject) => {
-    return apiCall("get", `/api/user/${userId}/fav`)
-      .then(res => {
-        resolve();
-        dispatch(getFavoriteBlogs(res));
-      })
-      .catch(err => {
-        dispatch(addError(err.message));
-        console.log(err);
-        reject();
-      });
-  });
-}
+// export const fetchFavorites = () => (dispatch, getState) => {
+//   let { currentUser } = getState();
+//   const userId = currentUser.user.id;
+//   console.log("fetchFav");
+//   return new Promise((resolve, reject) => {
+//     return apiCall("get", `/api/user/${userId}/fav`)
+//       .then(res => {
+//         console.log(res);
+//         resolve();
+//         dispatch(getFavoriteBlogs(res));
+//       })
+//       .catch(err => {
+//         dispatch(addError(err.message));
+//         console.log(err);
+//         reject();
+//       });
+//   });
+// }

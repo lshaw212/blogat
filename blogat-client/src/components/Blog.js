@@ -6,7 +6,7 @@ import PostForm from "../containers/PostForm";
 import EditBlogForm from "../containers/EditBlogForm";
 import Moment from "react-moment";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
-import { favoriteBlog, fetchFavorites } from "../store/actions/auth";
+import { favoriteBlog } from "../store/actions/auth";
 import { fetchPosts, removePost, updatePost } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
 import { Modal, Dropdown, MenuItem, Button } from 'react-bootstrap';
@@ -90,9 +90,9 @@ class Blog extends Component {
 
   render(){
     const { blogs, posts, currentUser, removePost, favorites } = this.props;
-    const fadedHeart = { opacity:"0.75", color:"black"}
-    const pinkHeart = { opacity:"0.75", color:"#ea4c89"}
-
+    const fadedHeart = { opacity: "0.25",color:"black"}
+    const fullHeart = { opacity: "0.85",color:"black"}
+    
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -120,7 +120,7 @@ class Blog extends Component {
           <div id="blog-favourite">
             <i
               className="fas fa-heart fa-3x"
-              style={favorites.includes(selectedB._id) ? pinkHeart : fadedHeart}
+              style={favorites.includes(selectedB._id) ? fullHeart : fadedHeart}
               onClick={this.favoriteBlog.bind(this, selectedB._id)}
             />
           </div>
@@ -197,7 +197,7 @@ function mapStateToProps(state){
     blogs: state.blogs,
     posts: state.posts,
     currentUser: state.currentUser.user.id,
-    favorites: state.currentUser.favorites || []
+    favorites: state.currentUser.user.favorites || []
   };
 }
-export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost, updatePost, deleteBlog, favoriteBlog, fetchFavorites })(Blog));
+export default withRouter(connect(mapStateToProps, { fetchPosts, fetchBlogs, removePost, updatePost, deleteBlog, favoriteBlog })(Blog));

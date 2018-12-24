@@ -13,15 +13,13 @@ export default (state = DEFAULT_STATE, action) => {
         // turn empty object into false or if there are keys, true
         isAuthenticated: !!Object.keys(action.user).length,
         user: action.user,
-        favorites: action.user.favorites || [],
         showFavorites: false
       };
     case UPDATE_USER:
       return {...state, user:{...state.user, profileImageUrl: action.data}}
     case FAVORITE_BLOG:
+      // debugger;
       return {...state, user:{...state.user, favorites:action.blog}};
-    case GET_FAVORITE_BLOGS:
-      return {...state, user:{...state.user, favorites:action.blogs}};
     case SHOW_FAVORITE_BLOGS:
       return {...state, showFavorites:!action.boolean}
     default:

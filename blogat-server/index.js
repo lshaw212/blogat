@@ -74,6 +74,15 @@ app.get("/api/posts", async function(req,res,next){
   }
 })
 
+app.get("/api/favourites/:user_id", async function(req,res,next){
+  try {
+    let favs = await db.Blog.find({favorites: req.params.user_id});
+    return res.status(200).json(favs);
+  } catch(err) {
+    return next(err);
+  }
+})
+
 
 app.use(function(req,res,next){
   let err = new Error("Not Found");

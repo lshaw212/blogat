@@ -16,7 +16,7 @@ const Favourite =({blogName}) => (
   </div>
 )
 
-const ProfileBlogs = ({blogs, goBlog}) => (
+const ProfileBlogs = ({blogs, favourites, goBlog}) => (
   <Tab.Container id="left-tabs-example" defaultActiveKey="first">
     <Row className="clearfix">
       {/* <Col sm={4}> */}
@@ -42,7 +42,18 @@ const ProfileBlogs = ({blogs, goBlog}) => (
             </div>
           </Tab.Pane>
           <Tab.Pane eventKey="second">
-            <div className="tab-pane-test">Hey</div>
+            <div className="tab-pane-test">
+            {favourites.map(b => (
+                <Blog
+                  key={b._id}
+                  blogName={b.blogName}
+                  blogDescription={b.blogDescription}
+                  blogImage={b.blogImage}
+                  goBlog={goBlog}
+                  blogId={b._id}
+                />
+              ))}
+            </div>
           {/* {blogs.map(b => (
             <Favourite blogName={b} id={b._id}/>
           ))} */}

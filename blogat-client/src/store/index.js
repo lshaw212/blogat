@@ -15,8 +15,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export function configureStore(){
   const store = createStore(
-    persistedReducer,
-    // rootReducer,
+    // persistedReducer,
+    rootReducer,
     compose(
       applyMiddleware(thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f

@@ -85,8 +85,8 @@ class NavbarComponent extends Component {
   render(){
     const {isDesktop, show, login, signup, showFavs} = this.state;
     const pathname = (this.props.history.location.pathname);
-    const fadedHeart = { color:"black"}
-    const pinkHeart = { color:"#ea4c89"}
+    const fadedHeart = { opacity: "0.25",color:"black"}
+    const fullHeart = { opacity: "0.85",color:"black"}
     
     return(
       <Navbar collapseOnSelect>
@@ -106,7 +106,7 @@ class NavbarComponent extends Component {
                   <SearchBox />
                   <FavouritesIcon
                     showFavourites={this.showFavourites.bind(this)}
-                    favorite={showFavs ? pinkHeart : fadedHeart}
+                    favorite={showFavs ? fullHeart : fadedHeart}
                   />
                 </div>
                 
@@ -129,7 +129,7 @@ class NavbarComponent extends Component {
                 <CollapseItems
                   pathname={pathname}
                   showFavourites={this.showFavourites.bind(this)}
-                  favorite={showFavs ? pinkHeart : fadedHeart}
+                  favorite={showFavs ? fullHeart : fadedHeart}
                   userProfile={this.userProfile.bind(this, this.props.currentUser.user.id)}
                   newBlog={this.newBlog.bind(this, this.props.currentUser.user.id)}
                   logout={this.logout.bind(this)}
