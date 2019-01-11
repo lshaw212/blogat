@@ -31,8 +31,9 @@ class Profile extends Component {
   }
 
   async loadUser(){
+    console.log("LoadUser");
     let id = this.props.match.params.id;
-    let user = await apiCall("get", `/api/user/${id}`)
+    let user = await apiCall("get", `/api/users/${id}`)
     .then(res => {
       return res;
     })
@@ -40,7 +41,7 @@ class Profile extends Component {
       console.log(err)
     });
 
-    let userFavourites = await apiCall("get", `/api/user/${id}/fav`);
+    let userFavourites = await apiCall("get", `/api/favourites/${id}`);
     
     this.setState({user});
     this.setState({userFavourites});
@@ -58,7 +59,7 @@ class Profile extends Component {
     console.log(blogId);
     // this.setState({blogList: this.props.blogs})
     this.props.history.push({
-      pathname:`/blogs/${blogId}`,
+      pathname:`/blog/${blogId}`,
       state: {blogId: blogId}  
     });
   }
@@ -73,7 +74,7 @@ class Profile extends Component {
     )
     return(
       (isLoading)?
-      <div className="container">
+      <div className="container profile-container">
         <div id="profile-layout">
           <div id="profile-information">
             <div id="profile-picture" style={{backgroundImage: `url(${user.profileImageUrl})`}}></div>

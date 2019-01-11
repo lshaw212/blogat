@@ -58,7 +58,8 @@ width: 66%;
 }
 .form-modal{
   padding: 10px;
-  border-top: 5px solid #337ab7;
+  /* border-top: 5px solid #337ab7; */
+  border-top: 5px solid #a3a3a3;
   /* opacity: 0.75; */
 }
 .auth-form-input{

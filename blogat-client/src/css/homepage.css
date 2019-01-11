@@ -177,3 +177,8 @@
 	25% { opacity: 0 }
 	100% { opacity: 0 }
 }
+@media only screen and (max-width: 991px){
+	#titleText{
+		font-size: 10em;
+	}
+}

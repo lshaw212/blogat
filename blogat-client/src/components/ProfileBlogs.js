@@ -3,9 +3,16 @@ import { Tab, Row, Nav, NavItem } from "react-bootstrap";
 
 const Blog =({blogName, blogDescription, blogImage, blogId, goBlog}) => (
   <div className="tab-blog" onClick={goBlog.bind(this, blogId)} >
+    <div className="tab-blog-info">
+      <div className="tab-blog-name">{blogName}</div>
+      <div className="tab-blog-desc">"{blogDescription}"</div>
+    </div>
+    <div className="tab-blog-test">
+      <div className="tab-blog-image" style={{backgroundImage: `url(${blogImage})`}}></div>
+    </div>
     
-    <div className="tab-blog-name">{blogName}</div>
-    <div className="tab-blog-desc">{blogDescription}</div>
+    
+    
     {/* <div className="tab-blog-image" style={{backgroundImage: `url(${blogImage})`}}></div> */}
   </div>
 )
@@ -28,7 +35,7 @@ const ProfileBlogs = ({blogs, favourites, goBlog}) => (
       {/* <Col sm={8}> */}
         <Tab.Content animation>
           <Tab.Pane eventKey="first">
-            <div className="tab-pane-test">
+            <div className="tab-pane-container">
               {blogs.map(b => (
                 <Blog
                   key={b._id}
@@ -42,7 +49,7 @@ const ProfileBlogs = ({blogs, favourites, goBlog}) => (
             </div>
           </Tab.Pane>
           <Tab.Pane eventKey="second">
-            <div className="tab-pane-test">
+            <div className="tab-pane-container">
             {favourites.map(b => (
                 <Blog
                   key={b._id}

@@ -136,7 +136,7 @@ class Blog extends Component {
               </div>
             </div>
             <div id="blog-description">
-              <p>{selectedB.blogDescription}</p>
+              <div id="blog-description-text">{selectedB.blogDescription}</div>
               <div id="blog-description-info">
                 <div id="blog-created-date">
                   <div>Last Update: <Moment format="Do MMM YYYY">{selectedB.updatedAt}</Moment></div>
@@ -163,16 +163,18 @@ class Blog extends Component {
               </div>
               
             </div>
-            <div>
-              <Dropdown id="dropdown-custom-menu">
-              <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
-                <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                  <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
-                  <MenuItem divider/>
-                  <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>            
+            {currentUser === selectedB.user._id && (
+              <div>
+                <Dropdown id="dropdown-custom-menu" pullRight>
+                <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
+                  <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
+                    <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
+                    <MenuItem divider/>
+                    <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            )}           
           </div>
         
       {currentUser === selectedB.user._id && (

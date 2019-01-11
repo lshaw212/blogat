@@ -48,7 +48,7 @@ class BlogList extends Component {
     e.preventDefault();
     // this.setState({blogList: this.props.blogs})
     this.props.history.push({
-      pathname:`/blogs/${id}`,
+      pathname:`/blog/${id}`,
       state: {id: id}  
     });
   }

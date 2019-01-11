@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 const db = require("./models");
 const authRoutes = require("./routes/auth");
+// const updateRoutes = require("./routes/update");
 const userRoutes = require("./routes/users");
 const blogRoutes = require("./routes/blogs");
 const postRoutes = require("./routes/posts");
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use("/api/auth", authRoutes);
+// app.use("/api/update", loginRequired, ensureCorrectUser, updateRoutes);
 app.use("/api/user/:user_id", loginRequired, ensureCorrectUser, userRoutes);
 app.use("/api/users/:user_id/blogs",loginRequired, ensureCorrectUser, blogRoutes);
 app.use("/api/users/:user_id/blogs/:blog_id/posts",loginRequired, ensureCorrectUser, postRoutes);
@@ -76,12 +78,35 @@ app.get("/api/posts", async function(req,res,next){
 
 app.get("/api/favourites/:user_id", async function(req,res,next){
   try {
-    let favs = await db.Blog.find({favorites: req.params.user_id});
-    return res.status(200).json(favs);
+    let favBlogs = await db.User.find({_id: req.params.user_id});
+    let favBlogs2 = await db.Blog.find({_id: favBlogs[0].favorites});
+    // console.log(this.favBlogs.favorites);
+    // console.log(favBlogs[0].favorites);
+    // console.log(favBlogs2);
+    // console.log(favBlogs[0].favorites);
+    return res.status(200).json(favBlogs2);
   } catch(err) {
     return next(err);
   }
+});
+app.get("/api/users/:user_id", async function(req,res,next){
+  try {
+    let user = await db.User.find({_id: req.params.user_id}, 'username profileImageUrl blogs favorites social bio email')
+      .populate("blogs", {
+        blogName: true,
+        blogImage: true,
+        blogDescription: true
+      })
+      .populate("favorites", {
+        // doesn't work yet
+        blogName: true
+      });
+    return res.status(200).json(user[0]);
+  } catch {
+    return next(err);
+  }
 })
+
 
 
 app.use(function(req,res,next){

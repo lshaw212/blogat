@@ -46,7 +46,7 @@ const Main = props => {
             );
           }}/>
           <Route path="/users/:userId/blog/new" component={(BlogForm)}/>
-          <Route path="/blogs/:id" component={(Blog)}/>
+          <Route path="/blog/:id" component={(Blog)}/>
           <Route path="/user/:id" component={(Profile)}/>
           <Route path="/aboutme" component={(AboutMe)}/>
         </Switch>

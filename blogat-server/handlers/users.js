@@ -22,17 +22,7 @@ exports.updateUser = async function(req, res, next){
 }
 
 exports.getFavoriteBlogs = async function(req,res,next){
-  try {
-    let favBlogs = await db.User.find({_id: req.params.user_id});
-    let favBlogs2 = await db.Blog.find({_id: favBlogs[0].favorites});
-    // console.log(this.favBlogs.favorites);
-    // console.log(favBlogs[0].favorites);
-    console.log(favBlogs2);
-    // console.log(favBlogs[0].favorites);
-    return res.status(200).json(favBlogs2);
-  } catch(err) {
-    return next(err);
-  }
+  console.log("rework");
 };
 
 exports.favorite = async function(req, res, next){
@@ -74,7 +64,7 @@ exports.favorite = async function(req, res, next){
       console.log("Favorite blog has been removed");
     }
     let updatedUser = await db.User.find({_id: req.params.user_id});
-    console.log(updatedUser[0].favorites);
+    // console.log(updatedUser[0].favorites);
     return res.status(200).json(updatedUser[0].favorites);
     // return res.status(200);
   } catch(err) {
