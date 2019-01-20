@@ -36,5 +36,17 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lshaw212/blogat.git"
+  },
+  "author": "Lewis Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lshaw212/blogat/issues"
+  },
+  "homepage": "https://github.com/lshaw212/blogat#readme"
 }
