@@ -11,7 +11,7 @@ const userRoutes = require("./routes/users");
 const blogRoutes = require("./routes/blogs");
 const postRoutes = require("./routes/posts");
 const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
-const PORT = 7575;
+const PORT = process.env.PORT || 7575;
 
 app.use(cors());
 app.use(bodyParser.json());
