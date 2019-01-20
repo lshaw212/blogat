@@ -9,6 +9,7 @@ import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
 import jwtDecode from "jwt-decode";
 import { persistStore } from "redux-persist";
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import ScrollToTop from "../hocs/ScrollToTop";
 
 
 
@@ -28,11 +29,13 @@ const App = () => (
   <Provider store={store}>
     {/* <PersistGate loading={null} persistor={persistor}> */}
       <Router>
-        <div className="Site">
-          <Navbar/>
-          <Main/>
-          <Footer/>
-        </div> 
+        <ScrollToTop>
+          <div className="Site">
+            <Navbar/>
+            <Main/>
+            <Footer/>
+          </div> 
+        </ScrollToTop>
       </Router>
     {/* </PersistGate> */}
   </Provider>
