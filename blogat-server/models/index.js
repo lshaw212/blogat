@@ -8,5 +8,3 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogat", {
 module.exports.User = require("./user");
 module.exports.Blog = require("./blogs");
 module.exports.Post = require("./posts");
-
-// mongodb://localhost/blogat
