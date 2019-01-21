@@ -8,4 +8,4 @@ import { unregister } from './registerServiceWorker';
 unregister();
 
 ReactDOM.render(<App/>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

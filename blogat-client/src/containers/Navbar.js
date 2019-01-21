@@ -52,7 +52,6 @@ class NavbarComponent extends Component {
     this.handleSignupShow();
   }
   showFavourites(){
-    // console.log(this.props.currentUser.showFavorites);
     this.setState({showFavs: !this.state.showFavs})
     this.props.showFavoriteBlogs(this.props.currentUser.showFavorites);
   }

@@ -44,7 +44,6 @@ export function logout(){
 }
 
 export function authUser(type, userData){
-  console.log(userData);
   return dispatch => {
     // wrap a thunk in a promise so we can wait for the API call
     return new Promise((resolve, reject) => {
@@ -80,22 +79,3 @@ export const favoriteBlog = (blogId) => (dispatch, getState) => {
       });
   });
 };
-
-// export const fetchFavorites = () => (dispatch, getState) => {
-//   let { currentUser } = getState();
-//   const userId = currentUser.user.id;
-//   console.log("fetchFav");
-//   return new Promise((resolve, reject) => {
-//     return apiCall("get", `/api/user/${userId}/fav`)
-//       .then(res => {
-//         console.log(res);
-//         resolve();
-//         dispatch(getFavoriteBlogs(res));
-//       })
-//       .catch(err => {
-//         dispatch(addError(err.message));
-//         console.log(err);
-//         reject();
-//       });
-//   });
-// }

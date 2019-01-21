@@ -44,15 +44,17 @@ class AuthForm extends Component {
         // if(authType == "signin")
         //   this.props.fetchFavorites();
         //this.props.history.push("/");
-        console.log("fix this area");
+        // fix this area
       }).catch(() =>{
-        console.log("No");
+        // No
         return;
       });
   };
 
   skip = e => {
-    console.log("skip here");
+    this.props.history.push({
+      pathname:`/blogs`
+    });
   }
 
   render(){

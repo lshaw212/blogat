@@ -30,7 +30,7 @@ class Blog extends Component {
     // Fetch blogs
     // this.props.fetchBlogs();
     // this.props.fetchPosts();
-    console.log("componentDidMount");
+    // componentDidMount
     
   }
 

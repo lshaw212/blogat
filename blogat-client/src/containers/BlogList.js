@@ -54,7 +54,6 @@ class BlogList extends Component {
   }
   async favoriteBlog(id, e){
     e.stopPropagation();
-    console.log("boo");
     await this.props.favoriteBlog(id);
     await this.props.fetchBlogs();
   }
@@ -74,17 +73,12 @@ class BlogList extends Component {
     } else {
       favList = (blogs)
     }
-    // console.log(favorites);
-    // console.log()
 
     // const blogList = (favList)
     //   .filter(({blogName}) => blogName.includes(queryParamState.filter));
 
     const blogList = (favList)
       .filter(({blogName}) => blogName.toLowerCase().includes(queryParamState.filter));
-
-      // console.log(this.props.currentUser);
-      // console.log(this.props.history.location);
       
     return(
       (typeof blogs!=='undefined')?

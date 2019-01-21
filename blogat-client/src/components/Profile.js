@@ -31,7 +31,6 @@ class Profile extends Component {
   }
 
   async loadUser(){
-    console.log("LoadUser");
     let id = this.props.match.params.id;
     let user = await apiCall("get", `/api/users/${id}`)
     .then(res => {
@@ -49,14 +48,11 @@ class Profile extends Component {
   }
   updateProfile(user){
     // this.setState({user});
-    console.log("Hello?");
     this.loadUser();
   }
   // Potential to refactor this to work as an action
   goBlog(blogId){
     // e.preventDefault();
-    console.log("triggar");
-    console.log(blogId);
     // this.setState({blogList: this.props.blogs})
     this.props.history.push({
       pathname:`/blog/${blogId}`,

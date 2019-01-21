@@ -13,7 +13,6 @@ import AboutMe from "../components/AboutMe";
 
 const Main = props => {
   const { currentUser, authUser, errors, removeError, location } = props;
-  console.log(currentUser);
   return (
     <div className="Site-content">
       <section className="route-section">
