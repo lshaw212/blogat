@@ -128,9 +128,6 @@
   opacity: 0;
   transition: opacity 500ms;
 }
-/* .tab-blog:hover{
-  transform: scale(1.2,1.2);
-} */
 .tab-blog:hover::before{
   /* box-shadow: none; */
   opacity: 1;

@@ -19,20 +19,16 @@ class SearchBox extends Component{
   }
 
   render(){
-
     const queryParamState = {
       ...defaultState,
       ...qs.parse(this.props.location.search.replace("?", ""))
     }
     return(
-      
-        <FormGroup>
-          <FormControl type="text" placeholder="Search Blogs.." value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
-        </FormGroup>
-      
+      <FormGroup>
+        <FormControl type="text" placeholder="Search Blogs.." value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
+      </FormGroup>
     )
   }
-  
 }
 
 export default withRouter(SearchBox);

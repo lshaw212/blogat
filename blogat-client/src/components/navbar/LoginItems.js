@@ -21,7 +21,6 @@ const LoginItems = ({handleLogin, handleSignup, handleRegister, modalShow, modal
             buttonText="Sign me up!"
             heading="Register at Blog@"
             signUp
-            // Add a skip for register
           />
         }
       </Modal>

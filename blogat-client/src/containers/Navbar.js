@@ -32,21 +32,12 @@ class NavbarComponent extends Component {
     this.updatePredicate();
     window.addEventListener("resize", this.updatePredicate);
   }
-
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
   }
-
-  handleClose() {
-    this.setState({ show: false, login: false, signup: false });
-  }
-
-  handleLoginShow() {
-    this.setState({ show: true, login: true });
-  }
-  handleSignupShow(){
-    this.setState({ show: true, signup: true});
-  }
+  handleClose(){this.setState({ show: false, login: false, signup: false });}
+  handleLoginShow(){this.setState({ show: true, login: true });}
+  handleSignupShow(){this.setState({ show: true, signup: true});}
   handleRegister(){
     this.handleClose();
     this.handleSignupShow();
@@ -55,7 +46,6 @@ class NavbarComponent extends Component {
     this.setState({showFavs: !this.state.showFavs})
     this.props.showFavoriteBlogs(this.props.currentUser.showFavorites);
   }
-  //logout
   logout = e => {
     e.preventDefault();
     this.props.logout();
@@ -74,11 +64,9 @@ class NavbarComponent extends Component {
       pathname:`/users/${id}/blog/new`
     });
   }
-
   updatePredicate() {
     this.setState({ isDesktop: window.innerWidth > 767 });
   }
-
 
   render(){
     const {isDesktop, show, login, signup, showFavs} = this.state;
