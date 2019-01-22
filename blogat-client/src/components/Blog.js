@@ -22,20 +22,6 @@ class Blog extends Component {
     this.handleNewPostShow = this.handleNewPostShow.bind(this);
     this.handleEditBlogShow = this.handleEditBlogShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidMount(){
-    // Fetch blogs
-    // this.props.fetchBlogs();
-    // this.props.fetchPosts();
-    // componentDidMount
-    
-  }
-
-  handleClick(e){
-    e.preventDefault();
-    // this.props.onClick(e);
   }
   
   deleteBlog = e => {
@@ -50,7 +36,7 @@ class Blog extends Component {
       });
   }
 
-  userProfile(id,e){
+  userProfile(id){
     this.props.history.push({
       pathname:`/user/${id}`,
       state: {id: id}  
@@ -62,31 +48,16 @@ class Blog extends Component {
     e.stopPropagation();
   }
 
-  editBlog = e => {
-    e.preventDefault();
-    
-  }
-  handleClose() {
-    this.setState({ show: false, newPost: false, editBlog: false, editPost: false });
-  }
-
-  handleNewPostShow() {
-    this.setState({ show: true, newPost: true });
-  }
-  handleEditBlogShow(){
-    this.setState({ show: true, editBlog: true});
-  }
-  handleEditPostShow(){
-    this.setState({ show: true, editPost: true})
-  }
+  handleClose(){this.setState({ show: false, newPost: false, editBlog: false, editPost: false });}
+  handleNewPostShow(){this.setState({ show: true, newPost: true });}
+  handleEditBlogShow(){this.setState({ show: true, editBlog: true});}
+  handleEditPostShow(){this.setState({ show: true, editPost: true});}
 
   render(){
     const { blogs, posts, currentUser, removePost, favorites } = this.props;
     const fadedHeart = { opacity: "0.25",color:"black"}
     const fullHeart = { opacity: "0.85",color:"black"}
 
-    // console.log(currentUser);
-    
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
     let blogPosts = postList.map(p => (
@@ -108,7 +79,7 @@ class Blog extends Component {
     
     return(
       (typeof selectedB!=='undefined')?
-      <div className="container blog-container">
+      <div className="container" style={{marginTop: '30px'}}>
         <div id="blog-header-title">
           <div id="blog-blogname">{selectedB.blogName}</div>
           <div id="blog-favourite">
@@ -123,7 +94,8 @@ class Blog extends Component {
           <div id="blog-image" style={{backgroundImage: `url(${selectedB.blogImage})`}}></div> 
         </div>
         <div id="blog-information">
-            <div className="blog-profile">
+            {/* Blog-profile */}
+            <div className="blog-profile"> 
               <div id="blog-profile-image" onClick={this.userProfile.bind(this, selectedB.user._id)} style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
               <div id="blog-blogowner">
                 <div id="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
@@ -155,12 +127,11 @@ class Blog extends Component {
                   }
                 </Modal>
               </div>
-              
             </div>
             {currentUser === selectedB.user._id && (
               <div id="blog-edit">
                 <Dropdown id="dropdown-custom-menu" pullRight>
-                <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
+                <i className="far fa-edit fa-2x edit-icon" bsRole="toggle"/>
                   <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
                     <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
                     <MenuItem divider/>
@@ -170,11 +141,9 @@ class Blog extends Component {
               </div>
             )}           
           </div>
-        
       {currentUser === selectedB.user._id && (
         <div id="blog-owner-buttons">
-        <Button className="btn-override" bsSize="large" onClick={this.handleNewPostShow}>New Post</Button>
-          {/* <button className="homepageBtn" onClick={this.handleNewPostShow}>Submit a new blog post</button> */}
+          <Button className="btn-override" bsSize="large" onClick={this.handleNewPostShow}>New Post</Button>
         </div>
       )}
       <div className="post-list">

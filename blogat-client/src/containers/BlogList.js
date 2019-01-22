@@ -8,7 +8,6 @@ import { favoriteBlog } from "../store/actions/auth";
 import { fetchPosts } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
 import { Flipper, Flipped } from 'react-flip-toolkit';
-// import shuffle from "lodash.shuffle";
 import qs from "qs";
 
 const defaultState = {
