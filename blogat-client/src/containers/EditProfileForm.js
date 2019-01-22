@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
-import jwtDecode from "jwt-decode";
 import { Button, InputGroup } from 'react-bootstrap';
 import { apiCall } from "../services/api";
 import { updateCurrentUserImage } from "../store/actions/auth";

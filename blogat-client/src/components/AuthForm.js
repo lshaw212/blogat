@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { removeError } from "../store/actions/errors";
 // import { fetchFavorites } from "../store/actions/auth";
 import { withRouter } from "react-router-dom";
-import { Button } from 'react-bootstrap';
 
 
 class AuthForm extends Component {
@@ -51,7 +50,7 @@ class AuthForm extends Component {
       });
   };
 
-  skip = e => {
+  skip = () => {
     this.props.history.push({
       pathname:`/blogs`
     });
@@ -59,7 +58,7 @@ class AuthForm extends Component {
 
   render(){
     const { email, username } =this.state;
-    const { buttonText, heading, login, signUp, errors, history, removeError, handleClose, register } = this.props;
+    const { buttonText, heading, login, signUp, errors, history, removeError, register } = this.props;
     // This if statement not working as intended, removeError is called inside Modal
     if(errors.message){
       const unListen = history.listen(() => {

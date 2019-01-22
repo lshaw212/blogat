@@ -6,14 +6,11 @@
   position: relative;
   z-index: 1;
   margin: 32px auto;
-  /* margin: 1rem; */
   width: 300px;
   height: 300px;
-  /* box-shadow: 10px 10px 13px 1px rgba(199,199,199,0.75); */
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
-  /* transition: all 0.5s cubic-bezier(.25,.8,.25,1); */
   -webkit-perspective: 1000px;
           perspective: 1000px;
+  cursor: pointer;
 }
 .blogBody {
   width: 100%;

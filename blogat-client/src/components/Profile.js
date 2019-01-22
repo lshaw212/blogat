@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Modal, Tooltip, OverlayTrigger, Tabs, Tab } from 'react-bootstrap';
+import { connect } from "react-redux";
+import { Modal, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import EditProfileForm from "../containers/EditProfileForm";
 import ProfileBlogs from "../components/ProfileBlogs";
 import { apiCall } from "../services/api";
+import { withRouter } from "react-router-dom";
 
 class Profile extends Component {
   constructor(props){
@@ -15,8 +17,6 @@ class Profile extends Component {
     }
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    // this.goBlog = this.goBlog.bind(this);
-    // this.selectBlog = this.selectBlog.bind(this);
   }
   componentDidMount(){
     this.loadUser();
@@ -46,14 +46,12 @@ class Profile extends Component {
     this.setState({userFavourites});
     this.setState({isLoading: true});
   }
-  updateProfile(user){
-    // this.setState({user});
+  updateProfile(){
     this.loadUser();
   }
+
   // Potential to refactor this to work as an action
   goBlog(blogId){
-    // e.preventDefault();
-    // this.setState({blogList: this.props.blogs})
     this.props.history.push({
       pathname:`/blog/${blogId}`,
       state: {blogId: blogId}  
@@ -62,7 +60,6 @@ class Profile extends Component {
 
   render(){
     const { user, isLoading, userFavourites } = this.state;
-
     const tooltip = (
       <Tooltip>
         {user.email}
@@ -77,11 +74,6 @@ class Profile extends Component {
             <div id="profile-details">
               <div id="profile-name-and-edit">
                 <div id="profile-username">{user.username}</div>
-                {/* <div><i class="far fa-edit fa-2x"></i></div> */}
-                {/* <Modal triggerText="Edit Profile" mProps={editProfileProps} btnClass="c-btn" btnText="Edit Profile" /> */}
-                {/* <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-                  test modal
-                </Button> */}
                 <i className="far fa-edit fa-2x" onClick={this.handleShow}></i>
                 <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
                   <EditProfileForm
@@ -141,4 +133,10 @@ class Profile extends Component {
 
 }
 
-export default Profile;
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser.user.id
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Profile));

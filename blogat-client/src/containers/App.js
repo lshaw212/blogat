@@ -27,7 +27,7 @@ if(localStorage.jwtToken){
 
 const App = () => (
   <Provider store={store}>
-    {/* <PersistGate loading={null} persistor={persistor}> */}
+    <PersistGate loading={null} persistor={persistor}>
       <Router>
         <ScrollToTop>
           <div className="Site">
@@ -37,7 +37,7 @@ const App = () => (
           </div> 
         </ScrollToTop>
       </Router>
-    {/* </PersistGate> */}
+    </PersistGate>
   </Provider>
 );
 

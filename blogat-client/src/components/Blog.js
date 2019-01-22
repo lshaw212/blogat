@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "../components/Post";
-// import Modal from "../containers/Modal";
 import PostForm from "../containers/PostForm";
 import EditBlogForm from "../containers/EditBlogForm";
 import Moment from "react-moment";
@@ -81,17 +80,12 @@ class Blog extends Component {
     this.setState({ show: true, editPost: true})
   }
 
-  // handleClick(e){
-  //   e.preventDefault();
-
-  //   // Find out if this is needed?
-  //   this.props.onClick(e);
-  // }
-
   render(){
     const { blogs, posts, currentUser, removePost, favorites } = this.props;
     const fadedHeart = { opacity: "0.25",color:"black"}
     const fullHeart = { opacity: "0.85",color:"black"}
+
+    // console.log(currentUser);
     
     let selectedB = blogs.find(blog => blog._id === this.props.match.params.id);
     let postList = posts.filter(post => post.blog._id === this.props.match.params.id);
@@ -132,7 +126,7 @@ class Blog extends Component {
             <div className="blog-profile">
               <div id="blog-profile-image" onClick={this.userProfile.bind(this, selectedB.user._id)} style={{backgroundImage: `url(${selectedB.user.profileImageUrl})`}}></div>
               <div id="blog-blogowner">
-                <div className="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
+                <div id="blog-username" onClick={this.userProfile.bind(this, selectedB.user._id)}>by {selectedB.user.username}</div>
               </div>
             </div>
             <div id="blog-description">
@@ -164,7 +158,7 @@ class Blog extends Component {
               
             </div>
             {currentUser === selectedB.user._id && (
-              <div>
+              <div id="blog-edit">
                 <Dropdown id="dropdown-custom-menu" pullRight>
                 <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick} bsRole="toggle"/>
                   <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
