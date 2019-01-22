@@ -84,10 +84,6 @@ body {
 .form-size{
   /* width: 600px; */
 }
-.social-size{
-  padding-top: 5px;
-  font-size: 0.8em;
-}
 
 .blogItem-enter {
   opacity: 0.01;

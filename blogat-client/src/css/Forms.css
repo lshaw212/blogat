@@ -1,3 +1,10 @@
+/*  */
+/* Forms */
+/*  */
+.form-modal{
+  padding: 10px;
+  border-top: 5px solid #a3a3a3;
+}
 .form-header{
   font-family: 'Montserrat', sans-serif;
   font-size: 3em;
@@ -14,16 +21,13 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
-.form-submit{
-  float: right;
-}
 .input-section{
   display: flex;
   align-items: center;
 }
 .input-section-text{
- width: 33%;
-}
+  width: 33%;
+ }
 .input-section-text-title{
   font-size: 1.25em;
   font-family: 'Montserrat', sans-serif;
@@ -35,32 +39,31 @@
   padding: 5px 5px 5px 0;
 }
 .input-section-input{
-width: 66%;
+  width: 66%;
+}
+.social-size{
+  padding-top: 5px;
+  font-size: 0.8em;
 }
 .input-buttons{
   display: flex;
   justify-content: flex-end;
 }
+.form-submit{
+  float: right;
+}
 .layout-images{
-  background-size:     cover;                      /* <------ */
+  background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center; 
   height: 50px;
   width: 50px;
   border-radius: 5px;
   border: 2px solid #e4e4e4;
-  /* box-shadow: 10px 10px 20px -9px rgba(0,0,0,0.75); */
-  /* position: relative; */
 }
 .input-section-radiobuttons{
   display: flex;
   justify-content: space-between;
-}
-.form-modal{
-  padding: 10px;
-  /* border-top: 5px solid #337ab7; */
-  border-top: 5px solid #a3a3a3;
-  /* opacity: 0.75; */
 }
 .auth-form-input{
   padding: 5px 0 5px 0;

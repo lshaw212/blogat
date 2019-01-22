@@ -82,8 +82,6 @@ class Homepage extends Component {
                   />
                 }
               </Modal>
-              {/* <Modal mProps="signin" btnText='Log In' btnClass="infoBtn" />
-              <Modal mProps="signup" btnText='Sign Up' btnClass="infoBtn" /> */}
             </div>
           </div>
         </div>
