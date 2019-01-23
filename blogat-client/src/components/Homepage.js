@@ -17,6 +17,7 @@ class Homepage extends Component {
     this.handleSignupShow = this.handleSignupShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
+    this.skip = this.skip.bind(this);
   }
   handleClose() {
     this.setState({ show: false, login: false, signup: false });
@@ -32,26 +33,31 @@ class Homepage extends Component {
     this.handleClose();
     this.handleSignupShow();
   }
+  skip(){
+    this.props.history.push({
+      pathname:`/blogs`
+    });
+  }
 
   render(){
     const { currentUser } = this.props;
     
     if(!currentUser.isAuthenticated){
       return(
-        <div className="homepageTest">
-          <ul className="backgroundLoop">
-            <li><span></span></li>
-            <li><span></span></li>
-            <li><span></span></li>
-            <li><span></span></li>
-            <li><span></span></li>
-            <li><span></span></li>
+        <div className="homepage-container">
+          <ul className="background-loop">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           </ul>
           <div className="home-hero">
-            <p id="titleText">Blog@</p>
-            <p className="descText">Welcome to Blog@, where you can create and share blogs with everyone.</p>
-            <p className="descText">Create your first blog now about 
-              <div className="slidingVertical">
+            <p id="title-text">Blog@</p>
+            <p className="desc-text">Welcme to Blog@, where you can create and share blogs with everyone.</p>
+            <p className="desc-text">Create your first blog now about 
+              <div className="sliding-vertical">
                 <span>Adventure</span>
                 <span>Literature</span>
                 <span>Technology</span>
@@ -60,9 +66,14 @@ class Homepage extends Component {
                 <span>Food</span>
               </div>
             </p>
-            <div className="btnContainer">
-              <button onClick={this.handleLoginShow} className="infoBtn">Log In</button>
-              <button onClick={this.handleSignupShow} className="infoBtn">Sign Up</button>
+            <div className="homepage-btn-container">
+              <div>
+                <button onClick={this.handleLoginShow} className="homepage-btn">Log In</button>
+              </div>
+              <div>
+                <button onClick={this.handleSignupShow} className="homepage-btn">Sign Up</button>
+                <button onClick={this.skip} className="homepage-btn skip-btn">skip</button>
+              </div>
               <Modal bsSize="small" show={this.state.show} onHide={this.handleClose} style={{top: '25%', borderRadius: '5px !important'}}>
                 {this.state.login &&
                   <AuthForm

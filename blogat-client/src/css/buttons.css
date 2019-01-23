@@ -1,7 +1,7 @@
 /*  */
 /* Homepage buttons */
 /*  */
-.infoBtn{
+.homepage-btn{
 	display: block;
 	outline: none !important;
 	margin: 20px auto;
@@ -10,7 +10,7 @@
 	border-radius: 4px;
 	padding: 20px 30px;
 	border: none;
-	font-size: 20px;
+	font-size: 1.5em;
 	color: rgba(0, 0, 0, 0.7);
 	background-color: rgba(255, 255, 255, 0.45);
 	box-shadow: rgba(0, 0, 0, 0.7) 0 0px 0px 3px inset;
@@ -20,11 +20,23 @@
 	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 }
-.infoBtn:hover{
+.homepage-btn:hover{
 	color: rgba(255, 255, 255, 0.85);
 	background-color: transparent;
 	text-shadow: none;
 	box-shadow: rgba(0, 0, 0, 0.7) 0 0px 0px 40px inset;
+}
+.skip-btn{
+	font-size: 1em;
+	padding: 5px 10px;
+	/* margin: 10px auto !important; */
+}
+@media only screen and (max-width: 991px){
+	.homepage-btn{
+		font-size: 1em;
+		/* padding: 10px 15px; */
+		/* width: 100px; */
+	}
 }
 
 /*  */
