@@ -55,7 +55,7 @@ class Homepage extends Component {
           </ul>
           <div className="home-hero">
             <p id="title-text">Blog@</p>
-            <p className="desc-text">Welcme to Blog@, where you can create and share blogs with everyone.</p>
+            <p className="desc-text">Welcome to Blog@, where you can create and share blogs with everyone.</p>
             <p className="desc-text">Create your first blog now about 
               <div className="sliding-vertical">
                 <span>Adventure</span>
