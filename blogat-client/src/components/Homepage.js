@@ -24,10 +24,10 @@ class Homepage extends Component {
   }
 
   handleLoginShow() {
-    this.setState({ show: true, login: true });
+    this.setState({show: true, login: true});
   }
   handleSignupShow(){
-    this.setState({ show: true, signup: true});
+    this.setState({show: true, signup: true});
   }
   handleRegister(){
     this.handleClose();

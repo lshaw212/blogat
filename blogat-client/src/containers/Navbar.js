@@ -35,9 +35,15 @@ class NavbarComponent extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
   }
-  handleClose(){this.setState({ show: false, login: false, signup: false });}
-  handleLoginShow(){this.setState({ show: true, login: true });}
-  handleSignupShow(){this.setState({ show: true, signup: true});}
+  handleClose(){
+    this.setState({ show: false, login: false, signup: false });
+  }
+  handleLoginShow(){
+    this.setState({ show: true, login: true });
+  }
+  handleSignupShow(){
+    this.setState({ show: true, signup: true});
+  }
   handleRegister(){
     this.handleClose();
     this.handleSignupShow();
@@ -96,10 +102,8 @@ class NavbarComponent extends Component {
                     showFavourites={this.showFavourites.bind(this)}
                     favorite={showFavs ? fullHeart : fadedHeart}
                   />
-                </div>
-                
+                </div> 
               }
-              
             </Navbar.Form>
           </Nav>
         }

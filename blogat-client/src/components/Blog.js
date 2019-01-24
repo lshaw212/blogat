@@ -31,8 +31,8 @@ class Blog extends Component {
       .then(() => {
         this.props.history.push("/");
       })
-      .catch(() => {
-        return;
+      .catch(err => {
+        console.log(err);
       });
   }
 

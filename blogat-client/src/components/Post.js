@@ -14,11 +14,11 @@ class Post extends Component {
   }
 
   handleClose() {
-    this.setState({ show: false });
+    this.setState({show: false});
   }
 
   handleShow() {
-    this.setState({ show: true });
+    this.setState({show: true});
   }
   handleClick(e){
     e.preventDefault();

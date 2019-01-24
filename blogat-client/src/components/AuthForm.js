@@ -44,9 +44,8 @@ class AuthForm extends Component {
         //   this.props.fetchFavorites();
         //this.props.history.push("/");
         // fix this area
-      }).catch(() =>{
-        // No
-        return;
+      }).catch(err => {
+        console.log(err);
       });
   };
 

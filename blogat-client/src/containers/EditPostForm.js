@@ -29,14 +29,13 @@ class EditPostForm extends Component {
         this.setState({title:"", content:""});
         this.props.handleClose();
       })
-      .catch(() => {
-        return;
-      })    
+      .catch(err => {
+        console.log(err);
+      });   
   }
   imageChecker(str){
     if(!str.includes('i.imgur.com')){
-      this.setState({image: ''});
-      this.setState({layout:1});
+      this.setState({image: '',layout:1});
     } 
   }
   handleRadioButton(val){

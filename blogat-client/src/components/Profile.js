@@ -27,8 +27,12 @@ class Profile extends Component {
       this.loadUser();
   }
 
-  handleClose(){this.setState({ show: false });}
-  handleShow(){this.setState({ show: true });}
+  handleClose(){
+    this.setState({show: false});
+  }
+  handleShow(){
+    this.setState({show: true});
+  }
 
   async loadUser(){
     let id = this.props.match.params.id;
@@ -37,7 +41,7 @@ class Profile extends Component {
       return res;
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
     });
 
     let userFavourites = await apiCall("get", `/api/favourites/${id}`);
