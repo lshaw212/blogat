@@ -22,6 +22,12 @@ class Profile extends Component {
     this.loadUser();
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.location.pathname !== this.props.location.pathname)
+      this.loadUser();
+  }
+
+
   handleClose() {
     this.setState({ show: false });
   }

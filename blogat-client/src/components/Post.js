@@ -76,19 +76,19 @@ class Post extends Component {
         )}
         {layout === 2 && (
           <div>
-            <div className="post-layout2-image" style={{backgroundImage: `url(${image})`}}></div>
+            <div className="post-layout-image post-layout-2" style={{backgroundImage: `url(${image})`}}></div>
             <div className="post-content">{content}</div>
           </div>
         )}
         {layout === 3 && (
           <div>
-            <div className="post-layout3-image" style={{backgroundImage: `url(${image})`}}></div>
+            <div className="post-layout-image post-layout-3" style={{backgroundImage: `url(${image})`}}></div>
             <div className="post-content">{content}</div>
           </div>
         )}
         {layout === 4 && (
           <div>
-            <div className="post-layout4-image" style={{backgroundImage: `url(${image})`}}></div>
+            <div className="post-layout-image post-layout-4" style={{backgroundImage: `url(${image})`}}></div>
             <div className="post-content">{content}</div>
           </div>
         )}

@@ -118,12 +118,11 @@
 
 
 /* Mobile properties */
-@media only screen and (max-width: 767px){
-  /* #blog-description-text{
-    font-size: 0.75em;
-  } */
-  #blog-information{
-    /* background-color: blue; */
-    /* height: 130px; */
+@media only screen and (max-width: 991px){
+  #blog-blogname{
+    font-size: 2em;
+  }
+  #blog-header {
+    height: 200px;
   }
 }

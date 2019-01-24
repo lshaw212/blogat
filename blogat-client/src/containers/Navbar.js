@@ -54,6 +54,8 @@ class NavbarComponent extends Component {
     e.preventDefault();
   }
   userProfile(id, e){
+    console.log("here?");
+    console.log(this.props.history);
     this.props.history.push({
       pathname:`/user/${id}`,
       state: {id: id}  
