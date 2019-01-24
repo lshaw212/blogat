@@ -27,14 +27,8 @@ class Profile extends Component {
       this.loadUser();
   }
 
-
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
+  handleClose(){this.setState({ show: false });}
+  handleShow(){this.setState({ show: true });}
 
   async loadUser(){
     let id = this.props.match.params.id;
@@ -48,9 +42,7 @@ class Profile extends Component {
 
     let userFavourites = await apiCall("get", `/api/favourites/${id}`);
     
-    this.setState({user});
-    this.setState({userFavourites});
-    this.setState({isLoading: true});
+    this.setState({user,userFavourites,isLoading: true});
   }
   updateProfile(){
     this.loadUser();
@@ -66,6 +58,7 @@ class Profile extends Component {
 
   render(){
     const { user, isLoading, userFavourites } = this.state;
+    const { currentUser } = this.props;
     const tooltip = (
       <Tooltip>
         {user.email}
@@ -80,20 +73,24 @@ class Profile extends Component {
             <div id="profile-details">
               <div id="profile-name-and-edit">
                 <div id="profile-username">{user.username}</div>
-                <i className="far fa-edit fa-2x" onClick={this.handleShow}></i>
-                <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
-                  <EditProfileForm
-                    userId={this.props.match.params.id}
-                    bio={user.bio}
-                    profileImageUrl={user.profileImageUrl}
-                    twitter={user.social.twitter}
-                    linkedin={user.social.linkedin}
-                    github={user.social.github}
-                    emailToggle={user.social.emailToggle}
-                    updateProfile={this.updateProfile.bind(this)}
-                    handleClose={this.handleClose}
-                  />
-                </Modal>
+                {currentUser === user._id && (
+                  <div>
+                    <i className="far fa-edit fa-2x" onClick={this.handleShow}></i>
+                    <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}> 
+                      <EditProfileForm
+                        userId={this.props.match.params.id}
+                        bio={user.bio}
+                        profileImageUrl={user.profileImageUrl}
+                        twitter={user.social.twitter}
+                        linkedin={user.social.linkedin}
+                        github={user.social.github}
+                        emailToggle={user.social.emailToggle}
+                        updateProfile={this.updateProfile.bind(this)}
+                        handleClose={this.handleClose}
+                      />
+                    </Modal>
+                  </div>
+                )}
               </div>
               <div>
                 <div id="profile-bio-info">{user.bio}</div>
