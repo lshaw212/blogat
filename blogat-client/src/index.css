@@ -15,7 +15,7 @@
   outline: solid #f00 1px !important;
 } */
 
-html
+html,body
 {
   font-family: 'Open Sans', sans-serif;
   /* background-color: #e6ecf0; */

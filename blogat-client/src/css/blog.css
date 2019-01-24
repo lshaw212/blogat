@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-right: 15px; /* To avoid clipping with the right scroll bar */
 }
 #blog-list-empty{
   display: flex;
@@ -124,5 +125,8 @@
   }
   #blog-header {
     height: 200px;
+  }
+  #blogs {
+    margin-right: 0;
   }
 }
