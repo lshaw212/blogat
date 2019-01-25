@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import { Modal, Dropdown, MenuItem } from "react-bootstrap";
-import EditPostForm from "../containers/EditPostForm";
+import EditPostForm from "./forms/EditPostForm";
 
 class Post extends Component {
   constructor(props){

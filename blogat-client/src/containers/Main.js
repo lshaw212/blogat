@@ -3,11 +3,11 @@ import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authUser } from "../store/actions/auth";
 import { removeError } from "../store/actions/errors";
-import AuthForm from "../components/AuthForm";
-import Homepage from "../components/Homepage";
-import Blog from "../components/Blog";
-import Profile from "../components/Profile";
-import BlogForm from "./BlogForm";
+import AuthForm from "./forms/AuthForm";
+import Homepage from "../containers/Homepage";
+import Blog from "../containers/Blog";
+import Profile from "../containers/Profile";
+import BlogForm from "./forms/BlogForm";
 import BlogList from "./BlogList";
 import AboutMe from "../components/AboutMe";
 

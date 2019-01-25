@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Post from "../components/Post";
-import PostForm from "../containers/PostForm";
-import EditBlogForm from "../containers/EditBlogForm";
+import Post from "../containers/Post";
+import PostForm from "./PostForm";
+import EditBlogForm from "./forms/EditBlogForm";
 import Moment from "react-moment";
 import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog } from "../store/actions/auth";

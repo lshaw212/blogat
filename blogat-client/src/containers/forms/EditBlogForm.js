@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createNewBlog } from "../store/actions/blogs";
-import { removeError } from "../store/actions/errors";
-import { FormGroup, FormControl, Button } from "react-bootstrap";
+import { removeError } from "../../store/actions/errors";
+import { updateBlog } from "../../store/actions/blogs";
+import { Button, FormControl, FormGroup } from "react-bootstrap";
 
-class BlogForm extends Component {
+class EditBlogForm extends Component {
+
   constructor(props){
     super(props);
     this.state = {
-      name:"",
-      desc:"",
-      image:""
+      name:this.props.blogName,
+      desc: this.props.blogDescription,
+      image:this.props.blogImage
     };
   }
 
@@ -21,19 +22,16 @@ class BlogForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this.props post new blog stuff
     this.props
-      .createNewBlog(this.state.name, this.state.desc, this.state.image)
-      .then( () => {
-        this.setState({name:"",desc:"",image:""})
-        this.props.history.push("/");
+      .updateBlog(this.state.name, this.state.desc, this.state.image, this.props.blogId)
+      .then(() => {
+        this.props.handleClose();
       })
       .catch(() => {
         return;
-      })
-    
-    //this.props.history.push("/"); // Could go straight to new blog?
-  }
+      });
+  };
+
   getValidationNameState() {
     const length = this.state.name.length;
     if (length > 100) return 'error';
@@ -46,10 +44,18 @@ class BlogForm extends Component {
   }
 
   render(){
-    const { errors } = this.props;
+    const { history, errors, removeError, handleClose } = this.props;
+
+    if(errors.message){
+      const unListen = history.listen(() => {
+        removeError();
+        unListen();
+      })
+    }
+
     return(
-      <div className="container">
-      <div className="form-header">Create New Blog</div>
+      <div className="form-modal">
+        <div className="form-header">Edit Blog</div>
         <hr/>
         <form onSubmit={this.handleSubmit}>
         {errors.message && (<div className="alert alert-danger">{errors.message}</div>)}
@@ -66,7 +72,7 @@ class BlogForm extends Component {
                   value={this.state.name}
                   onChange={e => this.setState({name: e.target.value})}
                 />
-                <FormControl.Feedback/>
+                <FormControl.Feedback />
               </FormGroup>
             </div>
           </div>
@@ -84,7 +90,6 @@ class BlogForm extends Component {
                 onChange={e => this.setState({image: e.target.value})}
               />
             </div>
-            
           </div>
           <hr/>
           <div className="input-section">
@@ -93,23 +98,28 @@ class BlogForm extends Component {
               <div className="input-section-text-extra">Describe best your blog and what users should expect from your continued blog posts.</div>
             </div>
             <div className="input-section-input">
-              <FormGroup validationState={this.getValidationDescState()}>
-                <textarea
-                  cols="30"
-                  rows="5"
-                  type="text"
-                  className="form-control"
-                  value={this.state.desc}
-                  onChange={e => this.setState({desc: e.target.value})}
-                />
-                <FormControl.Feedback />
+            <FormGroup validationState={this.getValidationDescState()}>
+              <textarea
+                cols="30"
+                rows="5"
+                type="text"
+                className="form-control"
+                value={this.state.desc}
+                onChange={e => this.setState({desc: e.target.value})}
+              />
+              <FormControl.Feedback />
               </FormGroup>
             </div>
           </div>
           <hr/>
-          <Button type="submit" className="btn btn-success pull-right form-button">
-            Submit
-          </Button>
+          <div className="input-buttons">
+            <Button onClick={handleClose} className="form-button">
+              Cancel
+            </Button>
+            <Button type="submit" className="btn btn-success form-button" style={{marginLeft: '5px'}}>
+              Save Changes
+            </Button>
+          </div>
         </form>
       </div>
     )
@@ -122,4 +132,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, { createNewBlog, removeError })(BlogForm);
+export default connect(mapStateToProps, { updateBlog, removeError })(EditBlogForm);

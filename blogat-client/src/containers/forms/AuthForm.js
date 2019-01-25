@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { authUser } from "../store/actions/auth";
+import { authUser } from "../../store/actions/auth";
 import { connect } from "react-redux";
-import { removeError } from "../store/actions/errors";
+import { removeError } from "../../store/actions/errors";
 // import { fetchFavorites } from "../store/actions/auth";
 import { withRouter } from "react-router-dom";
 

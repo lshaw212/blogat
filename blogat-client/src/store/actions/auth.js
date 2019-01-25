@@ -1,5 +1,5 @@
 import { apiCall, setTokenHeader } from "../../services/api";
-import { SET_CURRENT_USER, UPDATE_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS, SHOW_FAVORITE_BLOGS } from "../actionTypes";
+import { SET_CURRENT_USER, UPDATE_USER, FAVORITE_BLOG, SHOW_FAVORITE_BLOGS } from "../actionTypes";
 import { addError, removeError } from "./errors";
 
 export function setAuthorizationToken(token){
@@ -23,11 +23,6 @@ export function updateCurrentUserImage(data){
 export const setFavoriteBlog = blog => ({
   type: FAVORITE_BLOG,
   blog
-});
-
-export const getFavoriteBlogs = blogs => ({
-  type: GET_FAVORITE_BLOGS,
-  blogs
 });
 
 export const showFavoriteBlogs = boolean => ({

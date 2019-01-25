@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, UPDATE_USER, FAVORITE_BLOG, GET_FAVORITE_BLOGS, SHOW_FAVORITE_BLOGS } from "../actionTypes";
+import { SET_CURRENT_USER, UPDATE_USER, FAVORITE_BLOG, SHOW_FAVORITE_BLOGS } from "../actionTypes";
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
@@ -18,7 +18,6 @@ export default (state = DEFAULT_STATE, action) => {
     case UPDATE_USER:
       return {...state, user:{...state.user, profileImageUrl: action.data}}
     case FAVORITE_BLOG:
-      // debugger;
       return {...state, user:{...state.user, favorites:action.blog}};
     case SHOW_FAVORITE_BLOGS:
       return {...state, showFavorites:!action.boolean}

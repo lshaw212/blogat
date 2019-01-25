@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
+import AuthForm from "./forms/AuthForm";
 import { Modal } from "react-bootstrap";
 
 class Homepage extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { removeError } from "../store/actions/errors";
-import { updatePost } from "../store/actions/posts";
+import { removeError } from "../../store/actions/errors";
+import { updatePost } from "../../store/actions/posts";
 import { Button } from "react-bootstrap";
 
 class EditPostForm extends Component {
@@ -94,19 +94,19 @@ class EditPostForm extends Component {
               <div className="social-size">Select your layout</div>
               <div className="input-section-radiobuttons">
                 <div>
-                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout1.jpg")})`}}></div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../../images/layout1.jpg")})`}}></div>
                   <input type="radio" checked={this.state.layout === 1} onChange={() => this.handleRadioButton(1)}/>
                 </div>
                 <div>
-                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout2.jpg")})`}}></div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../../images/layout2.jpg")})`}}></div>
                   <input type="radio" checked={this.state.layout === 2} onChange={() => this.handleRadioButton(2)}/>
                 </div>
                 <div>
-                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout3.jpg")})`}}></div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../../images/layout3.jpg")})`}}></div>
                   <input type="radio" checked={this.state.layout === 3} onChange={() => this.handleRadioButton(3)}/>
                 </div>
                 <div>
-                  <div className="layout-images" style={{backgroundImage: `url(${require("../images/layout4.jpg")})`}}></div>
+                  <div className="layout-images" style={{backgroundImage: `url(${require("../../images/layout4.jpg")})`}}></div>
                   <input type="radio" checked={this.state.layout === 4} onChange={() => this.handleRadioButton(4)}/>
                 </div>
               </div>

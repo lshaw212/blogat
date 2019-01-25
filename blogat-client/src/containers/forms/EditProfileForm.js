@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { removeError } from "../store/actions/errors";
-import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
+import { removeError } from "../../store/actions/errors";
+import { setAuthorizationToken, setCurrentUser } from "../../store/actions/auth";
 import { Button, InputGroup } from 'react-bootstrap';
-import { apiCall } from "../services/api";
-import { updateCurrentUserImage } from "../store/actions/auth";
+import { apiCall } from "../../services/api";
+import { updateCurrentUserImage } from "../../store/actions/auth";
 
 class EditProfileForm extends Component {
   constructor(props){

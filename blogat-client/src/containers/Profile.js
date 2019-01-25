@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import EditProfileForm from "../containers/EditProfileForm";
+import EditProfileForm from "./forms/EditProfileForm";
 import ProfileBlogs from "../components/ProfileBlogs";
 import { apiCall } from "../services/api";
 import { withRouter } from "react-router-dom";

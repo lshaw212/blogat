@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Navbar, Nav, NavItem } from 'react-bootstrap';
-import AuthForm from "../AuthForm";
+import AuthForm from "../../containers/forms/AuthForm";
 
 const LoginItems = ({handleLogin, handleSignup, handleRegister, modalShow, modalHide, login, signup}) => (
   <Navbar.Collapse>
