@@ -8,7 +8,7 @@ import { fetchBlogs, deleteBlog } from "../store/actions/blogs";
 import { favoriteBlog } from "../store/actions/auth";
 import { fetchPosts, removePost, updatePost } from "../store/actions/posts";
 import { withRouter } from "react-router-dom";
-import { Modal, Dropdown, MenuItem, Button } from 'react-bootstrap';
+import { Modal, Dropdown, Button } from 'react-bootstrap';
 
 class Blog extends Component {
 
@@ -133,9 +133,9 @@ class Blog extends Component {
                 <Dropdown id="dropdown-custom-menu" pullRight>
                 <i className="far fa-edit fa-2x edit-icon" bsRole="toggle"/>
                   <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                    <MenuItem onClick={this.handleEditBlogShow}>Edit Blog</MenuItem>
-                    <MenuItem divider/>
-                    <MenuItem onClick={this.deleteBlog}>Delete Blog</MenuItem>
+                    <Dropdown.Item onClick={this.handleEditBlogShow}>Edit Blog</Dropdown.Item>
+                    <Dropdown.Item divider/>
+                    <Dropdown.Item onClick={this.deleteBlog}>Delete Blog</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>

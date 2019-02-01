@@ -84,31 +84,27 @@ class NavbarComponent extends Component {
     
     return(
       <Navbar collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/" id="navbar-title">
-              Blog@
-            </Link>   
-          </Navbar.Brand>
-          <Navbar.Toggle/>
-        </Navbar.Header>
+        <Navbar.Brand>
+          <Link to="/" id="navbar-title">
+            Blog@
+          </Link>   
+        </Navbar.Brand>
+        <Navbar.Toggle/>
         {(isDesktop) &&
           <Nav>
-            <Navbar.Form>
-              {(pathname.includes('blogs')) && 
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <SearchBox />
-                  <FavouritesIcon
-                    showFavourites={this.showFavourites.bind(this)}
-                    favorite={showFavs ? fullHeart : fadedHeart}
-                  />
-                </div> 
-              }
-            </Navbar.Form>
+            {(pathname.includes('blogs')) && 
+              <div style={{display:"flex", alignItems:"center"}}>
+                <SearchBox />
+                <FavouritesIcon
+                  showFavourites={this.showFavourites.bind(this)}
+                  favorite={showFavs ? fullHeart : fadedHeart}
+                />
+              </div> 
+            }
           </Nav>
         }
         {this.props.currentUser.isAuthenticated ? (
-          <Nav pullRight className="navbar-testing" >
+          <Nav className="navbar-testing justify-content-end" >
             {isDesktop ? (
                 <ProfileButton
                   imageStyle={{backgroundImage: `url(${this.props.currentUser.user.profileImageUrl})`}}  

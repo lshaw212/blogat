@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import { Modal, Dropdown, MenuItem } from "react-bootstrap";
+import { Modal, Dropdown } from "react-bootstrap";
 import EditPostForm from "./forms/EditPostForm";
 
 class Post extends Component {
@@ -50,9 +50,9 @@ class Post extends Component {
               <Dropdown id="dropdown-custom-menu">
               <i className="far fa-edit fa-2x edit-icon" onClick={this.handleClick.bind(this)} bsRole="toggle"/>
                 <Dropdown.Menu className="dropdown-menu" bsRole="menu" style={{padding: ''}}>
-                  <MenuItem onClick={this.handleShow}>Edit Post</MenuItem>
-                  <MenuItem divider/>
-                  <MenuItem onClick={removePost}>Delete Post</MenuItem>
+                  <Dropdown.Item onClick={this.handleShow}>Edit Post</Dropdown.Item>
+                  <Dropdown.Item divider/>
+                  <Dropdown.Item onClick={removePost}>Delete Post</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Modal bsSize="large" show={this.state.show} onHide={this.handleClose}>

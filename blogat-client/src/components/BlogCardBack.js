@@ -14,7 +14,7 @@ const BlogCardBack =({desc, name, favToggle, favorite, profileImage, postCount, 
         </OverlayTrigger>
       </div>
       <div className="blog-back-icons">
-        <i class="far fa-newspaper fa-2x"/>
+        <i className="far fa-newspaper fa-2x"/>
         <div className="blog-back-icons-text">{postCount}</div>
       </div>
       <div className="blog-back-icons" onClick={favToggle} >

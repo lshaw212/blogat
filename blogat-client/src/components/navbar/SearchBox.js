@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import qs from "qs";
 
 const defaultState = {
@@ -24,9 +24,9 @@ class SearchBox extends Component{
       ...qs.parse(this.props.location.search.replace("?", ""))
     }
     return(
-      <FormGroup>
-        <FormControl type="text" placeholder="Search Blogs.." value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
-      </FormGroup>
+      <Form.Group>
+        <Form.Control type="text" placeholder="Search Blogs.." value={queryParamState.filter} onChange={e => this.updateQueryParam({ filter: e.target.value })}/>
+      </Form.Group>
     )
   }
 }
