@@ -29,4 +29,4 @@ As my first full stack application, I feel I was able to showcase many different
 
 ---
 
-> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+***This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).***
