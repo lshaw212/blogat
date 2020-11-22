@@ -4,9 +4,11 @@ const CONNECTION_URL = `mongodb+srv://${username}:${password}@blogat.ugjbd.mongo
 
 
 const options = {
-  reconnectTries: Number.MAX_VALUE,
   poolSize: 10,
-  autoIndex: false
+  autoIndex: false, 
+  useNewUrlParser: true, 
+  useCreateIndex: true, 
+  useUnifiedTopology: true
 }
 const mongoose = require("mongoose");
 mongoose.set("debug", true);
